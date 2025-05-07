@@ -2,15 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { response } from 'express';
-import { error } from 'console';
+import { UserService } from '../services/user.service';
+import { RegisterDTO } from '../dtos/register.dto';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FooterComponent, FormsModule, NgIf, HttpClientModule],
+  imports: [FooterComponent, FormsModule, NgIf],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
@@ -28,12 +27,12 @@ export class RegisterComponent {
   passwordTouched = false;
 
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.phone = "894872347";
-    this.password = "123456";
-    this.retypePassword = "123456";
-    this.fullName = "nguyen van test";
-    this.address = "dc 123";
+  constructor(private router: Router, private userService: UserService) {
+    this.phone = '';
+    this.password = '';
+    this.retypePassword = '';
+    this.fullName = '';
+    this.address = '';
     this.isAccepted = true;
     this.dateOfBirth = new Date();
     this.dateOfBirth.setFullYear(this.dateOfBirth.getFullYear() - 18);
@@ -48,9 +47,9 @@ export class RegisterComponent {
                       ${this.fullName} + ${this.address} + ${this.isAccepted} + ${this.dateOfBirth}`
     alert(message);
 
-    const apiUrl = "http://localhost:8088/api/v1/users/register"
 
-    const registerData = {
+
+    const registerDTO: RegisterDTO = {
       "fullname": this.fullName,
       "phone_number": this.phone,
       "address": this.address,
@@ -62,9 +61,8 @@ export class RegisterComponent {
       "role_id": 1
     }
 
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.http.post(apiUrl, registerData, { headers })
-      .subscribe({
+    this.userService.register(registerDTO).subscribe(
+      {
         next: (response: any) => {
           debugger
           this.router.navigate(['/login'])
@@ -75,10 +73,9 @@ export class RegisterComponent {
         error: (error: any) => {
           alert(`Cannot register, error: ${error.error}`)
           debugger
-
-
         }
-      });
+      }
+    )
   }
 
   //how to check password match ?
