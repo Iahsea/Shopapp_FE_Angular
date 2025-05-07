@@ -6,11 +6,11 @@
                 <div class="register-form mx-auto">
                     <h2 class="register-header">Đăng ký</h2>
                     <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="text" class="form-control" name="phone" [(ngModel)]="phone"
-                            (input)="onPhoneChange()" required #phoneRef="ngModel" id="phone">
+                        <label for="phoneNumber">Phone</label>
+                        <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="phoneNumber"
+                            (input)="onPhoneChange()" required #phoneNumberRef="ngModel" id="phoneNumber">
                         <div class="divider-nospace"></div>
-                        <p class="text-danger" *ngIf="phoneRef.touched && phone.length < 6">
+                        <p class="text-danger" *ngIf="phoneNumberRef.touched && phoneNumber.length < 6">
                             Phone phải có ít nhất 6 kí tự
                         </p>
                     </div>

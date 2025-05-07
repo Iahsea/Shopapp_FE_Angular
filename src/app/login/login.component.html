@@ -5,16 +5,24 @@
             <div class="login-form mx-auto">
                 <h2 class="login-header">Đăng nhập</h2>
                 <div class="form-group">
-                    <label for="phone">Phone</label>
-                    <input type="text" class="form-control" id="phone">
+                    <label for="phoneNumber">Phone</label>
+                    <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="phoneNumber" required
+                        #phoneNumberRef="ngModel" id="phoneNumber">
                     <div class="divider-nospace"></div>
+                    <p class="text-danger" *ngIf="phoneNumberRef.touched && phoneNumber.length < 6">
+                        Phone phải có ít nhất 6 kí tự
+                    </p>
                 </div>
                 <div class="mt-5"></div>
                 <div class="form-group password-field">
                     <label for="password">Mật khẩu</label>
-                    <input type="password" placeholder="Ít nhất 3 ký tự" class="form-control" id="password">
+                    <input type="password" placeholder="Ít nhất 3 ký tự" name="password" [(ngModel)]="password"
+                        class="form-control" #passwordRef="ngModel" id="password">
                     <i class="password-toggle fas fa-eye-slash"></i>
                     <div class="divider-nospace"></div>
+                    <p class="text-danger" *ngIf="passwordRef.touched && password.length < 3">
+                        Mật khẩu phải có ít nhất 3 kí tự
+                    </p>
                 </div>
                 <div class="form-group">
                     <div class="form-check checkbox-text">
@@ -33,7 +41,7 @@
                         <option>Quản trị viên</option>
                     </select>
                 </div>
-                <button type="button" class="login-button">Đăng nhập</button>
+                <button type="button" (click)="login()" class="login-button">Đăng nhập</button>
                 <div class="divider"></div>
                 <p class="text-center">Bạn chưa đăng ký? <span>
                         <a href="#" class="register-link">Tạo tài khoản</a></span></p>
