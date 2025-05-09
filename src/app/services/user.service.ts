@@ -9,8 +9,8 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  private apiRegister = `${environment}/users/register`
-  private apiLogin = `${environment}/users/login"`
+  private apiRegister = `${environment.apiBaseUrl}/users/register`
+  private apiLogin = `${environment.apiBaseUrl}/users/login`
   private apiConfig = {
     headers: this.createHeaders(),
   }

@@ -9,12 +9,15 @@ export class RegisterDTO {
     @IsString()
     fullname: string;
 
+    @IsPhoneNumber()
     phone_number: string;
 
     @IsString()
+    @IsNotEmpty()
     address: string;
 
     @IsString()
+    @IsNotEmpty()
     password: string;
 
     @IsString()
