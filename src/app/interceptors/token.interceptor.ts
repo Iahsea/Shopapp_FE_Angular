@@ -17,6 +17,8 @@ export class TokenInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (isPlatformBrowser(this.platformId)) {
+            debugger
+            console.log('TokenInterceptor is called');
             const token = localStorage.getItem('access_token');
             if (token) {
                 req = req.clone({
