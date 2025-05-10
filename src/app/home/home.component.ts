@@ -12,6 +12,9 @@ import { error } from 'console';
 import { response } from 'express';
 import { environment } from '../environments/environment';
 import { CommonModule } from '@angular/common';
+import { Category } from '../models/category';
+import { CategoryService } from '../services/category.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -23,27 +26,60 @@ import { CommonModule } from '@angular/common';
     OrderConfirmComponent,
     LoginComponent,
     RegisterComponent,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
   products: Product[] = [];
+  categories: Category[] = []; // Dữ liệu động từ categoryService
+  selectedCategoryId: number = 0; // Giá trị category được chọn
   currentPage: number = 0;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 12;
   page: number[] = [];
   totalPages: number = 0;
   visiblePages: number[] = [];
+  keyword: string = "";
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private categoryService: CategoryService
+  ) { }
 
   ngOnInit() {
-    this.getProduct(this.currentPage, this.itemsPerPage)
+    this.getProduct(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage);
+    this.getCategory(1, 100)
   }
 
-  getProduct(page: number, limit: number) {
-    this.productService.getProducts(page, limit).subscribe(
+  getCategory(page: number, limit: number) {
+    this.categoryService.getCategories(page, limit).subscribe(
+      {
+        next: (categories: Category[]) => {
+          debugger
+          this.categories = categories;
+        },
+        complete: () => {
+          debugger
+        },
+        error: (error: any) => {
+          debugger
+          console.log('Error fetching categories:', error);
+        }
+      }
+    )
+  }
+
+  searchProducts() {
+    this.currentPage = 0;
+    this.itemsPerPage = 12;
+    debugger
+    this.getProduct(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage);
+  }
+
+  getProduct(keyword: string, categoryId: number, page: number, limit: number) {
+    this.productService.getProducts(keyword, categoryId, page, limit).subscribe(
       {
         next: (response: any) => {
           debugger
@@ -69,7 +105,7 @@ export class HomeComponent implements OnInit {
   onPageChange(page: number) {
     debugger
     this.currentPage = page;
-    this.getProduct(this.currentPage, this.itemsPerPage);
+    this.getProduct(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage);
   }
 
   generateVisiblePageArray(currentPage: number, totalPages: number): number[] {

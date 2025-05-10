@@ -13,8 +13,10 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(page: number, limit: number): Observable<any> {
+  getProducts(keyword: string, categoryId: number, page: number, limit: number): Observable<any> {
     const params = new HttpParams()
+      .set('keyword', keyword.toString())
+      .set('category_id', categoryId.toString())
       .set('page', page.toString())
       .set('limit', limit.toString());
     return this.http.get<[Product]>(this.apiGetProducts, { params });

@@ -190,3 +190,26 @@
   background-color: #43a047;
   color: #ffffff;
 }
+
+select.form-control {
+  background: linear-gradient(135deg, #1f1f2e, #2e2e3e); /* Nền chuyển màu tím-xám */
+  color: #e0e0ff;                  /* Chữ sáng dịu */
+  border: 1px solid #555;
+  border-radius: 8px;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Đổ bóng */
+  transition: all 0.3s ease;
+}
+
+select.form-control:hover {
+  background: linear-gradient(135deg, #2a2a3d, #3d3d5a); /* Hover đậm hơn */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+select.form-control option {
+  background-color: #1e1e2e;
+  color: #dcdcff;
+}
+
+
+
