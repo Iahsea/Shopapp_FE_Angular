@@ -7,6 +7,7 @@ import { error } from 'console';
 import { ProductImage } from '../../models/product.image';
 import { environment } from '../../environments/environment';
 import { CommonModule } from '@angular/common';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-detail-product',
@@ -18,8 +19,12 @@ export class DetailProductComponent implements OnInit {
   product?: Product;
   productId: number = 0;
   currentImageIndex: number = 0;
+  quantity: number = 1;
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) { }
 
   ngOnInit() {
     debugger
@@ -85,5 +90,25 @@ export class DetailProductComponent implements OnInit {
   previousImage(): void {
     debugger
     this.showImage(this.currentImageIndex - 1);
+  }
+
+  addToCart(): void {
+    debugger
+    if (this.product) {
+      this.cartService.addToCart(this.productId, this.quantity);
+    } else {
+      // Xử lý khi product là null
+      console.error('Không thể thêm sản phẩm vào giỏ hàng vì product là null.');
+    }
+  }
+
+  increaseQuantity(): void {
+    this.quantity++;
+  }
+
+  decreaseQuantity(): void {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
   }
 }
