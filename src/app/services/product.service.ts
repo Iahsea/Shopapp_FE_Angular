@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Product } from '../models/product';
 
 @Injectable({
@@ -23,5 +23,15 @@ export class ProductService {
   }
   getDetailProduct(productId: number) {
     return this.http.get(`${environment.apiBaseUrl}/products/${productId}`);
+  }
+  getProductsByIds(productIds: number[]): Observable<Product[]> {
+    // Chuyển danh sách ID thành một chuỗi và truyền vào params
+    debugger
+    if (productIds.length === 0) {
+      // Trả về Observable rỗng nếu không có productId nào
+      return of([]);
+    }
+    const params = new HttpParams().set('ids', productIds.join(','));
+    return this.http.get<Product[]>(`${this.apiGetProducts}/by-ids`, { params });
   }
 }
