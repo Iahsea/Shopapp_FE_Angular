@@ -2,14 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { RegisterDTO } from '../../dtos/user/register.dto';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FooterComponent, FormsModule, NgIf],
+  imports: [FooterComponent, FormsModule, NgIf, RouterModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })

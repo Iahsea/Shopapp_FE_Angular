@@ -21,11 +21,6 @@ import { FormsModule } from '@angular/forms';
   imports: [
     HeaderComponent,
     FooterComponent,
-    DetailProductComponent,
-    OrderComponent,
-    OrderConfirmComponent,
-    LoginComponent,
-    RegisterComponent,
     CommonModule,
     FormsModule
   ],

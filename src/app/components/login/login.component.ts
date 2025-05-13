@@ -5,7 +5,7 @@ import { UserService } from '../../services/user.service';
 import { TokenService } from '../../services/token.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LoginDTO } from '../../dtos/user/login.dto';
 import { LoginResponse } from '../../responses/user/login.response'
 import { RoleService } from '../../services/role.service';
@@ -13,7 +13,7 @@ import { Role } from '../../models/role';
 
 @Component({
   selector: 'app-login',
-  imports: [HeaderComponent, FooterComponent, FormsModule, CommonModule],
+  imports: [HeaderComponent, FooterComponent, FormsModule, CommonModule, RouterModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
