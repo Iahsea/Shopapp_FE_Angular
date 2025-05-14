@@ -54,10 +54,13 @@
 }
 
 .product-image {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+  width: 100% !important;
+  height: 200px !important;
+  object-fit: cover !important;
+  border-radius: 6px;
+  display: block;
 }
+
 
 .product-name {
     color: white;
@@ -65,6 +68,8 @@
 
 .product-description {
     color: rgb(173, 178, 203);
+    min-height: 40px;
+    margin-bottom: auto;
 }
 
 .product-warranty {

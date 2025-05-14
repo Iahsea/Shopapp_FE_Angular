@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { OrderDTO } from '../dtos/order/order.dto';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,11 @@ export class OrderService {
 
   placeOrder(orderData: OrderDTO) {
     return this.http.post(this.apiUrl, orderData);
+  }
+
+  getOrderById(orderId: number): Observable<any> {
+    debugger
+    const url = `${environment.apiBaseUrl}/orders/${orderId}`;
+    return this.http.get(url);
   }
 }
