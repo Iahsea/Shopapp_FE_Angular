@@ -10,6 +10,7 @@ import { LoginDTO } from '../../dtos/user/login.dto';
 import { LoginResponse } from '../../responses/user/login.response'
 import { RoleService } from '../../services/role.service';
 import { Role } from '../../models/role';
+import { UserResponse } from '../../responses/user/user.response';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   roles: Role[] = []; // Mảng roles
   rememberMe: boolean = true;
   selectedRole: Role | undefined; // Biến để lưu giá trị được chọn từ dropdown
+  userResponse?: UserResponse
 
 
   constructor(
@@ -67,8 +69,25 @@ export class LoginComponent implements OnInit {
           const { token } = response;
           if (this.rememberMe) {
             this.tokenService.setToken(token);
+            this.userService.getUserDetail(token).subscribe({
+              next: (response: any) => {
+                debugger
+                this.userResponse = {
+                  ...response,
+                  date_of_birth: new Date(response.date_of_birth),
+                };
+                this.userService.saveUserResponseToLocalStorage(this.userResponse);
+                this.router.navigate(['/']);
+              },
+              complete: () => {
+                debugger
+              },
+              error: (error: any) => {
+                debugger
+                alert(error?.error?.message);
+              }
+            })
           }
-          // this.router.navigate(['/'])
         },
         complete: () => {
           debugger
