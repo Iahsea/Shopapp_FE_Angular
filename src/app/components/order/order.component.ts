@@ -9,6 +9,8 @@ import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
 import { environment } from '../../environments/environment';
 import { OrderService } from '../../services/order.service';
+import { Router } from '@angular/router';
+import { Order } from '../../models/order';
 
 @Component({
   selector: 'app-order',
@@ -39,7 +41,8 @@ export class OrderComponent implements OnInit {
     private cartService: CartService,
     private productService: ProductService,
     private orderService: OrderService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
     // Tạo FormGroup và các FormControl tương ứng
     this.orderForm = this.fb.group({
@@ -57,6 +60,10 @@ export class OrderComponent implements OnInit {
     debugger
     const cart = this.cartService.getCart();
     const productIds = Array.from(cart.keys());
+
+    if (productIds.length === 0) {
+      return;
+    }
     this.productService.getProductsByIds(productIds).subscribe(
       {
         next: (products) => {
@@ -109,9 +116,11 @@ export class OrderComponent implements OnInit {
       }));
       // Dữ liệu hợp lệ, bạn có thể gửi đơn hàng đi
       this.orderService.placeOrder(this.orderData).subscribe({
-        next: (response) => {
+        next: (response: Order) => {
           debugger;
           console.log('Đặt hàng thành công');
+          this.cartService.clearCart();
+          this.router.navigate(['/orders/', response.id])
         },
         complete: () => {
           debugger;

@@ -57,10 +57,17 @@ export class UserService {
     }
   }
 
-  getUserResponseFromLocalStorage() {
+  getUserResponseFromLocalStorage(): UserResponse | null {
     try {
+
+      if (typeof window === 'undefined' || !window.localStorage) {
+        console.warn('LocalStorage is not available in this environment.');
+        return null;
+      }
+
       // Retrieve the JSON string from local storage using the key
       const userResponseJSON = localStorage.getItem('user');
+      console.log(">>>>> check userResponseJSON", userResponseJSON);
       if (userResponseJSON == null || userResponseJSON == undefined) {
         return null;
       }
