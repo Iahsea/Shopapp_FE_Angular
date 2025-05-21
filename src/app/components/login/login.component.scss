@@ -1,3 +1,5 @@
+@use '../../styles/shared-styles.scss' as *;
+
 .container {
     color: white;
     height: 100vh;
@@ -53,7 +55,7 @@
 /* Màu checkbox khi được chọn */
 .checkbox-text input[type="checkbox"]:checked {
     border-color: white;
-    background-color: rgb(233, 66, 178);
+    background-color: $shopapp-tint-color;
 }
 
 .form-check-input {
