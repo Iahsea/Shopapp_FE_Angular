@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -9,10 +10,13 @@ export class TokenService {
   private readonly TOKEN_KEY = 'access_token';
   private jwtHelper = new JwtHelperService();
 
-  constructor() { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem(this.TOKEN_KEY);
+    }
+    return null;
   }
 
   setToken(token: string): void {
@@ -21,7 +25,10 @@ export class TokenService {
 
   getUserId(): number {
     let userObject = this.jwtHelper.decodeToken(this.getToken() ?? '');
-    return 'userId' in userObject ? parseInt(userObject['userId']) : 0;
+    if (userObject && 'userId' in userObject) {
+      return parseInt(userObject['userId']);
+    }
+    return 0;
   }
 
   removeToken(): void {

@@ -30,16 +30,16 @@
                         <ng-container *ngIf="userResponse">
                             <ng-container ngbPopover="Tài khoản của tôi,Đơn mua,Đăng xuất" popoverTitle="User Actions"
                                 triggers="click" [placement]="'bottom'">
-                                <a class="nav-link" routerLink="/profile" [ngbPopover]="popoverContent"
-                                    (click)="togglePopover($event)">
+                                <a class="nav-link" [ngbPopover]="popoverContent" (click)="togglePopover($event)"
+                                    style="cursor: pointer;">
                                     {{ userResponse.fullname }}
                                 </a>
                                 <ng-template #popoverContent>
-                                    <div class="popover-list ">
-                                        <a href="#" class="popover-item" (click)="handleItemClick(0)">Tài khoản của
+                                    <div class="popover-list" style="cursor: pointer;">
+                                        <a class="popover-item" (click)="handleItemClick(0)">Tài khoản của
                                             tôi</a>
-                                        <a href="#" class="popover-item" (click)="handleItemClick(1)">Đơn mua</a>
-                                        <a href="#" class="popover-item" (click)="handleItemClick(2)">Đăng xuất</a>
+                                        <a class="popover-item" (click)="handleItemClick(1)">Đơn mua</a>
+                                        <a class="popover-item" (click)="handleItemClick(2)">Đăng xuất</a>
                                     </div>
                                 </ng-template>
                             </ng-container>

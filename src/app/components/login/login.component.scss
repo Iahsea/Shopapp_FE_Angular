@@ -15,7 +15,7 @@
 }
 .login-header {
     text-align: center;
-    color: rgb(105, 244, 181);
+    color: $shopapp-title-color;
     margin-bottom: 20px;
 }
 .form-control {
@@ -42,7 +42,7 @@
     top: 50%;
     right: 10px;
     transform: translateY(-50%);
-    color: rgb(105, 244, 181);
+    color:$shopapp-title-color;
     cursor: pointer;
 }
 .checkbox-text {
@@ -63,7 +63,7 @@
 }
 
 .register-link {
-    color: rgb(105, 244, 181);
+    color:$shopapp-title-color;
     text-decoration: none;
 }
 .access-right {

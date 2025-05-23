@@ -1,3 +1,5 @@
+@use '../../styles/shared-styles.scss' as *;
+
 .container {
     color: white;
 }
@@ -26,7 +28,7 @@
     color: rgb(233, 66, 176);
 }
 .product-order {
-    color: rgb(105, 244, 181);
+    color: $shopapp-title-color;
 }
 table {
     width: 100%;
