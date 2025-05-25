@@ -1,0 +1,73 @@
+.app-container {
+  height: 100vh;
+}
+
+.sidebar {
+  background: #1e293b;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 0 8px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 8px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  position: relative;
+}
+
+.sidebar-header.collapsed span.logo-text {
+  display: none;
+}
+
+.collapse-btn {
+  position: absolute;
+  right: 8px;
+}
+
+.search-field {
+  margin: 8px 0;
+}
+
+.mat-list-item {
+  cursor: pointer;
+}
+
+.mat-list-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.user-info {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 12px 8px;
+  font-weight: 500;
+}
+
+.user-info mat-icon {
+  margin-right: 8px;
+}
+
+.main-content {
+  padding: 16px;
+}
+
+.mobile-toggle-btn {
+  display: none;
+}
+
+.custom-list-item, .custom-list-item * {
+  color: white !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mobile-toggle-btn {
+    display: inline-flex;
+  }
+}
