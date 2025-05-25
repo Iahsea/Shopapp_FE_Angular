@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserResponse } from '../../responses/user/user.response';
 import { UserService } from '../../services/user.service';
 import { TokenService } from '../../services/token.service';
-import { minLength } from 'class-validator';
+import { minLength, ValidationError } from 'class-validator';
 import { CommonModule } from '@angular/common';
 import { response } from 'express';
 import { error } from 'console';
+import { UpdateUserDTO } from '../../dtos/user/update.user.dto';
 
 @Component({
   selector: 'app-user-profile',
@@ -27,7 +28,7 @@ import { error } from 'console';
 export class UserProfileComponent implements OnInit {
   userResponse?: UserResponse;
   userProfileForm: FormGroup;
-  token:string = '';
+  token: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,7 +43,9 @@ export class UserProfileComponent implements OnInit {
       password: ['', [Validators.minLength(3)]],
       retype_password: ['', [Validators.minLength(3)]],
       date_of_birth: [Date.now()],
-    })
+    }, {
+      validators: this.passwordMatchValidator()// Custom validator function for password match
+    });
   }
   ngOnInit(): void {
     debugger
@@ -66,9 +69,51 @@ export class UserProfileComponent implements OnInit {
       },
       error: (error: any) => {
         debugger;
-        alert(error.error.message);
+        console.log('error', error?.error?.message || error?.message || 'Unknown error');
       }
     })
+  }
+
+  passwordMatchValidator(): ValidatorFn {
+    return (formGroup: AbstractControl): ValidationErrors | null => {
+      const password = formGroup.get('password')?.value;
+      const retypedPassword = formGroup.get('retype_password')?.value;
+      if (password !== retypedPassword) {
+        return { passwordMismatch: true };
+      }
+
+      return null;
+    };
+  }
+
+
+
+  save(): void {
+    debugger
+    if (this.userProfileForm.valid) {
+      const updateUserDTO: UpdateUserDTO = {
+        fullname: this.userProfileForm.get('fullname')?.value,
+        address: this.userProfileForm.get('address')?.value,
+        password: this.userProfileForm.get('password')?.value,
+        retype_password: this.userProfileForm.get('retype_password')?.value,
+        date_of_birth: this.userProfileForm.get('date_of_birth')?.value
+      };
+      this.userService.updateUserDetail(this.token, updateUserDTO)
+        .subscribe({
+          next: (response: any) => {
+            this.userService.removeUserFromLocalStorage();
+            this.tokenService.removeToken();
+            this.router.navigate(['/login']);
+          },
+          error: (error: any) => {
+            console.log('error', error);
+          }
+        })
+    } else {
+      if (this.userProfileForm.hasError('passwordMismatch')) {
+        alert('Mật khẩu và mật khẩu gõ lại chưa chính xác')
+      }
+    }
   }
 
 }

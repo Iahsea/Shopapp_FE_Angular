@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "start:dev": "ng serve --port 4300",
+    "build:dev": "ng build --port 4300",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:shopapp-angular": "node dist/shopapp-angular/server/server.mjs"

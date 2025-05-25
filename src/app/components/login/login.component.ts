@@ -19,7 +19,15 @@ import { UserResponse } from '../../responses/user/user.response';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  phoneNumber: string = '2233445566';
+
+  /*
+  // Login user 
+  phoneNumber: string = '6666666';
+  password: string = '123';
+  */
+
+  // Login admin
+  phoneNumber: string = '0909090909';
   password: string = '123456';
 
   roles: Role[] = []; // Mảng roles
@@ -77,7 +85,11 @@ export class LoginComponent implements OnInit {
                   date_of_birth: new Date(response.date_of_birth),
                 };
                 this.userService.saveUserResponseToLocalStorage(this.userResponse);
-                this.router.navigate(['/']);
+                if (this.userResponse?.role.name == 'admin') {
+                  this.router.navigate(['/admin']);
+                } else if (this.userResponse?.role.name == 'user') {
+                  this.router.navigate(['/']);
+                }
               },
               complete: () => {
                 debugger
