@@ -1,0 +1,136 @@
+/* Wrapper */
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+/* Dòng tiêu đề */
+mat-header-row {
+  background-color: #004080;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Các ô tiêu đề */
+mat-header-cell {
+  padding: 12px 10px;
+  border-bottom: 2px solid #003366;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* Ô dữ liệu chung */
+mat-cell {
+  padding: 10px 8px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+  white-space: nowrap;
+  color: #222;
+}
+
+/* Các cột nhỏ: ID, UserID, Status, Total Money, Shipping Method */
+mat-cell.mat-column-id,
+mat-header-cell.mat-column-id,
+mat-cell.mat-column-userId,
+mat-header-cell.mat-column-userId,
+mat-cell.mat-column-status,
+mat-header-cell.mat-column-status,
+mat-cell.mat-column-totalMoney,
+mat-header-cell.mat-column-totalMoney,
+mat-cell.mat-column-shippingMethod,
+mat-header-cell.mat-column-shippingMethod {
+  font-size: 12px;
+  text-align: center;
+  max-width: 60px;
+  padding: 8px 6px;
+}
+
+/* Các cột dài, quan trọng: Full Name, Email, Address, Note, Payment Method */
+mat-cell.mat-column-fullName,
+mat-header-cell.mat-column-fullName,
+mat-cell.mat-column-email,
+mat-header-cell.mat-column-email,
+mat-cell.mat-column-address,
+mat-header-cell.mat-column-address,
+mat-cell.mat-column-note,
+mat-header-cell.mat-column-note,
+mat-cell.mat-column-paymentMethod,
+mat-header-cell.mat-column-paymentMethod {
+  font-size: 15px;
+  text-align: left;
+  max-width: 300px;
+  padding: 12px 15px;
+  white-space: normal; /* cho phép xuống dòng */
+  word-break: break-word;
+}
+
+/* Các cột trung bình: Phone Number, Order Date, Shipping Address, Shipping Date, Action */
+mat-cell.mat-column-phoneNumber,
+mat-header-cell.mat-column-phoneNumber,
+mat-cell.mat-column-orderDate,
+mat-header-cell.mat-column-orderDate,
+mat-cell.mat-column-shippingAddress,
+mat-header-cell.mat-column-shippingAddress,
+mat-cell.mat-column-shippingDate,
+mat-header-cell.mat-column-shippingDate,
+mat-cell.mat-column-shippingMethod,
+mat-header-cell.mat-column-shippingMethod,
+mat-cell.mat-column-totalMoney,
+mat-header-cell.mat-column-totalMoney,
+mat-cell.mat-column-action,
+mat-header-cell.mat-column-action {
+  font-size: 13px;
+  text-align: left;
+  max-width: 150px;
+  padding: 10px 12px;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hover dòng */
+mat-row:hover {
+  background-color: #e8f0fe;
+  cursor: pointer;
+}
+
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.page-item {
+  margin: 0 4px;
+}
+
+.page-link {
+  display: block;
+  padding: 6px 12px;
+  color: #004080;
+  border: 1px solid #004080;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.page-item.active .page-link,
+.page-link:hover {
+  background-color: #004080;
+  color: white;
+  border-color: #004080;
+}
