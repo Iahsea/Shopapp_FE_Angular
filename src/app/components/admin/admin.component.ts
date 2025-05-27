@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserResponse } from '../../responses/user/user.response';
 import { UserService } from '../../services/user.service';
 import { TokenService } from '../../services/token.service';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
@@ -35,7 +35,8 @@ import { FormsModule } from '@angular/forms';
     MatMenuModule,
     MatTooltipModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    RouterOutlet
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
@@ -47,10 +48,10 @@ export class AdminComponent implements OnInit {
   userName = 'Admin User';
 
   menuItems = [
-    { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
-    { label: 'Orders', icon: 'shopping_cart', route: '/orders' },
-    { label: 'Categories', icon: 'category', route: '/categories' },
-    { label: 'Products', icon: 'inventory_2', route: '/products' },
+    { label: 'Dashboard', icon: 'dashboard', route: 'dashboard' },
+    { label: 'Orders', icon: 'shopping_cart', route: 'orders-admin' },
+    { label: 'Categories', icon: 'category', route: 'categories-admin' },
+    { label: 'Products', icon: 'inventory_2', route: 'products-admin' },
   ];
 
   constructor(

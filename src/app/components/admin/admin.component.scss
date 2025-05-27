@@ -71,3 +71,11 @@
     display: inline-flex;
   }
 }
+
+.submenu-panel mat-list-item mat-icon {
+  vertical-align: middle;      /* Căn giữa theo chiều dọc */
+  margin-right: 8px;           /* Khoảng cách icon - text */
+  font-size: 20px;             /* Kích thước icon */
+  color: #555;                 /* Màu icon (có thể đổi màu khác) */
+  min-width: 24px;             /* Đảm bảo icon không bị co nhỏ */
+}

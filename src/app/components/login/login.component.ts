@@ -20,11 +20,11 @@ import { UserResponse } from '../../responses/user/user.response';
 })
 export class LoginComponent implements OnInit {
 
-  /*
-  // Login user 
-  phoneNumber: string = '6666666';
-  password: string = '123';
-  */
+  // /*
+  // // Login user 
+  // phoneNumber: string = '6666666';
+  // password: string = '123';
+  // */
 
   // Login admin
   phoneNumber: string = '0909090909';
