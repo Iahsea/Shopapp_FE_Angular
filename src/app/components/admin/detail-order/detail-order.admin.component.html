@@ -1,0 +1,81 @@
+<div class="mat-typography container">
+
+    <mat-card>
+        <mat-card-title>Order Details</mat-card-title>
+
+        <mat-card-content>
+            <div class="row" style="display: flex; gap: 24px; flex-wrap: wrap;">
+
+                <!-- Thông tin đơn hàng -->
+                <section style="flex: 1 1 300px;">
+                    <h3>Order Information</h3>
+
+                    <p><strong>Order ID:</strong> {{ orderResponse.id }}</p>
+                    <p><strong>User ID:</strong> {{ orderResponse.user_id }}</p>
+                    <p><strong>Full Name:</strong> {{ orderResponse.fullname }}</p>
+                    <p><strong>Phone Number:</strong> {{ orderResponse.phone_number }}</p>
+                    <p><strong>Email:</strong> {{ orderResponse.email }}</p>
+                    <p><strong>Address:</strong> {{ orderResponse.address }}</p>
+                    <p><strong>Note:</strong> {{ orderResponse.note }}</p>
+                    <p><strong>Order Date:</strong> {{ orderResponse.order_date | date }}</p>
+
+                    <mat-form-field appearance="fill" style="width: 100%;">
+                        <mat-label>Status</mat-label>
+                        <mat-select [(ngModel)]="orderResponse.status" id="statusSelect">
+                            <mat-option value="pending">Pending</mat-option>
+                            <mat-option value="processing">Processing</mat-option>
+                            <mat-option value="shipped">Shipped</mat-option>
+                            <mat-option value="delivered">Delivered</mat-option>
+                            <mat-option value="cancelled">Cancelled</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </section>
+
+                <!-- Chi tiết đơn hàng -->
+                <section style="flex: 2 1 600px;">
+                    <h3>Order Details</h3>
+
+                    <table mat-table [dataSource]="orderResponse.order_details" class="mat-elevation-z8"
+                        style="width: 100%;">
+
+
+
+                        <ng-container matColumnDef="image">
+                            <th mat-header-cell *matHeaderCellDef></th>
+                            <td mat-cell *matCellDef="let order_detail" class="product-image-cell">
+                                <img src="{{ order_detail.product.thumbnail }}" alt="Order Image"
+                                    style="width: 100%; max-width: 300px; border-radius: 8px; margin-bottom: 16px;" />
+                            </td>
+                        </ng-container>
+
+                        <!-- Product Name Column -->
+                        <ng-container matColumnDef="product">
+                            <th mat-header-cell *matHeaderCellDef>Product</th>
+                            <td mat-cell *matCellDef="let order_detail"> {{ order_detail.product.name }} </td>
+                        </ng-container>
+
+                        <!-- Price Column -->
+                        <ng-container matColumnDef="price">
+                            <th mat-header-cell *matHeaderCellDef>Price</th>
+                            <td mat-cell *matCellDef="let order_detail"> {{ order_detail.product.price | currency }}
+                            </td>
+                        </ng-container>
+
+                        <!-- Quantity Column -->
+                        <ng-container matColumnDef="quantity">
+                            <th mat-header-cell *matHeaderCellDef>Quantity</th>
+                            <td mat-cell *matCellDef="let order_detail"> {{ order_detail.number_of_products }} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </section>
+            </div>
+
+            <div style="margin-top: 16px;">
+                <button mat-raised-button color="primary" (click)="saveOrder()">Save</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

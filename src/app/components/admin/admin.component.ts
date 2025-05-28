@@ -49,9 +49,9 @@ export class AdminComponent implements OnInit {
 
   menuItems = [
     { label: 'Dashboard', icon: 'dashboard', route: 'dashboard' },
-    { label: 'Orders', icon: 'shopping_cart', route: 'orders-admin' },
-    { label: 'Categories', icon: 'category', route: 'categories-admin' },
-    { label: 'Products', icon: 'inventory_2', route: 'products-admin' },
+    { label: 'Orders', icon: 'shopping_cart', route: 'orders' },
+    { label: 'Categories', icon: 'category', route: 'categories' },
+    { label: 'Products', icon: 'inventory_2', route: 'products' },
   ];
 
   constructor(

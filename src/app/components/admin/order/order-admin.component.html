@@ -10,6 +10,9 @@
             <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
             <mat-cell *matCellDef="let element">
                 <app-tooltip [text]="element.id"></app-tooltip>
+                <button mat-icon-button aria-label="View Detail" (click)="viewDetails(element.id)">
+                    <mat-icon>info</mat-icon> <!-- Icon "visibility" làm biểu tượng cho View Detail -->
+                </button>
             </mat-cell>
 
         </ng-container>
@@ -108,7 +111,9 @@
         <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <app-tooltip [text]="element.action"></app-tooltip>
+                <button mat-fab aria-label="Example icon button with a delete icon" (click)="deleteOrder(element.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
             </mat-cell>
         </ng-container>
 
@@ -130,15 +135,14 @@
                         <a class="page-link" (click)="onPageChange(page)">{{ page + 1 }}</a>
                     </li>
                 </ng-container>
-                <li class="page-item" *ngIf="currentPage < totalPages">
+                <li class="page-item" *ngIf="currentPage < totalPages - 1">
                     <a class="page-link" (click)="onPageChange(currentPage + 1)">Next</a>
                 </li>
                 <li class="page-item" *ngIf="currentPage < totalPages">
-                    <a class="page-link" (click)="onPageChange(totalPages)">Last</a>
+                    <a class="page-link" (click)="onPageChange(totalPages - 1)">Last</a>
                 </li>
             </ul>
         </nav>
     </div>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>

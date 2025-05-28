@@ -20,6 +20,7 @@ export class OrderDTO {
 
     address: string;
 
+    status: string;
 
     note: string;
 
@@ -37,6 +38,7 @@ export class OrderDTO {
         this.user_id = data.user_id;
         this.fullname = data.fullname;
         this.email = data.email;
+        this.status = data.status;
         this.phone_number = data.phone_number;
         this.address = data.address;
         this.note = data.note;

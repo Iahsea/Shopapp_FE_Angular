@@ -5,6 +5,10 @@ import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { TooltipComponent } from '../../../shared/tooltip/tooltip.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
+
 
 
 
@@ -15,7 +19,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     CommonModule,
     MatTableModule,
     TooltipComponent,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatIconModule,
+    MatButtonModule
   ],
   templateUrl: './order-admin.component.html',
   styleUrl: './order-admin.component.scss'
@@ -47,7 +53,8 @@ export class OrderAdminComponent implements OnInit {
   visiblePages: number[] = [];
 
   constructor(
-    private orderService: OrderService
+    private orderService: OrderService,
+    private router: Router
   ) {
 
   }
@@ -93,8 +100,33 @@ export class OrderAdminComponent implements OnInit {
     return new Array(endPage - startPage + 1).fill(0)
       .map((_, index) => startPage + index);
   }
-  deleteOrder(id: number) {
 
+
+  deleteOrder(id: number) {
+    const confirmation = window
+      .confirm('Are you sure you want to delete this order?');
+    if (confirmation) {
+      debugger
+      this.orderService.deleteOrder(id).subscribe({
+        next: (response: any) => {
+          debugger
+          location.reload();
+        },
+        complete: () => {
+          debugger;
+        },
+        error: (error: any) => {
+          debugger;
+          console.error('Error delete order:', error);
+        }
+      });
+    }
+  }
+
+
+  viewDetails(id: number) {
+    debugger
+    this.router.navigate(['/admin/orders', id]);
   }
 
 }

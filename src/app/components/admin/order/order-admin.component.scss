@@ -72,6 +72,11 @@ mat-header-cell.mat-column-paymentMethod {
   word-break: break-word;
 }
 
+mat-cell.mat-column-paymentMethod,
+mat-header-cell.mat-column-paymentMethod {
+  font-size: 14px;
+}
+
 /* Các cột trung bình: Phone Number, Order Date, Shipping Address, Shipping Date, Action */
 mat-cell.mat-column-phoneNumber,
 mat-header-cell.mat-column-phoneNumber,
@@ -134,3 +139,6 @@ mat-row:hover {
   color: white;
   border-color: #004080;
 }
+
+
+

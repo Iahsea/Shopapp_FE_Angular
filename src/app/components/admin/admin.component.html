@@ -25,7 +25,7 @@
         <mat-nav-list>
             <mat-list-item *ngFor="let item of filteredMenu()" [routerLink]="item.route" routerLinkActive="active-link"
                 [matTooltip]="isCollapsed ? item.label : ''" matTooltipPosition="right" class="custom-list-item">
-                <mat-icon matListIcon style="margin-right: 10px; margin-top: 10px;">{{ item.icon }}</mat-icon>
+                <mat-icon matListIcon style="margin-right: 10px;">{{ item.icon }}</mat-icon>
                 <span *ngIf="!isCollapsed">{{ item.label }}</span>
             </mat-list-item>
 

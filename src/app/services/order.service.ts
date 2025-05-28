@@ -25,6 +25,10 @@ export class OrderService {
     return this.http.get(url);
   }
 
+  updateOrder(orderId: number, orderData: OrderDTO): Observable<any> {
+    const url = `${environment.apiBaseUrl}/orders/${orderId}`;
+    return this.http.put(url, orderData);
+  }
 
   getAllOrders(keyword: string, page: number, limit: number): Observable<OrderResponse[]> {
     const params = new HttpParams()
@@ -32,5 +36,10 @@ export class OrderService {
       .set('page', page.toString())
       .set('limit', limit.toString());
     return this.http.get<any>(this.apiGetAllOrders, { params });
+  }
+
+  deleteOrder(orderId: number): Observable<any> {
+    const url = `${environment.apiBaseUrl}/orders/${orderId}`;
+    return this.http.delete(url, { responseType: 'text' });
   }
 }
