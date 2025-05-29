@@ -119,11 +119,29 @@ export class ProductAdminComponent implements OnInit {
   }
 
   deleteOrder(id: number) {
-
+    const confirmation = window
+      .confirm('Are you sure you want to delete this order?');
+    if (confirmation) {
+      debugger
+      this.productService.deleteOrder(id).subscribe({
+        next: (response: any) => {
+          debugger
+          location.reload();
+        },
+        complete: () => {
+          debugger;
+        },
+        error: (error: any) => {
+          debugger;
+          console.error('Error delete product:', error);
+        }
+      });
+    }
   }
 
 
   viewDetails(id: number) {
-
+    debugger
+    this.router.navigate(['/admin/products', id]);
   }
 }

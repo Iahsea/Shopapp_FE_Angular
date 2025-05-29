@@ -34,4 +34,9 @@ export class ProductService {
     const params = new HttpParams().set('ids', productIds.join(','));
     return this.http.get<Product[]>(`${this.apiGetProducts}/by-ids`, { params });
   }
+
+  deleteOrder(productId: number): Observable<any> {
+    const url = `${environment.apiBaseUrl}/products/${productId}`;
+    return this.http.delete(url, { responseType: 'text' });
+  }
 }

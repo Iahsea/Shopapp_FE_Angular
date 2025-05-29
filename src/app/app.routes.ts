@@ -13,6 +13,7 @@ import { OrderAdminComponent } from './components/admin/order/order-admin.compon
 import { ProductAdminComponent } from './components/admin/product/product-admin.component';
 import { CategoryAdminComponent } from './components/admin/category/category-admin.component';
 import { DetailOrderAdminComponent } from './components/admin/detail-order/detail-order.admin.component';
+import { DetailProductAdminComponent } from './components/admin/detail-product/detail-product.admin.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -32,7 +33,8 @@ export const routes: Routes = [
             { path: 'orders', component: OrderAdminComponent },
             { path: 'products', component: ProductAdminComponent },
             { path: 'categories', component: CategoryAdminComponent },
-            { path: 'orders/:id', component: DetailOrderAdminComponent }
+            { path: 'orders/:id', component: DetailOrderAdminComponent },
+            { path: 'products/:id', component: DetailProductAdminComponent }
         ]
     },
 ];
