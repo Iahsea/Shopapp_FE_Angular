@@ -9,4 +9,6 @@ export interface Product {
     category_id: number;
     url: string;
     productImages: ProductImage[];
+    created_at: string;
+    updated_at: string;
 }

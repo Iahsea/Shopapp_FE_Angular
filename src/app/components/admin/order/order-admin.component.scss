@@ -101,6 +101,20 @@ mat-header-cell.mat-column-action {
   text-overflow: ellipsis;
 }
 
+/* Chỉ áp dụng cho cột action */
+mat-cell.mat-column-action,
+mat-header-cell.mat-column-action {
+  max-width: 200px; /* hoặc lớn hơn tùy cần */
+  white-space: nowrap; /* không cho xuống dòng */
+  overflow: visible; /* cho phép tràn không bị cắt */
+  text-overflow: clip; /* không ẩn dấu ... */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* khoảng cách giữa các nút */
+  padding: 10px 12px;
+  justify-content: flex-start;
+}
+
 /* Hover dòng */
 mat-row:hover {
   background-color: #e8f0fe;
@@ -139,6 +153,7 @@ mat-row:hover {
   color: white;
   border-color: #004080;
 }
+
 
 
 

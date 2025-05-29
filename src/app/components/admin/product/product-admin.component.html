@@ -1,1 +1,94 @@
-<p>product-admin works!</p>
+<div class="container-fluid table-wrapper">
+    <h1>Products Admin Page</h1>
+
+    <mat-table #table [dataSource]="products">
+
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <app-tooltip [text]="element.id"></app-tooltip>
+            </mat-cell>
+
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <app-tooltip [text]="element.name"></app-tooltip>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <app-tooltip [text]="element.price"></app-tooltip>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="created_at">
+            <mat-header-cell *matHeaderCellDef> Created At </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <app-tooltip [text]="element.created_at"></app-tooltip>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="updated_at">
+            <mat-header-cell *matHeaderCellDef> Updated At </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <app-tooltip [text]="element.updated_at"></app-tooltip>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="category_id">
+            <mat-header-cell *matHeaderCellDef> Category ID </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <app-tooltip [text]="element.category_id"></app-tooltip>
+            </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button mat-icon-button aria-label="View Detail" (click)="viewDetails(element.id)">
+                    <mat-icon>info</mat-icon> <!-- Icon "visibility" làm biểu tượng cho View Detail -->
+                </button>
+                <button mat-mini-fab aria-label="Example icon button with a delete icon"
+                    (click)="deleteOrder(element.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <div class="d-flex justify-content-center">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item" *ngIf="currentPage > 0">
+                    <a class="page-link" (click)="onPageChange(0)">First</a>
+                </li>
+                <li class="page-item" *ngIf="currentPage > 1">
+                    <a class="page-link" (click)="onPageChange(currentPage - 1)">Previous</a>
+                </li>
+                <ng-container *ngFor="let page of visiblePages">
+                    <li class="page-item" [ngClass]="{'active': page === currentPage}">
+                        <a class="page-link" (click)="onPageChange(page)">{{ page + 1 }}</a>
+                    </li>
+                </ng-container>
+                <li class="page-item" *ngIf="currentPage < totalPages - 1">
+                    <a class="page-link" (click)="onPageChange(currentPage + 1)">Next</a>
+                </li>
+                <li class="page-item" *ngIf="currentPage < totalPages - 1">
+                    <a class="page-link" (click)="onPageChange(totalPages - 1)">Last</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+</div>
