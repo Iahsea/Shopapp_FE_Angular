@@ -39,7 +39,7 @@ export class ProductAdminComponent implements OnInit {
   categories: Category[] = []; // Dữ liệu động từ categoryService
   selectedCategoryId: number = 0; // Giá trị category được chọn
   currentPage: number = 0;
-  itemsPerPage: number = 12;
+  itemsPerPage: number = 10;
   page: number[] = [];
   totalPages: number = 0;
   visiblePages: number[] = [];

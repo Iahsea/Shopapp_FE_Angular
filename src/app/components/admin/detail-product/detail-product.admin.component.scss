@@ -1,0 +1,77 @@
+.example-form {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 15px;
+}
+
+mat-card {
+  padding: 24px 32px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+}
+
+mat-card-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+  color: #2c3e50;
+}
+
+mat-card-content {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Phần input bên trái */
+.form-fields {
+  flex: 1 1 55%;
+  display: flex;
+  flex-direction: column;
+}
+
+.example-full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+/* Phần ảnh bên phải */
+.thumbnail-container {
+  flex: 1 1 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.thumbnail-container img[mat-card-image] {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  object-fit: contain;
+  cursor: pointer;
+}
+
+/* Nút bấm dưới cùng, canh giữa */
+.update-btn {
+  margin: 25px auto 0;
+  display: block;
+  width: 130px;           /* nhỏ lại so với trước */
+  font-weight: 600;
+  font-size: 14px;        /* giảm kích thước chữ */
+  padding: 8px 0;         /* giảm padding dọc */
+  border-radius: 6px;     /* bo góc nhẹ nhàng */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* đổ bóng nhẹ hơn */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.update-btn:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  background-color: #cccccc; /* xanh đậm hơn khi hover */
+  cursor: pointer;
+}

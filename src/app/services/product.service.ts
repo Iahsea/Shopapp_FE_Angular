@@ -3,6 +3,7 @@ import { environment } from '../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Product } from '../models/product';
+import { ProductDTO } from '../dtos/product/product.dto';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,11 @@ export class ProductService {
   deleteOrder(productId: number): Observable<any> {
     const url = `${environment.apiBaseUrl}/products/${productId}`;
     return this.http.delete(url, { responseType: 'text' });
+  }
+
+  updateProduct(productId: number, productData: ProductDTO): Observable<any> {
+    debugger
+    const url = `${environment.apiBaseUrl}/products/${productId}`;
+    return this.http.put(url, productData)
   }
 }
