@@ -118,7 +118,7 @@ export class ProductAdminComponent implements OnInit {
     return new Array(endPage - startPage + 1).fill(0).map((_, index) => startPage + index);
   }
 
-  deleteOrder(id: number) {
+  deleteProduct(id: number) {
     const confirmation = window
       .confirm('Are you sure you want to delete this order?');
     if (confirmation) {

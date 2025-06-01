@@ -1,0 +1,133 @@
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #fff;
+  padding: 1.5rem 1rem;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #222;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+/* Đảm bảo bảng rộng 100% */
+mat-table {
+  width: 100%;
+  min-width: 600px; /* Cho bảng có độ rộng tối thiểu để tránh quá nhỏ */
+  border-collapse: separate;
+  border-spacing: 0 4px; /* Tạo khoảng cách giữa các hàng */
+}
+
+/* Header row */
+mat-header-row {
+  background-color: #004080;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 4px 4px 0 0;
+}
+
+/* Header cell */
+mat-header-cell {
+  padding: 12px 10px;
+  border-bottom: 2px solid #003366;
+  text-align: center;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Data cell */
+mat-cell {
+  padding: 10px 8px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+  white-space: nowrap;
+  color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cột ID nhỏ */
+mat-cell.mat-column-id,
+mat-header-cell.mat-column-id {
+  flex: 0 0 60px;
+  max-width: 60px;
+  font-size: 12px;
+}
+
+/* Cột Name rộng */
+mat-cell.mat-column-name,
+mat-header-cell.mat-column-name {
+  flex: 1 1 auto;
+  font-size: 15px;
+  justify-content: flex-start;
+  text-align: left;
+  padding-left: 16px;
+  white-space: normal;
+  word-break: break-word;
+  min-width: 200px;
+}
+
+/* Cột Action vừa phải */
+mat-cell.mat-column-action,
+mat-header-cell.mat-column-action {
+  flex: 0 0 140px;
+  max-width: 140px;
+  white-space: nowrap;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+/* Button trong cột Action */
+mat-cell.mat-column-action button {
+  box-shadow: none;
+  transition: background-color 0.25s ease;
+  min-width: 36px;
+  height: 36px;
+}
+
+mat-cell.mat-column-action button:hover {
+  background-color: #cce0ff;
+}
+
+mat-icon {
+  font-size: 20px;
+  color: #004080;
+}
+
+/* Hover hàng */
+mat-row:hover {
+  background-color: #e8f0fe;
+  cursor: pointer;
+}
+
+/* Responsive: cuộn ngang khi nhỏ */
+@media (max-width: 600px) {
+  mat-table {
+    min-width: 400px;
+  }
+  mat-cell.mat-column-id,
+  mat-header-cell.mat-column-id {
+    flex: 0 0 40px;
+    max-width: 40px;
+  }
+  mat-cell.mat-column-action,
+  mat-header-cell.mat-column-action {
+    flex: 0 0 100px;
+    max-width: 100px;
+  }
+  mat-cell.mat-column-name,
+  mat-header-cell.mat-column-name {
+    min-width: 150px;
+  }
+}
