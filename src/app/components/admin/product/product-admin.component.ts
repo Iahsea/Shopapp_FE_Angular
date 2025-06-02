@@ -123,10 +123,10 @@ export class ProductAdminComponent implements OnInit {
       .confirm('Are you sure you want to delete this order?');
     if (confirmation) {
       debugger
-      this.productService.deleteOrder(id).subscribe({
+      this.productService.deleteProduct(id).subscribe({
         next: (response: any) => {
           debugger
-          location.reload();
+          this.loadProducts()
         },
         complete: () => {
           debugger;
@@ -137,6 +137,25 @@ export class ProductAdminComponent implements OnInit {
         }
       });
     }
+  }
+
+  loadProducts() {
+    this.productService.getProducts(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage)
+      .subscribe(response => {
+        // xử lý tương tự getProduct để gán đúng mảng sản phẩm
+        response.products.forEach((product: Product) => {
+          product.url = `${environment.apiBaseUrl}/products/images/${product.thumbnail}`;
+          if (Array.isArray(product.created_at)) {
+            product.created_at = this.formatDateTime(product.created_at);
+          }
+          if (Array.isArray(product.updated_at)) {
+            product.updated_at = this.formatDateTime(product.updated_at);
+          }
+        });
+        this.products = response.products;
+        this.totalPages = response.totalPages;
+        this.visiblePages = this.generateVisiblePageArray(this.currentPage, this.totalPages);
+      });
   }
 
 

@@ -46,7 +46,7 @@ export class OrderAdminComponent implements OnInit {
   ];
   orders: OrderResponse[] = [];
   currentPage: number = 0;
-  itemsPerPage: number = 12;
+  itemsPerPage: number = 6;
   pages: number[] = [];
   totalPages: number = 0;
   keyword: string = "";
@@ -80,6 +80,11 @@ export class OrderAdminComponent implements OnInit {
       }
     });
   }
+
+  loadProducts() {
+    this.getAllOrders(this.keyword, this.currentPage, this.itemsPerPage);
+  }
+
   onPageChange(page: number) {
     debugger;
     this.currentPage = page;
@@ -110,7 +115,7 @@ export class OrderAdminComponent implements OnInit {
       this.orderService.deleteOrder(id).subscribe({
         next: (response: any) => {
           debugger
-          location.reload();
+          this.loadProducts();
         },
         complete: () => {
           debugger;

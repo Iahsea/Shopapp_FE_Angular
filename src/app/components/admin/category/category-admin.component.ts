@@ -9,7 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { CategoryService } from '../../../services/category.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { ProductAdminComponent } from '../product/product-admin.component';
+import { DetailCategoryAdminComponent } from '../detail-category/detail-category.admin.component';
+
 
 @Component({
   selector: 'app-category-admin',
@@ -68,19 +69,45 @@ export class CategoryAdminComponent implements OnInit {
     })
   }
 
-  viewDetails(category_id: number) {
-    const dialogRef = this.dialog.open(ProductAdminComponent, {
-      width: '400px',
-      data: { /* truyền dữ liệu */ }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog đóng lại với kết quả:', result);
+  loadCategories() {
+    this.categoryService.getCategories(this.currentPage, this.itemsPerPage).subscribe(categories => {
+      this.categories = categories;
     });
   }
 
-  deleteCategory(category_id: number) {
+  viewDetails(categoryId: number) {
+    const dialogRef = this.dialog.open(DetailCategoryAdminComponent, {
+      data: { categoryId }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Kết quả trả về khi dialog đóng
+        // Gọi lại API lấy danh sách category mới (lazy reload)
+        this.loadCategories();
+      }
+    });
+  }
+
+  deleteCategory(categoryId: number) {
+    const confirmation = window
+      .confirm('Are you sure you want to delete this order?');
+    if (confirmation) {
+      debugger
+      this.categoryService.deleteCategory(categoryId).subscribe({
+        next: (response: any) => {
+          debugger
+          this.loadCategories()
+        },
+        complete: () => {
+          debugger;
+        },
+        error: (error: any) => {
+          debugger;
+          console.error('Error delete product:', error);
+        }
+      })
+    }
   }
 
 }

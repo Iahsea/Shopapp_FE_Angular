@@ -1,0 +1,32 @@
+<form [formGroup]="categoryProfileForm"
+      class="example-form">
+
+    <mat-card>
+
+        <mat-card-title>Category Detail Admin</mat-card-title>
+
+        <mat-card-content>
+
+            <div class="form-fields">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Name</mat-label>
+                    <input matInput
+                           placeholder="Name"
+                           formControlName="name" />
+                </mat-form-field>
+            </div>
+
+
+        </mat-card-content>
+
+        <button mat-raised-button
+                color="primary"
+                class="update-btn"
+                (click)="onUpdate()"
+                [disabled]="categoryProfileForm.invalid">
+            Update
+        </button>
+
+    </mat-card>
+
+</form>
