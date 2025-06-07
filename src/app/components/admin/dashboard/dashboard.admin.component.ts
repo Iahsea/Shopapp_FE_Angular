@@ -22,11 +22,6 @@ import { CategoryService } from '../../../services/category.service';
 })
 export class DashboardAdminComponent implements OnInit {
 
-  // Giả sử dữ liệu lấy từ API hoặc database
-  totalOrders: number = 120; // Tổng số đơn hàng
-  deliveredOrders: number = 80; // Tổng số đơn hàng đã giao
-  pendingOrders: number = 30; // Tổng số đơn hàng đang chờ
-  canceledOrders: number = 10; // Tổng số đơn hàng đã hủy
   orderCount: number = 0;
   productCount: number = 0;
   categoryCount: number = 0;
@@ -37,7 +32,7 @@ export class DashboardAdminComponent implements OnInit {
     private categoryService: CategoryService,
   ) {
     orderService.loadOrderCount();
-    productService.loadProductCount();
+    // productService.loadProductCount();
     categoryService.loadCategoryCount();
   }
 

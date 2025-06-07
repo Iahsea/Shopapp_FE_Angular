@@ -1,7 +1,17 @@
 <div class="container-fluid table-wrapper">
     <h1>Category Admin Page</h1>
 
-    <mat-table #table [dataSource]="categories">
+    <div class="action-buttons">
+        <button mat-raised-button
+                color="primary"
+                type="submit">
+            <mat-icon>add_circle_outline</mat-icon> <!-- Biểu tượng add_circle_outline -->
+            Thêm Danh Mục
+        </button>
+    </div>
+
+    <mat-table #table
+               [dataSource]="categories">
 
         <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -25,11 +35,14 @@
         <ng-container matColumnDef="action">
             <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <button mat-icon-button aria-label="View Detail" (click)="viewDetails(element.id)">
+                <button mat-icon-button
+                        aria-label="View Detail"
+                        (click)="viewDetails(element.id)">
                     <mat-icon>info</mat-icon> <!-- Icon "visibility" làm biểu tượng cho View Detail -->
                 </button>
-                <button mat-mini-fab aria-label="Example icon button with a delete icon"
-                    (click)="deleteCategory(element.id)">
+                <button mat-mini-fab
+                        aria-label="Example icon button with a delete icon"
+                        (click)="deleteCategory(element.id)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </mat-cell>

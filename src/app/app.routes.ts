@@ -12,8 +12,8 @@ import { AdminGuardFn } from './guards/admin.guard';
 import { OrderAdminComponent } from './components/admin/order/order-admin.component';
 import { ProductAdminComponent } from './components/admin/product/product-admin.component';
 import { CategoryAdminComponent } from './components/admin/category/category-admin.component';
-import { DetailOrderAdminComponent } from './components/admin/detail-order/detail-order.admin.component';
-import { DetailProductAdminComponent } from './components/admin/detail-product/detail-product.admin.component';
+import { DetailOrderAdminComponent } from './components/admin/order/modules/detail-order/detail-order.admin.component';
+import { DetailProductAdminComponent } from './components/admin/product/modules/detail-product/detail-product.admin.component';
 import { DashboardAdminComponent } from './components/admin/dashboard/dashboard.admin.component';
 
 export const routes: Routes = [

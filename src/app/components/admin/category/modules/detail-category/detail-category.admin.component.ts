@@ -5,8 +5,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
-import { CategoryDTO } from '../../../dtos/category/category.dto';
-import { CategoryService } from '../../../services/category.service';
+import { CategoryDTO } from '../../../../../dtos/category/category.dto';
+import { CategoryService } from '../../../../../services/category.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

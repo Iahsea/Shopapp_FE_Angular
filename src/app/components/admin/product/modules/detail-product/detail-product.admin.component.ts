@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../../models/product';
+import { Product } from '../../../../../models/product';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
-import { environment } from '../../../environments/environment';
-import { ProductService } from '../../../services/product.service';
+import { environment } from '../../../../../environments/environment';
+import { ProductService } from '../../../../../services/product.service';
 import { CommonModule } from '@angular/common';
-import { ProductDTO } from '../../../dtos/product/product.dto';
+import { ProductDTO } from '../../../../../dtos/product/product.dto';
 
 
 @Component({

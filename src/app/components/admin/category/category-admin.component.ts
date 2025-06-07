@@ -9,7 +9,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { CategoryService } from '../../../services/category.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { DetailCategoryAdminComponent } from '../detail-category/detail-category.admin.component';
+import { DetailCategoryAdminComponent } from './modules/detail-category/detail-category.admin.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @Component({
@@ -21,6 +24,9 @@ import { DetailCategoryAdminComponent } from '../detail-category/detail-category
     MatPaginatorModule,
     MatIconModule,
     MatButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatProgressBarModule,
   ],
   templateUrl: './category-admin.component.html',
   styleUrl: './category-admin.component.scss'

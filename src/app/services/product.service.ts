@@ -16,28 +16,28 @@ export class ProductService {
   productCount$ = this.productCountSubject.asObservable();
 
   constructor(private http: HttpClient) {
-    this.loadProductCount();
+    // this.loadProductCount();
   }
 
-  loadProductCount() {
-    debugger
-    const params = new HttpParams()
-      .set('keyword', "")
-      .set('category_id', "")
-      .set('page', 0)
-      .set('limit', 6000);
-    this.http.get<any>(this.apiGetProducts, { params }).subscribe({
-      next: (response) => {
-        debugger
-        if (response && response.products.length) {
-          this.productCountSubject.next(response.products.length);  // Cập nhật totalCount vào BehaviorSubject
-        }
-      },
-      error: (error) => {
-        console.error('Lỗi khi lấy số lượng sản phẩm:', error);
-      }
-    })
-  }
+  // loadProductCount() {
+  //   debugger
+  //   const params = new HttpParams()
+  //     .set('keyword', "")
+  //     .set('category_id', "")
+  //     .set('page', 0)
+  //     .set('limit', 6000);
+  //   this.http.get<any>(this.apiGetProducts, { params }).subscribe({
+  //     next: (response) => {
+  //       debugger
+  //       if (response && response.products.length) {
+  //         this.productCountSubject.next(response.products.length);  // Cập nhật totalCount vào BehaviorSubject
+  //       }
+  //     },
+  //     error: (error) => {
+  //       console.error('Lỗi khi lấy số lượng sản phẩm:', error);
+  //     }
+  //   })
+  // }
 
   updateProductCount(newCount: number) {
     this.productCountSubject.next(newCount);
