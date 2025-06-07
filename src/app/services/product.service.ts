@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 import { Product } from '../models/product';
 import { ProductDTO } from '../dtos/product/product.dto';
 
@@ -25,18 +25,22 @@ export class ProductService {
       .set('keyword', "")
       .set('category_id', "")
       .set('page', 0)
-      .set('limit', 1000);
-    this.http.get<[Product]>(this.apiGetProducts, { params }).subscribe({
+      .set('limit', 6000);
+    this.http.get<any>(this.apiGetProducts, { params }).subscribe({
       next: (response) => {
         debugger
-        if (response && response.length) {
-          this.productCountSubject.next(response.length);  // Cập nhật totalCount vào BehaviorSubject
+        if (response && response.products.length) {
+          this.productCountSubject.next(response.products.length);  // Cập nhật totalCount vào BehaviorSubject
         }
       },
       error: (error) => {
         console.error('Lỗi khi lấy số lượng sản phẩm:', error);
       }
     })
+  }
+
+  updateProductCount(newCount: number) {
+    this.productCountSubject.next(newCount);
   }
 
   getProducts(keyword: string, categoryId: number, page: number, limit: number): Observable<any> {
@@ -63,12 +67,24 @@ export class ProductService {
 
   deleteProduct(productId: number): Observable<any> {
     const url = `${environment.apiBaseUrl}/products/${productId}`;
-    return this.http.delete(url, { responseType: 'text' });
+    return this.http.delete(url, { responseType: 'text' }).pipe(
+      tap(() => this.decrementProductCount())
+    )
   }
 
   updateProduct(productId: number, productData: ProductDTO): Observable<any> {
     debugger
     const url = `${environment.apiBaseUrl}/products/${productId}`;
     return this.http.put(url, productData)
+  }
+
+  private incrementProductCount() {
+    const currentCount = this.productCountSubject.value;
+    this.updateProductCount(currentCount + 1);
+  }
+
+  private decrementProductCount() {
+    const currentCount = this.productCountSubject.value;
+    this.updateProductCount(currentCount - 1);
   }
 }

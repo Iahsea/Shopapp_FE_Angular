@@ -1,15 +1,49 @@
 <mat-card class="dashboard-card">
     <mat-card-header>
-        <mat-card-title>Tổng Số Đơn Hàng</mat-card-title>
+        <mat-card-title>Dashboard Overview</mat-card-title>
+        <mat-card-subtitle>Quick Overview of Your Business</mat-card-subtitle>
     </mat-card-header>
+
     <mat-card-content>
-        <div>
-            <h3>Tổng Số Đơn Hàng: {{ totalOrders }}</h3>
-            <h3>{{ orderCount }}</h3>
-            <h3>{{ productCount }}</h3>
-            <p><strong>Đơn Hàng Đã Giao:</strong> {{ deliveredOrders }}</p>
-            <p><strong>Đơn Hàng Đang Chờ:</strong> {{ pendingOrders }}</p>
-            <p><strong>Đơn Hàng Đã Hủy:</strong> {{ canceledOrders }}</p>
+        <div class="dashboard-stats">
+            <!-- Order Count -->
+            <mat-card class="stat-card">
+                <mat-card-header>
+                    <mat-card-title>Orders</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="stat-value">
+                        <mat-icon>shopping_cart</mat-icon>
+                        <span>{{ orderCount }}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Product Count -->
+            <mat-card class="stat-card">
+                <mat-card-header>
+                    <mat-card-title>Products</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="stat-value">
+                        <mat-icon>inventory</mat-icon>
+                        <span>{{ productCount }}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Category Count -->
+            <mat-card class="stat-card">
+                <mat-card-header>
+                    <mat-card-title>Categories</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="stat-value">
+                        <mat-icon>category</mat-icon>
+                        <span>{{ categoryCount }}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
         </div>
     </mat-card-content>
 </mat-card>

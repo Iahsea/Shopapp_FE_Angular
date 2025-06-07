@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { OrderService } from '../../../services/order.service';
 import { ProductService } from '../../../services/product.service';
+import { CategoryService } from '../../../services/category.service';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -28,13 +29,16 @@ export class DashboardAdminComponent implements OnInit {
   canceledOrders: number = 10; // Tổng số đơn hàng đã hủy
   orderCount: number = 0;
   productCount: number = 0;
+  categoryCount: number = 0;
 
   constructor(
     private orderService: OrderService,
     private productService: ProductService,
+    private categoryService: CategoryService,
   ) {
     orderService.loadOrderCount();
     productService.loadProductCount();
+    categoryService.loadCategoryCount();
   }
 
   ngOnInit(): void {
@@ -44,6 +48,9 @@ export class DashboardAdminComponent implements OnInit {
     });
     this.productService.productCount$.subscribe(count => {
       this.productCount = count;
+    })
+    this.categoryService.categoryCount$.subscribe(count => {
+      this.categoryCount = count;
     })
   }
 }
