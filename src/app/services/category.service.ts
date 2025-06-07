@@ -12,10 +12,7 @@ export class CategoryService {
   private categoryCountSubject = new BehaviorSubject<number>(0);
   categoryCount$ = this.categoryCountSubject.asObservable();
 
-
   private apiGetCategories = `${environment.apiBaseUrl}/categories`;
-
-
 
   constructor(private http: HttpClient) {
     this.loadCategoryCount()
@@ -54,6 +51,12 @@ export class CategoryService {
     debugger
     const url = `${environment.apiBaseUrl}/categories/${categoryId}`;
     return this.http.put(url, categoryData)
+  }
+
+  postCategory(categoryData: CategoryDTO): Observable<any> {
+    debugger
+    const url = `${environment.apiBaseUrl}/categories`;
+    return this.http.post(url, categoryData);
   }
 
   deleteCategory(categoryId: number): Observable<any> {

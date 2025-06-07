@@ -13,6 +13,7 @@ import { DetailCategoryAdminComponent } from './modules/detail-category/detail-c
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CategoryCreateAdminComponent } from './modules/category-create/category-create.admin.component';
 
 
 @Component({
@@ -114,6 +115,20 @@ export class CategoryAdminComponent implements OnInit {
         }
       })
     }
+  }
+
+  createCategory() {
+    const dialogRef = this.dialog.open(CategoryCreateAdminComponent, {
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // Kết quả trả về khi dialog đóng
+        // Gọi lại API lấy danh sách category mới (lazy reload)
+        this.loadCategories();
+      }
+    });
   }
 
 }
