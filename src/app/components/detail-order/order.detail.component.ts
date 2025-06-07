@@ -19,8 +19,8 @@ import { OrderDetail } from '../../models/order.detail';
 })
 export class OrderDetailComponent implements OnInit {
   orderResponse: OrderResponse = {
-    id: 84, // Hoặc bất kỳ giá trị số nào bạn muốn
-    user_id: 5,
+    id: 96, // Hoặc bất kỳ giá trị số nào bạn muốn
+    user_id: 31,
     fullname: '',
     phone_number: '',
     email: '',
@@ -44,7 +44,7 @@ export class OrderDetailComponent implements OnInit {
 
   getOrderDetails(): void {
     debugger
-    const orderId = 84;
+    const orderId = 96;
     this.orderService.getOrderById(orderId).subscribe({
       next: (response: any) => {
         debugger;

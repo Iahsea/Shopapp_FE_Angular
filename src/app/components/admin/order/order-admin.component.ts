@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { OrderResponse } from '../../../responses/order/order.response';
 import { OrderService } from '../../../services/order.service';
 import { CommonModule } from '@angular/common';
@@ -51,6 +51,7 @@ export class OrderAdminComponent implements OnInit {
   totalPages: number = 0;
   keyword: string = "";
   visiblePages: number[] = [];
+  totalOrders: number = 0;
 
   constructor(
     private orderService: OrderService,
@@ -61,6 +62,7 @@ export class OrderAdminComponent implements OnInit {
   ngOnInit(): void {
     debugger
     this.getAllOrders(this.keyword, this.currentPage, this.itemsPerPage);
+
   }
   getAllOrders(keyword: string, page: number, limit: number) {
     debugger
@@ -68,6 +70,8 @@ export class OrderAdminComponent implements OnInit {
       next: (response: any) => {
         debugger
         this.orders = response.orders;
+        this.totalOrders = response.orders.length;
+        this.orderService.updateOrderCount(this.totalOrders);
         this.totalPages = response.totalPages;
         this.visiblePages = this.generateVisiblePageArray(this.currentPage, this.totalPages);
       },

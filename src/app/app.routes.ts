@@ -14,6 +14,7 @@ import { ProductAdminComponent } from './components/admin/product/product-admin.
 import { CategoryAdminComponent } from './components/admin/category/category-admin.component';
 import { DetailOrderAdminComponent } from './components/admin/detail-order/detail-order.admin.component';
 import { DetailProductAdminComponent } from './components/admin/detail-product/detail-product.admin.component';
+import { DashboardAdminComponent } from './components/admin/dashboard/dashboard.admin.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -34,7 +35,8 @@ export const routes: Routes = [
             { path: 'products', component: ProductAdminComponent },
             { path: 'categories', component: CategoryAdminComponent },
             { path: 'orders/:id', component: DetailOrderAdminComponent },
-            { path: 'products/:id', component: DetailProductAdminComponent }
+            { path: 'products/:id', component: DetailProductAdminComponent },
+            { path: 'dashboard', component: DashboardAdminComponent }
         ]
     },
 ];

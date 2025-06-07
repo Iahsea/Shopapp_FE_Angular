@@ -2,21 +2,51 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { OrderDTO } from '../dtos/order/order.dto';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { OrderResponse } from '../responses/order/order.response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
+  private orderCountSubject = new BehaviorSubject<number>(0);
+  orderCount$ = this.orderCountSubject.asObservable();
 
   private apiUrl = `${environment.apiBaseUrl}/orders`;
   private apiGetAllOrders = `${environment.apiBaseUrl}/orders/get-orders-by-keyword`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    debugger
+    this.loadOrderCount();
+  }
+
+  loadOrderCount() {
+    debugger
+    const params = new HttpParams()
+      .set('keyword', "")
+      .set('page', 0)
+      .set('limit', 1000);
+    this.http.get<any>(this.apiGetAllOrders, { params }).subscribe({
+      next: (response) => {
+        debugger
+        if (response && response.orders.length) {
+          this.orderCountSubject.next(response.orders.length);  // Cập nhật totalCount vào BehaviorSubject
+        }
+      },
+      error: (error) => {
+        console.error('Lỗi khi lấy số lượng đơn hàng:', error);
+      }
+    })
+  }
+
+  updateOrderCount(newCount: number) {
+    this.orderCountSubject.next(newCount);
+  }
 
   placeOrder(orderData: OrderDTO): Observable<any> {
-    return this.http.post(this.apiUrl, orderData);
+    return this.http.post(this.apiUrl, orderData).pipe(
+      tap(() => this.incrementOrderCount())
+    );
   }
 
   getOrderById(orderId: number): Observable<any> {
@@ -40,6 +70,18 @@ export class OrderService {
 
   deleteOrder(orderId: number): Observable<any> {
     const url = `${environment.apiBaseUrl}/orders/${orderId}`;
-    return this.http.delete(url, { responseType: 'text' });
+    return this.http.delete(url, { responseType: 'text' }).pipe(
+      tap(() => this.decrementOrderCount())
+    );
+  }
+
+  private incrementOrderCount() {
+    const currentCount = this.orderCountSubject.value;
+    this.updateOrderCount(currentCount + 1);
+  }
+
+  private decrementOrderCount() {
+    const currentCount = this.orderCountSubject.value;
+    this.updateOrderCount(currentCount - 1);
   }
 }

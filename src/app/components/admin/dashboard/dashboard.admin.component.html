@@ -1,0 +1,15 @@
+<mat-card class="dashboard-card">
+    <mat-card-header>
+        <mat-card-title>Tổng Số Đơn Hàng</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div>
+            <h3>Tổng Số Đơn Hàng: {{ totalOrders }}</h3>
+            <h3>{{ orderCount }}</h3>
+            <h3>{{ productCount }}</h3>
+            <p><strong>Đơn Hàng Đã Giao:</strong> {{ deliveredOrders }}</p>
+            <p><strong>Đơn Hàng Đang Chờ:</strong> {{ pendingOrders }}</p>
+            <p><strong>Đơn Hàng Đã Hủy:</strong> {{ canceledOrders }}</p>
+        </div>
+    </mat-card-content>
+</mat-card>

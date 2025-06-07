@@ -16,6 +16,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { OrderAdminComponent } from './order/order-admin.component';
 
 
 
@@ -36,12 +37,13 @@ import { FormsModule } from '@angular/forms';
     MatTooltipModule,
     RouterModule,
     FormsModule,
-    RouterOutlet
+    RouterOutlet,
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
 export class AdminComponent implements OnInit {
+  orderCount: number = 0;
   userResponse?: UserResponse | null;
   isCollapsed = false;
   searchText = '';

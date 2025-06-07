@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Product } from '../models/product';
 import { ProductDTO } from '../dtos/product/product.dto';
 
@@ -12,7 +12,32 @@ export class ProductService {
 
   private apiGetProducts = `${environment.apiBaseUrl}/products`;
 
-  constructor(private http: HttpClient) { }
+  private productCountSubject = new BehaviorSubject<number>(0);
+  productCount$ = this.productCountSubject.asObservable();
+
+  constructor(private http: HttpClient) {
+    this.loadProductCount();
+  }
+
+  loadProductCount() {
+    debugger
+    const params = new HttpParams()
+      .set('keyword', "")
+      .set('category_id', "")
+      .set('page', 0)
+      .set('limit', 1000);
+    this.http.get<[Product]>(this.apiGetProducts, { params }).subscribe({
+      next: (response) => {
+        debugger
+        if (response && response.length) {
+          this.productCountSubject.next(response.length);  // Cập nhật totalCount vào BehaviorSubject
+        }
+      },
+      error: (error) => {
+        console.error('Lỗi khi lấy số lượng sản phẩm:', error);
+      }
+    })
+  }
 
   getProducts(keyword: string, categoryId: number, page: number, limit: number): Observable<any> {
     const params = new HttpParams()
