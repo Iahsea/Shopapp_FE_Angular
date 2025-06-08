@@ -15,6 +15,9 @@ import { CategoryAdminComponent } from './components/admin/category/category-adm
 import { DetailOrderAdminComponent } from './components/admin/order/modules/detail-order/detail-order.admin.component';
 import { DetailProductAdminComponent } from './components/admin/product/modules/detail-product/detail-product.admin.component';
 import { DashboardAdminComponent } from './components/admin/dashboard/dashboard.admin.component';
+import { productRoutes } from './components/admin/product/product-admin.routes';
+import { orderRoutes } from './components/admin/order/order-admin.routes';
+import { categoryRoutes } from './components/admin/category/category-admin.routes';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -31,11 +34,9 @@ export const routes: Routes = [
         component: AdminComponent,
         canActivate: [AdminGuardFn],
         children: [
-            { path: 'orders', component: OrderAdminComponent },
-            { path: 'products', component: ProductAdminComponent },
-            { path: 'categories', component: CategoryAdminComponent },
-            { path: 'orders/:id', component: DetailOrderAdminComponent },
-            { path: 'products/:id', component: DetailProductAdminComponent },
+            ...productRoutes,
+            ...orderRoutes,
+            ...categoryRoutes,
             { path: 'dashboard', component: DashboardAdminComponent }
         ]
     },

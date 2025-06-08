@@ -5,6 +5,7 @@
   margin: 0 auto;     /* Căn giữa form trong dialog */
   padding: 16px;
   background-color: #fff;
+  width: 500px;
 }
 
 mat-card {
@@ -16,16 +17,28 @@ mat-card {
   background-color: #fff;
 }
 
+
+
 mat-card-title {
   font-weight: 600;
-  font-size: 24px;
-  margin-bottom: 24px;
+  font-size: 30px;
+  margin: 30px 0; /* Tạo khoảng cách đều phía trên và dưới */
   text-align: center;
+  color: #333; /* Màu chữ tối để dễ đọc */
+  letter-spacing: 1px; /* Tăng khoảng cách giữa các chữ để dễ đọc hơn */
+  text-transform: capitalize; /* Chữ hoa đầu mỗi từ */
+  font-family: 'Roboto', sans-serif; /* Sử dụng font đẹp và dễ đọc */
 }
+
 
 mat-card-content {
   flex-grow: 1;
+  margin: 30px auto; /* Căn giữa theo chiều ngang */
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center;     /* Căn giữa theo chiều dọc */
 }
+
 
 .form-fields {
   margin-bottom: 20px;
@@ -38,16 +51,22 @@ mat-card-content {
 .create-btn {
   align-self: center;
   width: 100px;
-  margin-top: 15px;
-  border-radius: 8px;          /* Bo góc mềm mại */
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);  /* Đổ bóng nhẹ */
+  margin: 30px 0 45px; /* Căn giữa và tạo khoảng cách đều */
+  border-radius: 8px; /* Bo góc mềm mại */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
   font-weight: 600;
   font-size: 16px;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
   background-color: #fff;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
+/* Hiệu ứng hover */
 .create-btn:hover:not(:disabled) {
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Bóng đậm hơn khi hover */
-  background-color: #f0f0f0cc;             /* Màu primary nhạt hơn chút khi hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Bóng đậm hơn khi hover */
+  background-color: #f0f0f0cc; /* Màu nền nhạt hơn khi hover */
+}
+
+.create-btn:disabled {
+  background-color: #e0e0e0; /* Nền xám khi disabled */
+  box-shadow: none; /* Bỏ bóng khi disabled */
 }

@@ -28,10 +28,10 @@ export class DetailCategoryAdminComponent {
   constructor(
     private formBuilder: FormBuilder,
     private categoryService: CategoryService,
-    @Inject(MAT_DIALOG_DATA) public data: { category_id: number },
+    @Inject(MAT_DIALOG_DATA) public data: { categoryId: number },
     private dialogRef: MatDialogRef<DetailCategoryAdminComponent>
   ) {
-    this.category_id = data.category_id;
+    this.category_id = data.categoryId;
     this.categoryProfileForm = this.formBuilder.group({
       name: ['', [Validators.minLength(3)]],
     })

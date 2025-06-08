@@ -163,4 +163,8 @@ export class ProductAdminComponent implements OnInit {
     debugger
     this.router.navigate(['/admin/products', id]);
   }
+
+  createProduct() {
+
+  }
 }

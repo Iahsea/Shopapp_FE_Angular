@@ -119,7 +119,9 @@ export class CategoryAdminComponent implements OnInit {
 
   createCategory() {
     const dialogRef = this.dialog.open(CategoryCreateAdminComponent, {
-      data: {}
+      data: {},
+      width: '500px',  // Thiết lập chiều rộng của dialog
+      height: 'auto', // Chiều cao tự động, căn cứ vào nội dung form
     });
 
     dialogRef.afterClosed().subscribe(result => {
