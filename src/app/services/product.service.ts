@@ -16,28 +16,28 @@ export class ProductService {
   productCount$ = this.productCountSubject.asObservable();
 
   constructor(private http: HttpClient) {
-    // this.loadProductCount();
+    this.loadProductCount();
   }
 
-  // loadProductCount() {
-  //   debugger
-  //   const params = new HttpParams()
-  //     .set('keyword', "")
-  //     .set('category_id', "")
-  //     .set('page', 0)
-  //     .set('limit', 6000);
-  //   this.http.get<any>(this.apiGetProducts, { params }).subscribe({
-  //     next: (response) => {
-  //       debugger
-  //       if (response && response.products.length) {
-  //         this.productCountSubject.next(response.products.length);  // Cập nhật totalCount vào BehaviorSubject
-  //       }
-  //     },
-  //     error: (error) => {
-  //       console.error('Lỗi khi lấy số lượng sản phẩm:', error);
-  //     }
-  //   })
-  // }
+  loadProductCount() {
+    debugger
+    const params = new HttpParams()
+      .set('keyword', "")
+      .set('category_id', "")
+      .set('page', 0)
+      .set('limit', 10);
+    this.http.get<any>(this.apiGetProducts, { params }).subscribe({
+      next: (response) => {
+        debugger
+        if (response && response.totalProduct) {
+          this.productCountSubject.next(response.totalProduct);  // Cập nhật totalCount vào BehaviorSubject
+        }
+      },
+      error: (error) => {
+        console.error('Lỗi khi lấy số lượng sản phẩm:', error);
+      }
+    })
+  }
 
   updateProductCount(newCount: number) {
     this.productCountSubject.next(newCount);
@@ -51,9 +51,17 @@ export class ProductService {
       .set('limit', limit.toString());
     return this.http.get<[Product]>(this.apiGetProducts, { params });
   }
+
   getDetailProduct(productId: number) {
     return this.http.get(`${environment.apiBaseUrl}/products/${productId}`);
   }
+
+  createProduct(productData: ProductDTO): Observable<any> {
+    debugger
+    const url = `${environment.apiBaseUrl}/products`;
+    return this.http.post(url, productData);
+  }
+
   getProductsByIds(productIds: number[]): Observable<Product[]> {
     // Chuyển danh sách ID thành một chuỗi và truyền vào params
     debugger
@@ -88,3 +96,4 @@ export class ProductService {
     this.updateProductCount(currentCount - 1);
   }
 }
+

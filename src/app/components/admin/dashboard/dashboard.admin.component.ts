@@ -32,7 +32,7 @@ export class DashboardAdminComponent implements OnInit {
     private categoryService: CategoryService,
   ) {
     orderService.loadOrderCount();
-    // productService.loadProductCount();
+    productService.loadProductCount();
     categoryService.loadCategoryCount();
   }
 

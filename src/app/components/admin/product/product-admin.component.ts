@@ -165,6 +165,7 @@ export class ProductAdminComponent implements OnInit {
   }
 
   createProduct() {
-
+    debugger
+    this.router.navigate(['/admin/create-products']);
   }
 }

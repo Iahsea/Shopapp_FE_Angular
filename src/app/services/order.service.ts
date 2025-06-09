@@ -29,8 +29,8 @@ export class OrderService {
     this.http.get<any>(this.apiGetAllOrders, { params }).subscribe({
       next: (response) => {
         debugger
-        if (response && response.orders.length) {
-          this.orderCountSubject.next(response.orders.length);  // Cập nhật totalCount vào BehaviorSubject
+        if (response && response.totalOrder) {
+          this.orderCountSubject.next(response.totalOrder);  // Cập nhật totalCount vào BehaviorSubject
         }
       },
       error: (error) => {

@@ -13,7 +13,8 @@ import { DetailCategoryAdminComponent } from './modules/detail-category/detail-c
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { CategoryCreateAdminComponent } from './modules/category-create/category-create.admin.component';
+import { CategoryCreateAdminComponent } from './modules/create-category/category-create.admin.component';
+
 
 
 @Component({
