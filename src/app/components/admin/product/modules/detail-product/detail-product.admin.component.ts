@@ -9,6 +9,8 @@ import { environment } from '../../../../../environments/environment';
 import { ProductService } from '../../../../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { ProductDTO } from '../../../../../dtos/product/product.dto';
+import { HttpClient } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
@@ -18,7 +20,8 @@ import { ProductDTO } from '../../../../../dtos/product/product.dto';
     MatInputModule,
     ReactiveFormsModule,
     MatCardModule,
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   templateUrl: './detail-product.admin.component.html',
   styleUrl: './detail-product.admin.component.scss'
@@ -28,12 +31,20 @@ export class DetailProductAdminComponent implements OnInit {
   productId: number = 0;
   productProfileForm: FormGroup;
 
+  fileName: string | null = null;
+  requiredFileType: string = 'image/*';
+  checkUpload: boolean = false;
+
+  file: File | null = null;  // Khai báo biến file chung
+
+
 
   constructor(
     private formBuilder: FormBuilder,
     private activateRoute: ActivatedRoute,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    private http: HttpClient
   ) {
     this.productProfileForm = this.formBuilder.group({
       name: ['', [Validators.minLength(3)]],
@@ -97,6 +108,7 @@ export class DetailProductAdminComponent implements OnInit {
           debugger
           // Handle the successful update
           console.log('Product updated successfully:', response);
+
           // Navigate back to the previous page
           this.router.navigate(['../'], { relativeTo: this.activateRoute });
         },
@@ -118,5 +130,52 @@ export class DetailProductAdminComponent implements OnInit {
       console.warn('Product ID is undefined');
     }
   }
+
+  onFileSelected(event: any) {
+    debugger
+    const idParam = this.activateRoute.snapshot.paramMap.get('id');
+    const url = `${environment.apiBaseUrl}/products/uploads/${idParam}`;
+    const file: File = event.target.files[0];
+    if (file) {
+
+      this.fileName = file.name;
+
+      const formData = new FormData();
+
+      formData.append("files", file);
+
+      this.http.post(url, formData).subscribe({
+        next: (response: any) => {
+          debugger
+          console.log('Upload image of product successfully:', response);
+
+          const newImageUrl = `${environment.apiBaseUrl}/products/images/${response[0].imageUrl}`;
+
+          if (this.product) {
+            debugger
+            // Thêm ảnh mới vào mảng productImages
+            this.product.productImages.push({
+              image_url: newImageUrl,
+              id: response[0].id
+            });
+            // Cập nhật lại thumbnail nếu cần
+            this.productProfileForm.patchValue({
+              thumbnail: response[0].imageUrl
+            });
+          }
+        },
+        complete: () => {
+          debugger;
+        },
+        error: (error: any) => {
+          // Handle the error
+          debugger
+          console.error('Error upload image of product:', error);
+        }
+      })
+
+    }
+  }
+
 
 }

@@ -45,17 +45,22 @@ mat-form-field {
 .thumbnail-container {
   flex: 1 1 40%;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column; /* Đặt hướng ảnh theo chiều dọc */
+  gap: 20px; /* Khoảng cách giữa các ảnh */
+  justify-content: flex-start; /* Đảm bảo ảnh căn đều từ trên xuống dưới */
+  align-items: center; /* Căn giữa các ảnh theo chiều ngang */
 }
 
 .thumbnail-container img[mat-card-image] {
   max-width: 100%;
+  max-height: 200px;
+  height: auto; /* Giữ tỷ lệ ảnh khi thay đổi kích thước */
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  object-fit: contain;
+  object-fit: cover; /* Đảm bảo ảnh được cắt đúng tỷ lệ */
   cursor: pointer;
 }
+
 
 /* Nút bấm dưới cùng, canh giữa */
 .update-btn {
@@ -74,4 +79,50 @@ mat-form-field {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
   background-color: #cccccc; /* xanh đậm hơn khi hover */
   cursor: pointer;
+}
+
+
+/* Ẩn input file */
+.file-input {
+  display: none;
+}
+
+/* Định dạng container của file upload */
+.file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Khoảng cách giữa tên file và nút */
+}
+
+/* Nút upload */
+.upload-btn {
+  width: 56px; /* Kích thước nút */
+  height: 56px; /* Kích thước nút */
+  border-radius: 50%; /* Bo tròn hoàn toàn */
+  background-color: #439fe6; /* Màu nền xanh đậm */
+  color: white; /* Màu icon */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease; /* Hiệu ứng chuyển động mượt mà */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Đổ bóng nhẹ */
+  cursor: pointer; /* Con trỏ chuột kiểu tay khi hover */
+}
+
+/* Thêm hiệu ứng khi hover */
+.upload-btn:hover {
+  background-color: #6dbfe8; /* Màu nền khi hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25); /* Đổ bóng đậm hơn khi hover */
+}
+
+/* Icon trong nút upload */
+.upload-btn mat-icon {
+  font-size: 24px; /* Kích thước icon */
+}
+
+/* Nút khi được kích hoạt */
+.upload-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.4); /* Đổ bóng khi nút được focus */
 }

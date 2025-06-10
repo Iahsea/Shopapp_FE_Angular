@@ -7,6 +7,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { ProductDTO } from '../../../../../dtos/product/product.dto';
+import { MatIconModule } from '@angular/material/icon';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-product',
@@ -15,7 +17,8 @@ import { ProductDTO } from '../../../../../dtos/product/product.dto';
     MatInputModule,
     ReactiveFormsModule,
     MatCardModule,
-    CommonModule
+    CommonModule,
+    MatIconModule
   ],
   templateUrl: './create-product.admin.component.html',
   styleUrl: './create-product.admin.component.scss'
@@ -23,11 +26,13 @@ import { ProductDTO } from '../../../../../dtos/product/product.dto';
 export class CreateProductAdminComponent {
   productProfileForm: FormGroup;
 
+
   constructor(
     private formBuilder: FormBuilder,
     private activateRoute: ActivatedRoute,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+
   ) {
     this.productProfileForm = this.formBuilder.group({
       name: ['', [Validators.minLength(3)]],
@@ -60,4 +65,6 @@ export class CreateProductAdminComponent {
         }
       })
   }
+
+
 }

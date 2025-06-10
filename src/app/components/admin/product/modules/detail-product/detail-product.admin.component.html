@@ -37,16 +37,40 @@
                 </mat-form-field>
             </div>
 
-            <div *ngIf="product"
+            <div *ngIf="product && product.productImages && product.productImages.length > 0"
                  class="thumbnail-container"
                  (click)="OnClickToProductDetail(product.id)">
-                <img mat-card-image
-                     [src]="productProfileForm.get('thumbnail')?.value "
-                     alt="Product Thumbnail" />
+                <div *ngFor="let image of product.productImages">
+                    <img mat-card-image
+                         [src]="image.image_url"
+                         alt="Product Thumbnail" />
+                </div>
             </div>
 
 
+
+
+
         </mat-card-content>
+
+
+        <input type="file"
+               class="file-input"
+               (change)="onFileSelected($event)"
+               #fileUpload>
+
+        <div class="file-upload">
+
+            {{fileName || "No file uploaded yet."}}
+
+            <button mat-mini-fab
+                    color="primary"
+                    class="upload-btn"
+                    (click)="fileUpload.click()">
+                <mat-icon>attach_file</mat-icon>
+            </button>
+        </div>
+
 
         <button mat-raised-button
                 color="primary"
