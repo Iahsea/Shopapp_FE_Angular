@@ -35,10 +35,6 @@ export class DetailProductAdminComponent implements OnInit {
   requiredFileType: string = 'image/*';
   checkUpload: boolean = false;
 
-  file: File | null = null;  // Khai báo biến file chung
-
-
-
   constructor(
     private formBuilder: FormBuilder,
     private activateRoute: ActivatedRoute,
@@ -135,34 +131,41 @@ export class DetailProductAdminComponent implements OnInit {
     debugger
     const idParam = this.activateRoute.snapshot.paramMap.get('id');
     const url = `${environment.apiBaseUrl}/products/uploads/${idParam}`;
-    const file: File = event.target.files[0];
-    if (file) {
+    const files: FileList = event.target.files; // Lấy tất cả các tệp đã chọn
 
-      this.fileName = file.name;
+    if (files && files.length > 0) {
 
       const formData = new FormData();
 
-      formData.append("files", file);
+      for (let i = 0; i < files.length; i++) {
+        formData.append("files", files[i]);
+      }
 
       this.http.post(url, formData).subscribe({
         next: (response: any) => {
           debugger
           console.log('Upload image of product successfully:', response);
 
-          const newImageUrl = `${environment.apiBaseUrl}/products/images/${response[0].imageUrl}`;
-
           if (this.product) {
             debugger
-            // Thêm ảnh mới vào mảng productImages (lưu ý, đây chỉ là cập nhật tạm thời trong client-side chứ chưa lưu vào database)
-            // Có tác dụng thay đổi để Angular phát hiện và tự động cập nhật
-            this.product.productImages.push({
-              image_url: newImageUrl,
-              id: response[0].id
-            });
-            // Cập nhật lại thumbnail nếu cần
-            this.productProfileForm.patchValue({
-              thumbnail: response[0].imageUrl
-            });
+
+            response.forEach((image: any) => {
+              const newImageUrl = `${environment.apiBaseUrl}/products/images/${image.imageUrl}`;
+
+              // Thêm ảnh mới vào mảng productImages (lưu ý, đây chỉ là cập nhật tạm thời trong client-side chứ chưa lưu vào database)
+              // Có tác dụng thay đổi để Angular phát hiện và tự động cập nhật
+
+              // Cập nhật lại thumbnail nếu cần
+
+              this.product?.productImages.push({
+                image_url: newImageUrl,
+                id: image.id
+              });
+
+              this.productProfileForm.patchValue({
+                thumbnail: image.imageUrl
+              });
+            })
           }
         },
         complete: () => {
@@ -194,8 +197,6 @@ export class DetailProductAdminComponent implements OnInit {
     // Lấy phần tên ảnh từ image_url (cắt bỏ phần trước '/images/')
     return imageUrl.split('/images/')[1];
   }
-
-
 
 
 }
