@@ -18,11 +18,12 @@ import { DashboardAdminComponent } from './components/admin/dashboard/dashboard.
 import { productRoutes } from './components/admin/product/product-admin.routes';
 import { orderRoutes } from './components/admin/order/order-admin.routes';
 import { categoryRoutes } from './components/admin/category/category-admin.routes';
+import { LoginGuardFn } from './guards/login.guard';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
+    { path: 'login', component: LoginComponent, canActivate: [LoginGuardFn] },
+    { path: 'register', component: RegisterComponent, canActivate: [LoginGuardFn] },
     { path: 'products/:id', component: DetailProductComponent },
     { path: 'orders', component: OrderComponent, canActivate: [AuthGuardFn] },
     { path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuardFn] },

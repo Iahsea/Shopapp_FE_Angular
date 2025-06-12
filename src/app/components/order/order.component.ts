@@ -149,10 +149,11 @@ export class OrderComponent implements OnInit {
   }
 
   // Hàm tính tổng tiền
-  calculateTotal(): void {
-    this.totalAmount = this.cartItems.reduce(
+  calculateTotal(): number {
+    return this.totalAmount = this.cartItems.reduce(
       (total, item) => total + item.product.price * item.quantity,
       0
     );
   }
+
 }
