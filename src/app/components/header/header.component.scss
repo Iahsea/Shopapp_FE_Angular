@@ -1,50 +1,58 @@
-@use '../../styles/shared-styles.scss' as *;
+@use "../../styles/shared-styles.scss" as *;
 
 header {
-    background-color: rgba(0, 0, 0, 0);
-    color: rgb(173, 178, 203);
+  background-color: rgb(192, 144, 144) !important;
+  color: rgb(173, 178, 203);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: top 0.3s ease; // Smooth transition for hiding/showing header
+  z-index: 1000;
+  margin-bottom: 100px;
 }
 
 .navbar {
-    background-color: rgba(0, 0, 0, 0) !important;
+  background-color: rgb(19, 23, 42) !important;
 }
 
 .navbar .container {
-    background-color: rgba(0, 0, 0, 0) !important;
+  background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .navbar .container .navbar-brand {
-    color: rgb(173, 178, 203);
+  color: rgb(173, 178, 203);
 }
 
 .navbar .container .navbar-nav .nav-link {
-    color: rgb(173, 178, 203);
-    border-radius: 18px;
-    padding: 8px 16px;
+  color: rgb(173, 178, 203);
+  border-radius: 18px;
+  padding: 8px 16px;
 }
 
 .navbar .container .navbar-nav .nav-link.active {
-    background-color: $shopapp-color !important;
-    color: white !important;
+  background-color: $shopapp-color !important;
+  color: white !important;
 }
 
 .popover-list {
-    padding: 10px;
+  padding: 10px;
 }
 .popover-body {
-    padding: 0px;
+  padding: 0px;
 }
 .popover-item {
-    display: block;
-    margin-bottom: 5px;
-    text-decoration: none;
-    color: #333;
+  display: block;
+  margin-bottom: 5px;
+  text-decoration: none;
+  color: #333;
 }
 
 .popover-item:hover {
-    background-color: #f0f0f0;
-    color: red;    
+  background-color: #f0f0f0;
+  color: red;
 }
 
-
-
+header.hidden {
+  top: -100px; // Move header out of view when hidden
+}
