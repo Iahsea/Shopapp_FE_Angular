@@ -9,6 +9,7 @@ import { Category } from '../models/category';
 import { CategoryService } from '../services/category.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-home',
@@ -35,7 +36,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService,
   ) { }
 
   ngOnInit() {
@@ -116,6 +118,15 @@ export class HomeComponent implements OnInit {
     debugger
     // Điều hướng đến trang detail-product với productId là tham số
     this.router.navigate(['/products', productId]);
+  }
+
+  addToCart(productId: number) {
+    debugger
+    this.cartService.addToCart(productId, 1);
+  }
+
+  buyNow() {
+    this.router.navigate(['/orders']);
   }
 
 }

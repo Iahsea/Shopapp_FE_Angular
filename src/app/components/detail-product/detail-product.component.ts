@@ -118,6 +118,6 @@ export class DetailProductComponent implements OnInit {
   }
 
   buyNow(): void {
-    this.router.navigate(['/orders'])
+    this.router.navigate(['/orders']);
   }
 }

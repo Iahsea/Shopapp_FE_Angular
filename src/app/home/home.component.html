@@ -23,11 +23,11 @@
     <div class="row">
         <div class="col-lg-4 col-md-6"
              *ngFor="let product of products">
-            <div class="product-item"
-                 (click)="onProductClick(product.id)">
+            <div class="product-item">
                 <img [src]="product.url"
                      alt="Product Image"
-                     class="product-image">
+                     class="product-image"
+                     (click)="onProductClick(product.id)">
                 <h3 class="product-name">{{ product.name }}</h3>
                 <p class="product-description">{{ product.description }}</p>
                 <p class="product-price">Giá: ${{ product.price }}</p>
@@ -39,9 +39,11 @@
                     <i class="fas fa-star-half-alt"></i>
                 </div>
                 <div class="product-actions">
-                    <button class="btn btn-primary">Thêm vào giỏ hàng</button>
+                    <button class="btn btn-primary"
+                            (click)="addToCart( product.id )">Thêm vào giỏ hàng</button>
                     <span class="space-x"></span>
-                    <button class="btn btn-success">Mua ngay</button>
+                    <button class="btn btn-success"
+                            (click)="buyNow()">Mua ngay</button>
                 </div>
             </div>
         </div>
