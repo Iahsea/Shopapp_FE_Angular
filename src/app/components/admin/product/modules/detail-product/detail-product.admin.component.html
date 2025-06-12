@@ -38,12 +38,14 @@
             </div>
 
             <div *ngIf="product && product.productImages && product.productImages.length > 0"
-                 class="thumbnail-container"
-                 (click)="OnClickToProductDetail(product.id)">
-                <div *ngFor="let image of product.productImages">
+                 class="thumbnail-container">
+                <div *ngFor="let image of product.productImages"
+                     class="image-container">
                     <img mat-card-image
                          [src]="image.image_url"
-                         alt="Product Thumbnail" />
+                         alt="Product Image"
+                         [class.selected]="getImageName(image.image_url) === productProfileForm.value.thumbnail"
+                         (click)="onThumbnailSelected(image)">
                 </div>
             </div>
 

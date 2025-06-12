@@ -126,3 +126,22 @@ mat-form-field {
   outline: none;
   box-shadow: 0 0 0 2px rgba(63, 81, 181, 0.4); /* Đổ bóng khi nút được focus */
 }
+
+.thumbnail-container .image-container {
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.thumbnail-container .image-container img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    transition: border 0.3s ease;
+}
+
+.thumbnail-container .image-container img.selected {
+    border: 2px solid #3f51b5; /* Màu viền khi được chọn */
+}
+

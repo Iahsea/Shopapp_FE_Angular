@@ -153,7 +153,8 @@ export class DetailProductAdminComponent implements OnInit {
 
           if (this.product) {
             debugger
-            // Thêm ảnh mới vào mảng productImages
+            // Thêm ảnh mới vào mảng productImages (lưu ý, đây chỉ là cập nhật tạm thời trong client-side chứ chưa lưu vào database)
+            // Có tác dụng thay đổi để Angular phát hiện và tự động cập nhật
             this.product.productImages.push({
               image_url: newImageUrl,
               id: response[0].id
@@ -176,6 +177,25 @@ export class DetailProductAdminComponent implements OnInit {
 
     }
   }
+
+  onThumbnailSelected(image: any) {
+    debugger;
+
+    // Lấy phần tên ảnh từ image_url (cắt bỏ phần trước '/images/')
+    const imageName = image.image_url.split('/images/')[1];
+
+    // Cập nhật thumbnail trong form với tên ảnh
+    this.productProfileForm.patchValue({
+      thumbnail: imageName
+    });
+  }
+
+  getImageName(imageUrl: string): string {
+    // Lấy phần tên ảnh từ image_url (cắt bỏ phần trước '/images/')
+    return imageUrl.split('/images/')[1];
+  }
+
+
 
 
 }
