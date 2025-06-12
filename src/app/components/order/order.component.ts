@@ -11,6 +11,7 @@ import { environment } from '../../environments/environment';
 import { OrderService } from '../../services/order.service';
 import { Router } from '@angular/router';
 import { Order } from '../../models/order';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-order',
@@ -43,7 +44,8 @@ export class OrderComponent implements OnInit {
     private productService: ProductService,
     private orderService: OrderService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {
     // Tạo FormGroup và các FormControl tương ứng
     this.orderForm = this.fb.group({
@@ -59,6 +61,13 @@ export class OrderComponent implements OnInit {
 
   ngOnInit(): void {
     debugger
+
+    const userResponse = this.userService.getUserResponseFromLocalStorage();
+
+    if (userResponse) {
+      this.orderData.user_id = userResponse.id;
+    }
+
     const cart = this.cartService.getCart();
     const productIds = Array.from(cart.keys());
 

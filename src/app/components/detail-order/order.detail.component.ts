@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { OrderResponse } from '../../responses/order/order.response';
 import { OrderService } from '../../services/order.service';
 import { OrderDetail } from '../../models/order.detail';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-order-detail',
@@ -19,7 +20,7 @@ import { OrderDetail } from '../../models/order.detail';
 })
 export class OrderDetailComponent implements OnInit {
   orderResponse: OrderResponse = {
-    id: 96, // Hoặc bất kỳ giá trị số nào bạn muốn
+    id: 97, // Hoặc bất kỳ giá trị số nào bạn muốn
     user_id: 31,
     fullname: '',
     phone_number: '',
@@ -36,7 +37,13 @@ export class OrderDetailComponent implements OnInit {
     order_details: [] // Một mảng rỗng
   };
 
-  constructor(private orderService: OrderService) { }
+
+  orderId: number = 0;
+
+  constructor(
+    private orderService: OrderService,
+    private activatedRoute: ActivatedRoute,
+  ) { }
 
   ngOnInit(): void {
     this.getOrderDetails();
@@ -44,8 +51,13 @@ export class OrderDetailComponent implements OnInit {
 
   getOrderDetails(): void {
     debugger
-    const orderId = 96;
-    this.orderService.getOrderById(orderId).subscribe({
+    const idParam = this.activatedRoute.snapshot.paramMap.get('id');
+
+    if (idParam !== null) {
+      this.orderId = +idParam;
+    }
+
+    this.orderService.getOrderById(this.orderId).subscribe({
       next: (response: any) => {
         debugger;
         this.orderResponse.id = response.id;
