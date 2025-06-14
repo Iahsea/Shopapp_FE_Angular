@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart.service';
 import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-detail-product',
@@ -27,6 +28,7 @@ export class DetailProductComponent implements OnInit {
     private cartService: CartService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private toastService: ToastService,
   ) { }
 
   ngOnInit() {
@@ -101,6 +103,7 @@ export class DetailProductComponent implements OnInit {
     debugger
     if (this.product) {
       this.cartService.addToCart(this.productId, this.quantity);
+      this.toastService.showSuccess('Item successfully added to your cart!')
     } else {
       // Xử lý khi product là null
       console.error('Không thể thêm sản phẩm vào giỏ hàng vì product là null.');
@@ -108,10 +111,12 @@ export class DetailProductComponent implements OnInit {
   }
 
   increaseQuantity(): void {
+    debugger
     this.quantity++;
   }
 
   decreaseQuantity(): void {
+    debugger
     if (this.quantity > 1) {
       this.quantity--;
     }

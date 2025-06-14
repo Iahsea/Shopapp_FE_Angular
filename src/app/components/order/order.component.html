@@ -131,9 +131,24 @@
                                         <span class="product-name">{{ item.product.name }}</span>
                                     </div>
                                 </td>
-                                <td>{{ item.quantity }}</td>
+
+                                <div class="quantity-control">
+                                    <mat-icon (click)="changeQuantity(item.product.id, -1)"
+                                              [ngClass]="{ 'disabled-icon': item.quantity <= 0 }">
+                                        remove
+                                    </mat-icon> <!-- Biểu tượng giảm -->
+                                    <td>{{ item.quantity }}</td>
+
+                                    <mat-icon (click)="changeQuantity(item.product.id, 1)">
+                                        add
+                                    </mat-icon> <!-- Biểu tượng tăng -->
+                                </div>
+
                                 <td>{{ item.product.price | currency:'VND':'symbol':'1.0-0' }}</td>
                                 <td>{{ (item.product.price * item.quantity) | currency:'VND':'symbol':'1.0-0' }}</td>
+
+                                <!-- Nút Tăng và Giảm số lượng -->
+
                             </tr>
                         </ng-container>
                     </tbody>

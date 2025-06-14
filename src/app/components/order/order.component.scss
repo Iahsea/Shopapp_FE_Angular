@@ -94,3 +94,53 @@ td {
     font-weight: bold; /* Chữ đậm */
     font-size: 18px; /* Kích thước chữ lớn hơn một chút */
 }
+
+/* Căn giữa các nút Tăng và Giảm cùng số lượng */
+.quantity-control {
+  display: flex;
+  justify-content: center; /* Căn giữa các nút */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  gap: 10px; /* Khoảng cách giữa các nút và số lượng */
+  margin-top: 42px;
+}
+
+
+
+/* Thiết kế các biểu tượng tăng, giảm */
+mat-icon {
+  background-color: rgb(29, 33, 54); /* Màu nền nút */
+  color: white; /* Màu chữ trắng */
+  border: 1px solid rgb(29, 33, 54); /* Viền nút */
+  border-radius: 50%; /* Bo tròn nút */
+  padding: 8px; /* Khoảng cách bên trong nút */
+  width: 40px; /* Đặt kích thước nút */
+  height: 40px; /* Đặt kích thước nút */
+  display: inline-flex; /* Đảm bảo các nút không bị vỡ layout */
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; /* Chỉ thị người dùng có thể nhấn */
+  transition: all 0.3s ease; /* Thêm hiệu ứng chuyển động khi hover */
+}
+
+/* Hiệu ứng hover cho nút */
+mat-icon:hover {
+  background-color: rgb(233, 66, 176); /* Chuyển sang màu hồng khi hover */
+  border-color: rgb(233, 66, 176); /* Viền màu hồng khi hover */
+}
+
+/* Tùy chỉnh cho biểu tượng trong nút */
+mat-icon {
+  font-size: 20px; /* Kích thước biểu tượng */
+}
+
+/* Vô hiệu hóa nút Giảm khi số lượng <= 1 */
+mat-icon[disabled] {
+  background-color: rgb(12, 13, 54); /* Màu nền xám khi vô hiệu hóa */
+  border-color: rgb(12, 13, 54); /* Viền xám khi vô hiệu hóa */
+  cursor: not-allowed; /* Chỉ thị người dùng không thể nhấn */
+}
+
+.disabled-icon {
+  color: gray;
+  pointer-events: none; /* Tắt sự kiện click */
+}

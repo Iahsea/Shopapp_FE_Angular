@@ -13,10 +13,19 @@ import { Router } from '@angular/router';
 import { Order } from '../../models/order';
 import { UserService } from '../../services/user.service';
 import { ToastService } from '../../services/toast.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-order',
-  imports: [HeaderComponent, FooterComponent, ReactiveFormsModule, CommonModule],
+  imports: [
+    HeaderComponent,
+    FooterComponent,
+    ReactiveFormsModule,
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+  ],
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.scss']
 })
@@ -72,43 +81,46 @@ export class OrderComponent implements OnInit {
       this.orderData.user_id = userResponse.id;
     }
 
-    const cart = this.cartService.getCart();
-    const productIds = Array.from(cart.keys());
+    this.cartService.getCartObservable().subscribe(cart => {
+      const productIds = Array.from(cart.keys());
 
-    console.log(">>>>> product Ids", productIds);
-
-    if (productIds.length === 0) {
-      this.isCartEmpty = true;
-      return;
-    } else {
-      this.isCartEmpty = false;
-    }
-    this.productService.getProductsByIds(productIds).subscribe(
-      {
-        next: (products) => {
-          debugger
-          this.cartItems = productIds.map((productId) => {
-            debugger
-            const product = products.find((p) => p.id === productId);
-            if (product) {
-              product.thumbnail = `${environment.apiBaseUrl}/products/images/${product.thumbnail}`;
-            }
-            return {
-              product: product!,
-              quantity: cart.get(productId)!
-            };
-          })
-        },
-        complete: () => {
-          debugger
-          this.calculateTotal()
-        },
-        error: (error: any) => {
-          debugger
-          console.error('Error fetching order confirm:', error);
-        }
+      if (productIds.length === 0) {
+        this.isCartEmpty = true;
+        this.cartItems = [];
+        return;
+      } else {
+        this.isCartEmpty = false;
       }
-    )
+
+      this.productService.getProductsByIds(productIds).subscribe(
+        {
+          next: (products) => {
+            debugger
+            this.cartItems = productIds.map((productId) => {
+              debugger
+              const product = products.find((p) => p.id === productId);
+              if (product) {
+                product.thumbnail = `${environment.apiBaseUrl}/products/images/${product.thumbnail}`;
+              }
+              return {
+                product: product!,
+                quantity: cart.get(productId)!
+              };
+            })
+          },
+          complete: () => {
+            debugger
+            this.calculateTotal()
+          },
+          error: (error: any) => {
+            debugger
+            console.error('Error fetching order confirm:', error);
+          }
+        }
+      )
+
+    })
+
   }
 
   placeOrder() {
@@ -165,6 +177,15 @@ export class OrderComponent implements OnInit {
       (total, item) => total + item.product.price * item.quantity,
       0
     );
+  }
+
+  changeQuantity(productId: number, changeBy: number): void {
+    debugger
+    if (changeBy < 0) {
+      this.cartService.removeToCart(productId, -changeBy);
+    } else {
+      this.cartService.addToCart(productId, changeBy);
+    }
   }
 
 }
