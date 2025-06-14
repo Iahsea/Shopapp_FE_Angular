@@ -40,6 +40,8 @@ export class OrderComponent implements OnInit {
     cart_items: []
   };
 
+  isCartEmpty: boolean = false;
+
   constructor(
     private cartService: CartService,
     private productService: ProductService,
@@ -73,8 +75,13 @@ export class OrderComponent implements OnInit {
     const cart = this.cartService.getCart();
     const productIds = Array.from(cart.keys());
 
+    console.log(">>>>> product Ids", productIds);
+
     if (productIds.length === 0) {
+      this.isCartEmpty = true;
       return;
+    } else {
+      this.isCartEmpty = false;
     }
     this.productService.getProductsByIds(productIds).subscribe(
       {

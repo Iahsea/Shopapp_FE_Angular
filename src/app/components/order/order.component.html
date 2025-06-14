@@ -4,6 +4,14 @@
         <h1>Đây là trang Order</h1>
         <p>Sử dụng Bootstrap</p>
     </div>
+
+    <!-- Kiểm tra nếu giỏ hàng trống -->
+
+    <div *ngIf="isCartEmpty"
+         class="alert alert-warning">
+        Giỏ hàng rỗng. Vui lòng thêm sản phẩm vào giỏ hàng.
+    </div>
+
     <form [formGroup]="orderForm"
           class="mb-5">
         <div class="row">
@@ -99,7 +107,8 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6"
+                 *ngIf="!isCartEmpty">
                 <h2 class="product-order">Sản phẩm đã đặt hàng</h2>
                 <table>
                     <thead>

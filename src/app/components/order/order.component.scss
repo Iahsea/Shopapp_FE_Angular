@@ -68,3 +68,29 @@ td {
     border-radius: 30px;
     width: 200px;
   }
+
+  /* Thông báo Giỏ hàng rỗng */
+.alert-warning {
+    background-color: rgb(19, 23, 42); /* Màu nền tối, phù hợp với giao diện */
+    color: white; /* Màu chữ trắng */
+    border: 1px solid rgb(29, 33, 54); /* Màu viền tối */
+    padding: 20px; /* Khoảng cách trong thông báo */
+    border-radius: 10px; /* Bo góc nhẹ */
+    font-size: 30px; /* Kích thước chữ */
+    margin-bottom: 20px; /* Khoảng cách dưới thông báo */
+    text-align: center; /* Canh giữa nội dung thông báo */
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    margin-bottom: 50px;
+}
+
+/* Thêm hiệu ứng hover cho button áp dụng coupon */
+.alert-warning:hover {
+    background-color: rgba(233, 66, 177, 0.616); /* Chuyển màu khi hover */
+    cursor: pointer;
+}
+
+/* Tùy chỉnh cho các phần tử con trong alert nếu cần */
+.alert-warning .alert-text {
+    font-weight: bold; /* Chữ đậm */
+    font-size: 18px; /* Kích thước chữ lớn hơn một chút */
+}
