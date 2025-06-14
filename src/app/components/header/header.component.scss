@@ -9,7 +9,6 @@ header {
   width: 100%;
   transition: top 0.3s ease; // Smooth transition for hiding/showing header
   z-index: 1000;
-  margin-bottom: 100px;
 }
 
 .navbar {
@@ -56,3 +55,21 @@ header {
 header.hidden {
   top: -100px; // Move header out of view when hidden
 }
+
+/* Đảm bảo rằng icon giỏ hàng có position relative */
+.navbar-nav .nav-item .nav-link {
+  position: relative; /* Đặt vị trí cha để cart-count có thể sử dụng absolute */
+}
+
+/* Định vị phần tử số lượng giỏ hàng */
+.cart-count {
+  position: absolute; /* Vị trí tuyệt đối */
+  top: -5px;           /* Điều chỉnh khoảng cách từ trên cùng */
+  right: 102px;         /* Điều chỉnh khoảng cách từ bên phải */
+  background-color: red; /* Màu nền */
+  color: white;         /* Màu chữ */
+  border-radius: 50%;    /* Tạo hình tròn */
+  padding: 5px 10px;     /* Điều chỉnh kích thước */
+  font-size: 10px;       /* Kích thước chữ */
+}
+

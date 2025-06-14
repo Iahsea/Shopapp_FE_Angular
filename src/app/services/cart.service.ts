@@ -37,6 +37,13 @@ export class CartService {
   }
 
 
+  // Lấy số lượng sản phẩm trong giỏ hàng
+  getCartCount(): number {
+    let total = 0;
+    this.cart.forEach(quantity => total += quantity);
+    return total;
+  }
+
   removeToCart(productId: number, quantity: number = 1): void {
     debugger
     if (this.cart.has(productId)) {

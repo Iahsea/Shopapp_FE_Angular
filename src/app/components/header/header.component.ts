@@ -6,6 +6,7 @@ import { NgbPopoverConfig, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { TokenService } from '../../services/token.service';
 import e from 'express';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -25,18 +26,24 @@ export class HeaderComponent implements OnInit {
   lastScrollTop = 0;
   headerVisible = true;
 
+  cartCount: number = 0;
+
 
   constructor(
     private userService: UserService,
     private popoverConfig: NgbPopoverConfig,
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private cartService: CartService
   ) { }
 
   ngOnInit() {
     debugger
     this.userResponse = this.userService.getUserResponseFromLocalStorage();
     console.log(">>>>> check userResponse", this.userResponse);
+    this.cartService.getCartObservable().subscribe(() => {
+      this.cartCount = this.cartService.getCartCount();
+    })
   }
 
   @HostListener('window:scroll', ['$event'])

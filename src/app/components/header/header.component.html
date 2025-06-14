@@ -45,6 +45,8 @@
                            routerLinkActive="active">
                             <i class="fas fa-shopping-cart icon"></i>
                             Giỏ hàng
+                            <span *ngIf="cartCount > 0"
+                                  class="cart-count">{{ cartCount }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
