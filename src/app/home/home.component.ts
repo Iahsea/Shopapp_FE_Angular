@@ -10,6 +10,7 @@ import { CategoryService } from '../services/category.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from '../services/cart.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-home',
@@ -38,6 +39,7 @@ export class HomeComponent implements OnInit {
     private categoryService: CategoryService,
     private router: Router,
     private cartService: CartService,
+    private toastService: ToastService,
   ) { }
 
   ngOnInit() {
@@ -123,6 +125,7 @@ export class HomeComponent implements OnInit {
   addToCart(productId: number) {
     debugger
     this.cartService.addToCart(productId, 1);
+    this.toastService.showSuccess('Item successfully added to your cart!')
   }
 
   buyNow() {

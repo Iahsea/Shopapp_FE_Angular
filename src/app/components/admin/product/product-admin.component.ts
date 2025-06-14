@@ -10,6 +10,7 @@ import { Product } from '../../../models/product';
 import { Category } from '../../../models/category';
 import { ProductService } from '../../../services/product.service';
 import { environment } from '../../../environments/environment';
+import { ToastService } from '../../../services/toast.service';
 
 @Component({
   selector: 'app-product-admin',
@@ -47,7 +48,8 @@ export class ProductAdminComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService,
   ) {
 
   }
@@ -127,6 +129,7 @@ export class ProductAdminComponent implements OnInit {
         next: (response: any) => {
           debugger
           this.loadProducts()
+          this.toastService.showSuccess('Delete product successfully');
         },
         complete: () => {
           debugger;
@@ -134,6 +137,7 @@ export class ProductAdminComponent implements OnInit {
         error: (error: any) => {
           debugger;
           console.error('Error delete product:', error);
+          this.toastService.showError('Error delete product: ' + error?.error?.message);
         }
       });
     }

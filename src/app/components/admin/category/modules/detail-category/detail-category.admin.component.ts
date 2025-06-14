@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { CategoryDTO } from '../../../../../dtos/category/category.dto';
 import { CategoryService } from '../../../../../services/category.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastService } from '../../../../../services/toast.service';
 
 @Component({
   selector: 'app-detail-category-admin',
@@ -29,7 +30,8 @@ export class DetailCategoryAdminComponent {
     private formBuilder: FormBuilder,
     private categoryService: CategoryService,
     @Inject(MAT_DIALOG_DATA) public data: { categoryId: number },
-    private dialogRef: MatDialogRef<DetailCategoryAdminComponent>
+    private dialogRef: MatDialogRef<DetailCategoryAdminComponent>,
+    private toastService: ToastService,
   ) {
     this.category_id = data.categoryId;
     this.categoryProfileForm = this.formBuilder.group({
@@ -52,9 +54,11 @@ export class DetailCategoryAdminComponent {
       next: (response: any) => {
         debugger
         // Handle the successful update
-        console.log('Category updated successfully:', response);
         this.closeDialog()
         // Navigate back to the previous page
+        console.log(response);
+
+        this.toastService.showSuccess('Category updated successfully: ' + response?.message);
       },
       complete: () => {
         debugger;
@@ -62,7 +66,9 @@ export class DetailCategoryAdminComponent {
       error: (error: any) => {
         // Handle the error
         debugger
-        console.error('Error updating category:', error);
+        console.log(">>>>> error: ", error);
+
+        this.toastService.showError('Error updating category!');
       }
     })
   }

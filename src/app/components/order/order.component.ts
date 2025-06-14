@@ -12,6 +12,7 @@ import { OrderService } from '../../services/order.service';
 import { Router } from '@angular/router';
 import { Order } from '../../models/order';
 import { UserService } from '../../services/user.service';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-order',
@@ -45,7 +46,8 @@ export class OrderComponent implements OnInit {
     private orderService: OrderService,
     private fb: FormBuilder,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private toastService: ToastService,
   ) {
     // Tạo FormGroup và các FormControl tương ứng
     this.orderForm = this.fb.group({
@@ -131,6 +133,7 @@ export class OrderComponent implements OnInit {
           console.log('Đặt hàng thành công');
           this.cartService.clearCart();
           this.router.navigate(['/orders/', response.id])
+          this.toastService.showSuccess('Order placed successfully!');
         },
         complete: () => {
           debugger;
@@ -139,11 +142,12 @@ export class OrderComponent implements OnInit {
         error: (error: any) => {
           debugger;
           console.error('Lỗi khi đặt hàng:', error);
+          this.toastService.showError('Error placing order: ' + error);
         },
       });
     } else {
       // Hiển thị thông báo lỗi hoặc xử lý khác
-      alert('Dữ liệu không hợp lệ. Vui lòng kiểm tra lại.');
+      this.toastService.showError('Data is not correct. Please check the data again.');
     }
 
   }

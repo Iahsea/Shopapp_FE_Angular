@@ -1,4 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* styles.scss hoặc styles.css */
+
+/* Ghi đè kiểu cho MatSnackBar container */
+.mdc-snackbar__surface  {
+  background-color: transparent !important;  /* Đảm bảo nền trong suốt */
+  box-shadow: none !important;  /* Xóa shadow nếu có */
+}
+
+
+/* Cấu hình cho button */
+.mat-mdc-button .mat-mdc-button-touch-target {
+  border-radius: 93px;  /* Tạo bo góc tròn cho nút */
+  background-color: #ffffff3c;  /* Màu nền trong suốt */
+  height: 35px !important;  /* Chiều cao của nút */
+  transition: all 0.3s ease;  /* Thêm hiệu ứng mượt mà khi hover */
+}
+
+/* Hiệu ứng khi hover */
+.mat-mdc-button .mat-mdc-button-touch-target:hover {
+  background-color: #f0f0f028;  /* Màu nền thay đổi khi hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Thêm bóng đổ mờ cho nút khi hover */
+  cursor: pointer;  /* Đổi con trỏ thành tay khi hover */
+}
+
+
+
+/* Các class CSS cho thông báo toast */
+.toast-success {
+  background-color: #4caf50 !important;
+  color: white;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.toast-error {
+  background-color: #f44336 !important;
+  color: white;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.toast-info {
+  background-color: #2196f3 !important;
+  color: white;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.toast-warning {
+  background-color: #ff9800 !important;
+  color: white;
+  border-radius: 4px;
+  margin: 10px 0;
+}

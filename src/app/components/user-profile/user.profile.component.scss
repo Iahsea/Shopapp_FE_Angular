@@ -3,10 +3,18 @@
 .container {
     color: white;
 }
+
+.mx-auto {
+    margin-right: auto !important;
+    margin-left: auto !important;
+    margin-top: 100px;
+}
+
 .intro-section {
     color: white;
     padding: 20px;
     text-align: center;
+    margin-top: 500px;
 }
 .product-header {
     color: $shopapp-tint-color;
@@ -30,3 +38,4 @@
 .product-order {
     color: $shopapp-title-color;
 }
+

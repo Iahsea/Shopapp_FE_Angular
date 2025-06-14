@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { ToastService } from '../../../../../services/toast.service';
 
 @Component({
   selector: 'app-detail-order-admin',
@@ -53,7 +54,8 @@ export class DetailOrderAdminComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService,
   ) { }
 
   ngOnInit(): void {
@@ -121,6 +123,7 @@ export class DetailOrderAdminComponent implements OnInit {
           console.log('Order updated successfully:', response);
           // Navigate back to the previous page
           this.router.navigate(['../'], { relativeTo: this.route });
+          this.toastService.showSuccess('Order updated successfully: ' + response?.status);
         },
         complete: () => {
           debugger;
@@ -128,7 +131,7 @@ export class DetailOrderAdminComponent implements OnInit {
         error: (error: any) => {
           // Handle the error
           debugger
-          console.error('Error updating order:', error);
+          this.toastService.showError('Error updating order:' + error);
         }
       });
   }

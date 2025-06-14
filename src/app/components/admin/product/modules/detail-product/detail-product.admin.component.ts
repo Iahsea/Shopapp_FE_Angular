@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { ProductDTO } from '../../../../../dtos/product/product.dto';
 import { HttpClient } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
+import { ToastService } from '../../../../../services/toast.service';
 
 
 @Component({
@@ -40,7 +41,8 @@ export class DetailProductAdminComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
-    private http: HttpClient
+    private http: HttpClient,
+    private toastService: ToastService,
   ) {
     this.productProfileForm = this.formBuilder.group({
       name: ['', [Validators.minLength(3)]],
@@ -107,6 +109,7 @@ export class DetailProductAdminComponent implements OnInit {
 
           // Navigate back to the previous page
           this.router.navigate(['../'], { relativeTo: this.activateRoute });
+          this.toastService.showSuccess('Product updated successfully:');
         },
         complete: () => {
           debugger;
@@ -115,6 +118,7 @@ export class DetailProductAdminComponent implements OnInit {
           // Handle the error
           debugger
           console.error('Error updating product:', error);
+          this.toastService.showError('Error updating product: ' + error?.error?.message)
         }
       })
   }

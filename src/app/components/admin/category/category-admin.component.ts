@@ -14,6 +14,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CategoryCreateAdminComponent } from './modules/create-category/category-create.admin.component';
+import { ToastService } from '../../../services/toast.service';
 
 
 
@@ -50,7 +51,8 @@ export class CategoryAdminComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toastService: ToastService,
   ) {
 
   }
@@ -106,13 +108,14 @@ export class CategoryAdminComponent implements OnInit {
         next: (response: any) => {
           debugger
           this.loadCategories()
+          this.toastService.showSuccess('Category deleted successfully!')
         },
         complete: () => {
           debugger;
         },
         error: (error: any) => {
           debugger;
-          console.error('Error delete product:', error);
+          this.toastService.showError('Error delete product: ' + error);
         }
       })
     }
@@ -130,6 +133,7 @@ export class CategoryAdminComponent implements OnInit {
         // Kết quả trả về khi dialog đóng
         // Gọi lại API lấy danh sách category mới (lazy reload)
         this.loadCategories();
+        this.toastService.showSuccess('Category created successfully!');
       }
     });
   }

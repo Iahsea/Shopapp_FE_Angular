@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { response } from 'express';
 import { error } from 'console';
 import { UpdateUserDTO } from '../../dtos/user/update.user.dto';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -35,7 +36,8 @@ export class UserProfileComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService,
   ) {
     this.userProfileForm = this.formBuilder.group({
       fullname: [''],
@@ -60,7 +62,7 @@ export class UserProfileComponent implements OnInit {
         this.userProfileForm.patchValue({
           fullname: this.userResponse?.fullname ?? '',
           address: this.userResponse?.address ?? '',
-          date_of_birth: this.userResponse?.date_of_birth.toDateString().substring(0, 10),
+          date_of_birth: this.userResponse?.date_of_birth.toISOString().substring(0, 10),
         });
         this.userService.saveUserResponseToLocalStorage(this.userResponse);
       },
@@ -104,14 +106,18 @@ export class UserProfileComponent implements OnInit {
             this.userService.removeUserFromLocalStorage();
             this.tokenService.removeToken();
             this.router.navigate(['/login']);
+            console.log(">>>>>", response);
+
+            this.toastService.showSuccess('User profile updated successfully');
           },
           error: (error: any) => {
             console.log('error', error);
+            this.toastService.showError('Error updating user profile: ' + error);
           }
         })
     } else {
       if (this.userProfileForm.hasError('passwordMismatch')) {
-        alert('Mật khẩu và mật khẩu gõ lại chưa chính xác')
+        this.toastService.showError('Password and Retype Password do not match');
       }
     }
   }

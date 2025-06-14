@@ -8,6 +8,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../services/toast.service';
 
 
 
@@ -55,7 +56,8 @@ export class OrderAdminComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService,
   ) {
 
   }
@@ -80,6 +82,7 @@ export class OrderAdminComponent implements OnInit {
       },
       error: (error: any) => {
         debugger;
+        this.toastService.showError('Error fetching products: ' + error);
         console.error('Error fetching products:', error);
       }
     });
@@ -120,13 +123,14 @@ export class OrderAdminComponent implements OnInit {
         next: (response: any) => {
           debugger
           this.loadProducts();
+          this.toastService.showSuccess('Product deleted successfully!');
         },
         complete: () => {
           debugger;
         },
         error: (error: any) => {
           debugger;
-          console.error('Error delete order:', error);
+          this.toastService.showError('Error delete order: ' + error)
         }
       });
     }

@@ -5,11 +5,17 @@ import { NgIf } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { RegisterDTO } from '../../dtos/user/register.dto';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FooterComponent, FormsModule, NgIf, RouterModule],
+  imports: [
+    FooterComponent,
+    FormsModule,
+    NgIf,
+    RouterModule
+  ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
@@ -27,7 +33,11 @@ export class RegisterComponent {
   passwordTouched = false;
 
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private toastService: ToastService,
+  ) {
     this.phoneNumber = '';
     this.password = '';
     this.retypePassword = '';
@@ -43,12 +53,6 @@ export class RegisterComponent {
   }
 
   register() {
-    const message = `${this.phoneNumber} + ${this.password} + ${this.retypePassword}
-                      ${this.fullName} + ${this.address} + ${this.isAccepted} + ${this.dateOfBirth}`
-    alert(message);
-
-
-
     const registerDTO: RegisterDTO = {
       "fullname": this.fullName,
       "phone_number": this.phoneNumber,
@@ -66,12 +70,13 @@ export class RegisterComponent {
         next: (response: any) => {
           debugger
           this.router.navigate(['/login'])
+          this.toastService.showSuccess('Register successfully');
         },
         complete: () => {
           debugger
         },
         error: (error: any) => {
-          alert(`Cannot register, error: ${error.error}`)
+          this.toastService.showError('Cannot register, error: ' + error?.error?.message);
           debugger
         }
       }

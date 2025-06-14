@@ -11,10 +11,18 @@ import { LoginResponse } from '../../responses/user/login.response'
 import { RoleService } from '../../services/role.service';
 import { Role } from '../../models/role';
 import { UserResponse } from '../../responses/user/user.response';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-login',
-  imports: [HeaderComponent, FooterComponent, FormsModule, CommonModule, RouterModule],
+  imports: [
+    HeaderComponent,
+    FooterComponent,
+    FormsModule,
+    CommonModule,
+    RouterModule,
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
@@ -40,7 +48,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private tokenService: TokenService,
-    private roleService: RoleService
+    private roleService: RoleService,
+    private toastService: ToastService,
   ) { }
 
   ngOnInit() {
@@ -61,9 +70,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    const message = `${this.phoneNumber} + ${this.password}`;
-    alert(message);
-
     const loginDTO: LoginDTO = {
       phone_number: this.phoneNumber,
       password: this.password,
@@ -90,13 +96,16 @@ export class LoginComponent implements OnInit {
                 } else if (this.userResponse?.role.name == 'user') {
                   this.router.navigate(['/']);
                 }
+
+                this.toastService.showSuccess('Login successfully');
+
               },
               complete: () => {
                 debugger
               },
               error: (error: any) => {
                 debugger
-                alert(error?.error?.message);
+                this.toastService.showError('Erorr ' + error?.error?.message);
               }
             })
           }
@@ -106,7 +115,7 @@ export class LoginComponent implements OnInit {
         },
         error: (error: any) => {
           debugger
-          alert(error?.error?.message);
+          this.toastService.showError('Erorr ' + error?.error?.message);
         }
       }
     )

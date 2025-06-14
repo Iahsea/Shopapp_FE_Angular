@@ -9,6 +9,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ProductDTO } from '../../../../../dtos/product/product.dto';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClient } from '@angular/common/http';
+import { ToastService } from '../../../../../services/toast.service';
 
 @Component({
   selector: 'app-create-product',
@@ -32,6 +33,7 @@ export class CreateProductAdminComponent {
     private activateRoute: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
+    private toastService: ToastService,
 
   ) {
     this.productProfileForm = this.formBuilder.group({
@@ -51,9 +53,9 @@ export class CreateProductAdminComponent {
         next: (response: any) => {
           debugger
           // Handle the successful update
-          console.log('Created Product successfully:', response);
           // Navigate back to the previous page
           this.router.navigate(['../products'], { relativeTo: this.activateRoute });
+          this.toastService.showSuccess('Created Product successfully')
         },
         complete: () => {
           debugger;
@@ -61,7 +63,7 @@ export class CreateProductAdminComponent {
         error: (error: any) => {
           // Handle the error
           debugger
-          console.error('Error creating product:', error);
+          this.toastService.showError('Error creating product ' + error?.error?.message);
         }
       })
   }

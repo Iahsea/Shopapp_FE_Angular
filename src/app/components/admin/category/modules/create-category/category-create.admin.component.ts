@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
 import { CategoryDTO } from '../../../../../dtos/category/category.dto';
+import { ToastService } from '../../../../../services/toast.service';
 
 @Component({
   selector: 'app-category-create',
@@ -27,7 +28,8 @@ export class CategoryCreateAdminComponent {
   constructor(
     private formBuilder: FormBuilder,
     private categoryService: CategoryService,
-    private dialogRef: MatDialogRef<DetailCategoryAdminComponent>
+    private dialogRef: MatDialogRef<DetailCategoryAdminComponent>,
+    private toastService: ToastService,
   ) {
     this.categoryProfileForm = this.formBuilder.group({
       name: ['', [Validators.minLength(3)]],
@@ -56,7 +58,7 @@ export class CategoryCreateAdminComponent {
       error: (error: any) => {
         // Handle the error
         debugger
-        console.error('Error create category:', error);
+        this.toastService.showError('Error create category: ' + error.error.message);
       }
     })
   }
