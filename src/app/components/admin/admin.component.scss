@@ -7,7 +7,12 @@
   color: white;
   display: flex;
   flex-direction: column;
-  padding: 0 8px;
+  padding: 8px 8px;
+}
+
+.sidebar .active-link {
+    background-color: #00a9bf;
+    padding-bottom: 5px;
 }
 
 .sidebar-header {
@@ -80,3 +85,47 @@
   min-width: 24px;             /* Đảm bảo icon không bị co nhỏ */
 }
 
+.mat-card-header {
+    background-color: #1976d2;
+    color: #fff;
+    border-radius: 8px 8px 0 0;
+}
+
+.mat-card-title {
+    font-size: 1.5rem;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #1976d2;
+    font-weight: bold;
+}
+
+ul li a:hover {
+    color: #0d47a1;
+}
+
+h1 {
+  font-size: 2rem; /* Kích thước chữ lớn vừa phải */
+  color: #fff; /* Màu trắng để đồng bộ với giao diện tối */
+  font-weight: 600; /* Độ đậm của chữ */
+  margin: 20px 0; /* Khoảng cách trên và dưới thẻ h1 */
+  padding: 10px 15px; /* Khoảng cách bên trong thẻ h1 để tạo độ rộng */
+  background-color: #2c3e50; /* Màu nền phù hợp với giao diện sidebar */
+  border-radius: 8px; /* Làm tròn các góc của thẻ h1 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Tạo hiệu ứng bóng nhẹ */
+  text-align: center; /* Căn giữa chữ */
+}
+
+h1 + .main-content {
+  margin-top: 20px; /* Khoảng cách giữa h1 và phần nội dung dưới */
+}

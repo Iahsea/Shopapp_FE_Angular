@@ -7,6 +7,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { OrderService } from '../../../services/order.service';
 import { ProductService } from '../../../services/product.service';
 import { CategoryService } from '../../../services/category.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -16,6 +17,7 @@ import { CategoryService } from '../../../services/category.service';
     MatIconModule,
     MatButtonModule,
     MatProgressBarModule,
+    RouterModule
   ],
   templateUrl: './dashboard.admin.component.html',
   styleUrl: './dashboard.admin.component.scss'
@@ -25,6 +27,8 @@ export class DashboardAdminComponent implements OnInit {
   orderCount: number = 0;
   productCount: number = 0;
   categoryCount: number = 0;
+
+  loading: boolean = true;
 
   constructor(
     private orderService: OrderService,
@@ -48,4 +52,6 @@ export class DashboardAdminComponent implements OnInit {
       this.categoryCount = count;
     })
   }
+
+
 }

@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { OrderAdminComponent } from './order/order-admin.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -38,6 +39,7 @@ import { OrderAdminComponent } from './order/order-admin.component';
     RouterModule,
     FormsModule,
     RouterOutlet,
+    MatCardModule,
   ],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'

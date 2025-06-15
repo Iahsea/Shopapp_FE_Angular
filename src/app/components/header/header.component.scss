@@ -9,6 +9,7 @@ header {
   width: 100%;
   transition: top 0.3s ease; // Smooth transition for hiding/showing header
   z-index: 1000;
+  gap: 30px;
 }
 
 .navbar {
@@ -54,6 +55,10 @@ header {
 
 header.hidden {
   top: -100px; // Move header out of view when hidden
+}
+
+.navbar-nav .nav-item {
+  margin-right: 30px; /* Khoảng cách giữa các phần tử */
 }
 
 /* Đảm bảo rằng icon giỏ hàng có position relative */
