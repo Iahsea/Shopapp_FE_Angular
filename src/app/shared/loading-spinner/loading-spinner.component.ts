@@ -9,7 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';  
   selector: 'app-loading-spinner',
   imports: [
     CommonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   templateUrl: './loading-spinner.component.html',
   styleUrl: './loading-spinner.component.scss'
