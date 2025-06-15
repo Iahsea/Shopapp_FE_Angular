@@ -9,6 +9,7 @@ import { CategoryDTO } from '../../../../../dtos/category/category.dto';
 import { CategoryService } from '../../../../../services/category.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToastService } from '../../../../../services/toast.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-detail-category-admin',
@@ -17,7 +18,8 @@ import { ToastService } from '../../../../../services/toast.service';
     MatInputModule,
     ReactiveFormsModule,
     MatCardModule,
-    CommonModule
+    CommonModule,
+    MatIconModule,
   ],
   templateUrl: './detail-category.admin.component.html',
   styleUrl: './detail-category.admin.component.scss'
@@ -39,12 +41,6 @@ export class DetailCategoryAdminComponent {
     })
   }
 
-  // Các phương thức khác của component
-
-  closeDialog() {
-    this.dialogRef.close('Kết quả bạn muốn trả về khi đóng dialog');
-  }
-
 
   onUpdate() {
     debugger
@@ -54,7 +50,7 @@ export class DetailCategoryAdminComponent {
       next: (response: any) => {
         debugger
         // Handle the successful update
-        this.closeDialog()
+        this.gotoCategoryAdminScreen()
         // Navigate back to the previous page
         console.log(response);
 
@@ -73,6 +69,9 @@ export class DetailCategoryAdminComponent {
     })
   }
 
+  gotoCategoryAdminScreen() {
+    this.dialogRef.close('Kết quả bạn muốn trả về khi đóng dialog');
+  }
 
 
 }

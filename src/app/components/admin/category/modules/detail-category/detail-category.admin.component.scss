@@ -38,7 +38,7 @@ mat-card-content {
 .update-btn {
   align-self: center;
   width: 100px;
-  margin-top: 15px;
+  margin-top: 25px;
   border-radius: 8px;          /* Bo góc mềm mại */
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);  /* Đổ bóng nhẹ */
   font-weight: 600;
@@ -49,5 +49,23 @@ mat-card-content {
 
 .update-btn:hover:not(:disabled) {
   box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Bóng đậm hơn khi hover */
-  background-color: #f0f0f0cc;             /* Màu primary nhạt hơn chút khi hover */
+  background-color: #f0f0f07c;             /* Màu primary nhạt hơn chút khi hover */
+}
+
+.cancel-btn {
+  align-self: center;
+  width: 100px;
+  margin-top: 20px; /* Khoảng cách từ nút Update */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Đổ bóng nhẹ */
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #1976d2; /* Màu đỏ cho nút Cancel */
+  color: white; /* Màu chữ trắng */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #1976d2ab; /* Đổi màu đỏ đậm khi hover */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Bóng đậm hơn khi hover */
 }

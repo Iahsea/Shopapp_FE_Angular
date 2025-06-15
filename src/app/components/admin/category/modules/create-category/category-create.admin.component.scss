@@ -51,7 +51,7 @@ mat-card-content {
 .create-btn {
   align-self: center;
   width: 100px;
-  margin: 30px 0 45px; /* Căn giữa và tạo khoảng cách đều */
+  margin: 10px 0 15px; /* Căn giữa và tạo khoảng cách đều */
   border-radius: 8px; /* Bo góc mềm mại */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
   font-weight: 600;
@@ -69,4 +69,22 @@ mat-card-content {
 .create-btn:disabled {
   background-color: #e0e0e0; /* Nền xám khi disabled */
   box-shadow: none; /* Bỏ bóng khi disabled */
+}
+
+.cancel-btn {
+  align-self: center;
+  width: 100px;
+  margin-top: 10px; /* Khoảng cách từ nút Update */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Đổ bóng nhẹ */
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #1976d2; /* Màu đỏ cho nút Cancel */
+  color: white; /* Màu chữ trắng */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #1976d2ab; /* Đổi màu đỏ đậm khi hover */
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2); /* Bóng đậm hơn khi hover */
 }

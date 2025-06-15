@@ -133,7 +133,6 @@ export class CategoryAdminComponent implements OnInit {
         // Kết quả trả về khi dialog đóng
         // Gọi lại API lấy danh sách category mới (lazy reload)
         this.loadCategories();
-        this.toastService.showSuccess('Category created successfully!');
       }
     });
   }

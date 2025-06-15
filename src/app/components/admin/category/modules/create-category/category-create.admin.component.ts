@@ -36,10 +36,6 @@ export class CategoryCreateAdminComponent {
     })
   }
 
-  closeDialog() {
-    this.dialogRef.close('Kết quả bạn muốn trả về khi đóng dialog');
-  }
-
   onCreate() {
     debugger
     const formData = this.categoryProfileForm.value;
@@ -48,8 +44,8 @@ export class CategoryCreateAdminComponent {
       next: (response: any) => {
         debugger
         // Handle the successful update
-        console.log('Create category successfully:', response);
-        this.closeDialog()
+        this.toastService.showSuccess('Category created successfully!');
+        this.gotoCategoryAdminScreen()
         // Navigate back to the previous page
       },
       complete: () => {
@@ -58,8 +54,12 @@ export class CategoryCreateAdminComponent {
       error: (error: any) => {
         // Handle the error
         debugger
-        this.toastService.showError('Error create category: ' + error.error.message);
+        this.toastService.showError('Error create category: ' + error?.error?.message);
       }
     })
+  }
+
+  gotoCategoryAdminScreen() {
+    this.dialogRef.close('Kết quả bạn muốn trả về khi đóng dialog');
   }
 }
