@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @Component({
     selector: 'app-root',
@@ -8,6 +9,7 @@ import { CommonModule } from '@angular/common';
     imports: [
         RouterOutlet,
         CommonModule,
+        LoadingSpinnerComponent,
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],

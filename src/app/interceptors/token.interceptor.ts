@@ -5,14 +5,16 @@ import {
     HttpHandler,
     HttpEvent
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import { LoadingService } from '../services/loading.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
     constructor(
-        @Inject(PLATFORM_ID) private platformId: Object
+        @Inject(PLATFORM_ID) private platformId: Object,
+        private loadingService: LoadingService,
     ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -20,6 +22,10 @@ export class TokenInterceptor implements HttpInterceptor {
             debugger
             console.log('TokenInterceptor is called');
             const token = localStorage.getItem('access_token');
+
+            // Hiển thị loading spinner trước khi gửi yêu cầu 
+            this.loadingService.show();
+
             if (token) {
                 req = req.clone({
                     setHeaders: {
@@ -29,6 +35,11 @@ export class TokenInterceptor implements HttpInterceptor {
             }
         }
 
-        return next.handle(req);
+        return next.handle(req).pipe(
+            finalize(() => {
+                // Ẩn spinner khi request hoàn tất ( hoặc lỗi )
+                this.loadingService.hide();
+            })
+        );
     }
 }
