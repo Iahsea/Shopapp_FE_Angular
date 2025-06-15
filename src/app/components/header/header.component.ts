@@ -74,6 +74,7 @@ export class HeaderComponent implements OnInit {
       this.userService.removeUserFromLocalStorage();
       this.tokenService.removeToken();
       this.userResponse = this.userService.getUserResponseFromLocalStorage();
+      this.cartService.resetCartOnLogout(); // Reset giỏ hàng trong bộ nhớ
       this.router.navigate(['/login'])
     }
     this.isPopoverOpen = false;

@@ -36,11 +36,18 @@ export class CartService {
     this.cartSubject.next(this.cart);
   }
 
+  public resetCartOnLogout(): void {
+    // Đặt lại giỏ hàng về trạng thái trống trong bộ nhớ của ứng dụng
+    this.cart.clear();
+    this.cartSubject.next(this.cart); // Cập nhật giỏ hàng trống vào BehaviorSubject
+    // Không xóa giỏ hàng trong localStorage, để khi người dùng đăng nhập lại, giỏ hàng vẫn còn
+  }
+
 
   private getCartKey(): string {
     const userResponseJSON = localStorage.getItem('user');
     const userResponse = JSON.parse(userResponseJSON!);
-    return `cart:${userResponse.id}`;
+    return `cart:${userResponse?.id}`;
   }
 
   getCart(): Map<number, number> {

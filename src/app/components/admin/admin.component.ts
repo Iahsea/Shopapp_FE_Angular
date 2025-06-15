@@ -18,6 +18,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { OrderAdminComponent } from './order/order-admin.component';
 import { MatCardModule } from '@angular/material/card';
+import { CartService } from '../../services/cart.service';
 
 
 
@@ -62,6 +63,7 @@ export class AdminComponent implements OnInit {
     private userService: UserService,
     private tokenService: TokenService,
     private router: Router,
+    private cartService: CartService,
   ) { }
 
   ngOnInit() {
@@ -72,6 +74,7 @@ export class AdminComponent implements OnInit {
     this.userService.removeUserFromLocalStorage();
     this.tokenService.removeToken();
     this.userResponse = this.userService.getUserResponseFromLocalStorage();
+    this.cartService.resetCartOnLogout();
     this.router.navigate(['/login'])
   }
 
