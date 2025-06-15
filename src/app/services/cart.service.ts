@@ -19,13 +19,28 @@ export class CartService {
     this.isBrowser = isPlatformBrowser(this.platformId);
 
     // Lấy dữ liệu giỏ hàng từ localStorage khi khởi tạo service (chỉ thực hiện khi chạy trên trình duyệt)
+    this.cartSubject = new BehaviorSubject(this.cart)
+    this.refreshCart();
+  }
+
+  public refreshCart() {
     if (this.isBrowser) {
-      const storedCart = localStorage.getItem('cart');
+      const storedCart = localStorage.getItem(this.getCartKey());
       if (storedCart) {
         this.cart = new Map(JSON.parse(storedCart));
+      } else {
+        this.cart = new Map<number, number>();
       }
+
     }
-    this.cartSubject = new BehaviorSubject(this.cart)
+    this.cartSubject.next(this.cart);
+  }
+
+
+  private getCartKey(): string {
+    const userResponseJSON = localStorage.getItem('user');
+    const userResponse = JSON.parse(userResponseJSON!);
+    return `cart:${userResponse.id}`;
   }
 
   getCart(): Map<number, number> {
@@ -76,7 +91,7 @@ export class CartService {
   // Lưu trữ giỏ hàng vào localStorage
   private saveCartToLocalStorage(): void {
     debugger
-    localStorage.setItem('cart', JSON.stringify(Array.from(this.cart.entries())));
+    localStorage.setItem(this.getCartKey(), JSON.stringify(Array.from(this.cart.entries())));
   }
 
   // Hàm xóa dữ liệu giỏ hàng và cập nhật Local Storage

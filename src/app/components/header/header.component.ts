@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     debugger
     this.userResponse = this.userService.getUserResponseFromLocalStorage();
-    console.log(">>>>> check userResponse", this.userResponse);
+    console.log(">>>>> check userRe sponse", this.userResponse);
     this.cartService.getCartObservable().subscribe(() => {
       this.cartCount = this.cartService.getCartCount();
     })

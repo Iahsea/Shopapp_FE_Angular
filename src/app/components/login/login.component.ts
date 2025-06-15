@@ -13,6 +13,7 @@ import { Role } from '../../models/role';
 import { UserResponse } from '../../responses/user/user.response';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ToastService } from '../../services/toast.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -50,6 +51,7 @@ export class LoginComponent implements OnInit {
     private tokenService: TokenService,
     private roleService: RoleService,
     private toastService: ToastService,
+    private cartService: CartService,
   ) { }
 
   ngOnInit() {
@@ -101,7 +103,9 @@ export class LoginComponent implements OnInit {
 
               },
               complete: () => {
+                this.cartService.refreshCart();
                 debugger
+
               },
               error: (error: any) => {
                 debugger

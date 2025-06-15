@@ -122,6 +122,15 @@ export class DetailProductComponent implements OnInit {
     }
   }
 
+  getTotalPrice(): number {
+    debugger
+    if (this.product) {
+      return this.product.price * this.quantity;
+    }
+    return 0;
+  }
+
+
   buyNow(): void {
     this.router.navigate(['/orders']);
   }

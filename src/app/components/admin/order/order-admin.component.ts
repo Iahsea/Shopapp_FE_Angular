@@ -83,7 +83,6 @@ export class OrderAdminComponent implements OnInit {
       error: (error: any) => {
         debugger;
         this.toastService.showError('Error fetching products: ' + error);
-        console.error('Error fetching products:', error);
       }
     });
   }

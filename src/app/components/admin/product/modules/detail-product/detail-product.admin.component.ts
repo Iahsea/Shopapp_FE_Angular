@@ -130,7 +130,7 @@ export class DetailProductAdminComponent implements OnInit {
       console.warn('Product ID is undefined');
     }
   }
-
+                  
   onFileSelected(event: any) {
     debugger
     const idParam = this.activateRoute.snapshot.paramMap.get('id');

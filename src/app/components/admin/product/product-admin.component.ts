@@ -129,7 +129,7 @@ export class ProductAdminComponent implements OnInit {
         next: (response: any) => {
           debugger
           this.loadProducts()
-          this.toastService.showSuccess('Delete product successfully');
+          this.toastService.showSuccess('Product deleted successfully!');
         },
         complete: () => {
           debugger;
