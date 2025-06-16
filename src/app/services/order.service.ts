@@ -24,7 +24,8 @@ export class OrderService {
   }
 
   loadOrderCount() {
-    const userResponse = this.userService.getUserResponseFromLocalStorage();
+    const userResponse = this.userService.getUserResponseFromLocalStorage()
+      || this.userService.getUserResponseFromSessionStorage();
     if (userResponse?.role.name === 'admin') {
       const params = new HttpParams()
         .set('keyword', "")
