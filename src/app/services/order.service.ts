@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { OrderDTO } from '../dtos/order/order.dto';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { OrderResponse } from '../responses/order/order.response';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,28 +16,31 @@ export class OrderService {
   private apiUrl = `${environment.apiBaseUrl}/orders`;
   private apiGetAllOrders = `${environment.apiBaseUrl}/orders/get-orders-by-keyword`;
 
-  constructor(private http: HttpClient) {
-    debugger
+  constructor(
+    private http: HttpClient,
+    private userService: UserService
+  ) {
     this.loadOrderCount();
   }
 
   loadOrderCount() {
-    debugger
-    const params = new HttpParams()
-      .set('keyword', "")
-      .set('page', 0)
-      .set('limit', 1000);
-    this.http.get<any>(this.apiGetAllOrders, { params }).subscribe({
-      next: (response) => {
-        debugger
-        if (response && response.totalOrder) {
-          this.orderCountSubject.next(response.totalOrder);  // Cập nhật totalCount vào BehaviorSubject
+    const userResponse = this.userService.getUserResponseFromLocalStorage();
+    if (userResponse?.role.name === 'admin') {
+      const params = new HttpParams()
+        .set('keyword', "")
+        .set('page', 0)
+        .set('limit', 1000);
+      this.http.get<any>(this.apiGetAllOrders, { params }).subscribe({
+        next: (response) => {
+          if (response && response.totalOrder) {
+            this.orderCountSubject.next(response.totalOrder);
+          }
+        },
+        error: (error) => {
+          console.error('Lỗi khi lấy số lượng đơn hàng:', error);
         }
-      },
-      error: (error) => {
-        console.error('Lỗi khi lấy số lượng đơn hàng:', error);
-      }
-    })
+      });
+    }
   }
 
   updateOrderCount(newCount: number) {
@@ -50,7 +54,6 @@ export class OrderService {
   }
 
   getOrderById(orderId: number): Observable<any> {
-    debugger
     const url = `${environment.apiBaseUrl}/orders/${orderId}`;
     return this.http.get(url);
   }
