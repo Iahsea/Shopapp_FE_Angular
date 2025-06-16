@@ -25,7 +25,7 @@ export class CartService {
 
   public refreshCart() {
     if (this.isBrowser) {
-      const storedCart = localStorage.getItem(this.getCartKey());
+      const storedCart = localStorage.getItem(this.getCartKey()) || sessionStorage.getItem(this.getCartKey());
       if (storedCart) {
         this.cart = new Map(JSON.parse(storedCart));
       } else {
@@ -45,7 +45,7 @@ export class CartService {
 
 
   private getCartKey(): string {
-    const userResponseJSON = localStorage.getItem('user');
+    const userResponseJSON = localStorage.getItem('user') || sessionStorage.getItem('user');
     const userResponse = JSON.parse(userResponseJSON!);
     return `cart:${userResponse?.id}`;
   }

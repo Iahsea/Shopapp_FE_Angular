@@ -14,7 +14,7 @@ export class TokenService {
 
   getToken(): string | null {
     if (isPlatformBrowser(this.platformId)) {
-      return localStorage.getItem(this.TOKEN_KEY);
+      return localStorage.getItem(this.TOKEN_KEY) || sessionStorage.getItem(this.TOKEN_KEY);
     }
     return null;
   }
@@ -36,7 +36,8 @@ export class TokenService {
   }
 
   removeToken(): void {
-    return localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.TOKEN_KEY);
+    sessionStorage.removeItem(this.TOKEN_KEY);
   }
 
   isTokenExpired(): boolean {

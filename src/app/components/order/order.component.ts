@@ -35,7 +35,7 @@ export class OrderComponent implements OnInit {
   couponCode: string = ''; // Mã giảm giá
   totalAmount: number = 0; // Tổng tiền
   orderData: OrderDTO = {
-    user_id: 31, // Thay bằng user_id thích hợp
+    user_id: 37, // Thay bằng user_id thích hợp
     fullname: '', // Khởi tạo rỗng, sẽ được điền từ form
     email: '', // Khởi tạo rỗng, sẽ được điền từ form    
     phone_number: '', // Khởi tạo rỗng, sẽ được điền từ form

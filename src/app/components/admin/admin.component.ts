@@ -72,6 +72,7 @@ export class AdminComponent implements OnInit {
 
   logout() {
     this.userService.removeUserFromLocalStorage();
+    this.userService.removeUserFromSessionStorage();
     this.tokenService.removeToken();
     this.userResponse = this.userService.getUserResponseFromLocalStorage();
     this.cartService.resetCartOnLogout();
