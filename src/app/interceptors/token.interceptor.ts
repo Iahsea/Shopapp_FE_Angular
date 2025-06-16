@@ -21,7 +21,7 @@ export class TokenInterceptor implements HttpInterceptor {
         if (isPlatformBrowser(this.platformId)) {
             debugger
             console.log('TokenInterceptor is called');
-            const token = localStorage.getItem('access_token');
+            let token = localStorage.getItem('access_token') || sessionStorage.getItem('access_token');
 
             // Hiển thị loading spinner trước khi gửi yêu cầu 
             this.loadingService.show();

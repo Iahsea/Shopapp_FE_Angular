@@ -19,8 +19,12 @@ export class TokenService {
     return null;
   }
 
-  setToken(token: string): void {
-    return localStorage.setItem(this.TOKEN_KEY, token);
+  setToken(token: string, rememberMe: boolean = true): void {
+    if (rememberMe) {
+      return localStorage.setItem(this.TOKEN_KEY, token);
+    }
+
+    return sessionStorage.setItem(this.TOKEN_KEY, token);
   }
 
   getUserId(): number {

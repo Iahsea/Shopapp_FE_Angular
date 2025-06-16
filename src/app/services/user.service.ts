@@ -44,7 +44,8 @@ export class UserService {
 
   updateUserDetail(token: string, updateUserDTO: UpdateUserDTO) {
     debugger
-    let userResponse = this.getUserResponseFromLocalStorage();
+    let userResponse = this.getUserResponseFromStorage();
+
     return this.http.put(`${this.apiUserDetail}/${userResponse?.id}`, updateUserDTO, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -69,6 +70,19 @@ export class UserService {
       console.log('Error saving user response to local storage:', error);
     }
   }
+
+
+  private getUserResponseFromStorage(): UserResponse | null {
+    let userResponse = this.getUserResponseFromLocalStorage()
+
+    if (userResponse) {
+      return userResponse;
+    }
+
+    userResponse = this.getUserResponseFromSessionStorage();
+    return userResponse;
+  }
+
 
   getUserResponseFromLocalStorage(): UserResponse | null {
     try {
@@ -100,6 +114,47 @@ export class UserService {
       console.log('User data removed from local storage');
     } catch (error) {
       console.log('Error removing user data from local storage', error);
+    }
+  }
+
+  getUserResponseFromSessionStorage(): UserResponse | null {
+    try {
+      const userResponseJSON = sessionStorage.getItem('user');
+
+      if (userResponseJSON == null) {
+        return null;
+      }
+
+      return JSON.parse(userResponseJSON);
+    } catch (error) {
+      console.log('Error retrieving user response from session storage:', error);
+      return null;
+    }
+
+  }
+
+  saveUserResponseToSessionStorage(userResponse?: UserResponse) {
+    try {
+      debugger
+      if (userResponse == null || !userResponse) {
+        return;
+      }
+      // Convert the userResponse object to a JSON string
+      const userResponseJSON = JSON.stringify(userResponse);
+      // Save the JSON string to local storage with a key (e.g., "userResponse")
+      sessionStorage.setItem('user', userResponseJSON);
+      console.log('User response saved to session storage.');
+    } catch (error) {
+      console.log('Error saving user response to session storage:', error);
+    }
+  }
+
+  removeUserFromSessionStorage(): void {
+    try {
+      sessionStorage.removeItem('user');
+      console.log('User data removed from session storage');
+    } catch (error) {
+      console.log('Error removing user data from session storage', error);
     }
   }
 
