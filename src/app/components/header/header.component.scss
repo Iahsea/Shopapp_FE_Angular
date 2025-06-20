@@ -1,80 +1,89 @@
-@use "../../styles/shared-styles.scss" as *;
+@use '../../styles/shared-styles.scss' as *;
 
 header {
-  background-color: rgb(192, 144, 144) !important;
-  color: rgb(173, 178, 203);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  transition: top 0.3s ease; // Smooth transition for hiding/showing header
-  z-index: 1000;
-  gap: 30px;
+    background-color: rgb(192, 144, 144) !important;
+    color: rgb(173, 178, 203);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: top 0.3s ease; // Smooth transition for hiding/showing header
+    z-index: 1000;
+    gap: 30px;
 }
 
 .navbar {
-  background-color: rgb(19, 23, 42) !important;
+    background-color: rgb(19, 23, 42) !important;
 }
 
 .navbar .container {
-  background-color: rgba(0, 0, 0, 0) !important;
+    background-color: rgba(0, 0, 0, 0) !important;
 }
 
 .navbar .container .navbar-brand {
-  color: rgb(173, 178, 203);
+    color: rgb(173, 178, 203);
 }
 
 .navbar .container .navbar-nav .nav-link {
-  color: rgb(173, 178, 203);
-  border-radius: 18px;
-  padding: 8px 16px;
+    color: rgb(173, 178, 203);
+    border-radius: 18px;
+    padding: 8px 16px;
 }
 
 .navbar .container .navbar-nav .nav-link.active {
-  background-color: $shopapp-color !important;
-  color: white !important;
+    background-color: $shopapp-color !important;
+    color: white !important;
 }
 
 .popover-list {
-  padding: 10px;
+    padding: 10px;
 }
 .popover-body {
-  padding: 0px;
+    padding: 0px;
 }
 .popover-item {
-  display: block;
-  margin-bottom: 5px;
-  text-decoration: none;
-  color: #333;
+    display: block;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: #333;
 }
 
 .popover-item:hover {
-  background-color: #f0f0f0;
-  color: red;
+    background-color: #f0f0f0;
+    color: red;
 }
 
 header.hidden {
-  top: -100px; // Move header out of view when hidden
+    top: -100px; // Move header out of view when hidden
 }
 
 .navbar-nav .nav-item {
-  margin-right: 30px; /* Khoảng cách giữa các phần tử */
+    margin-right: 30px; /* Khoảng cách giữa các phần tử */
 }
 
 /* Đảm bảo rằng icon giỏ hàng có position relative */
 .navbar-nav .nav-item .nav-link {
-  position: relative; /* Đặt vị trí cha để cart-count có thể sử dụng absolute */
+    position: relative; /* Đặt vị trí cha để cart-count có thể sử dụng absolute */
 }
 
 /* Định vị phần tử số lượng giỏ hàng */
 .cart-count {
-  position: absolute; /* Vị trí tuyệt đối */
-  top: -5px;           /* Điều chỉnh khoảng cách từ trên cùng */
-  right: 102px;         /* Điều chỉnh khoảng cách từ bên phải */
-  background-color: red; /* Màu nền */
-  color: white;         /* Màu chữ */
-  border-radius: 50%;    /* Tạo hình tròn */
-  padding: 5px 10px;     /* Điều chỉnh kích thước */
-  font-size: 10px;       /* Kích thước chữ */
+    position: absolute; /* Vị trí tuyệt đối */
+    top: -5px; /* Điều chỉnh khoảng cách từ trên cùng */
+    right: 102px; /* Điều chỉnh khoảng cách từ bên phải */
+    background-color: red; /* Màu nền */
+    color: white; /* Màu chữ */
+    border-radius: 50%; /* Tạo hình tròn */
+    padding: 5px 10px; /* Điều chỉnh kích thước */
+    font-size: 10px; /* Kích thước chữ */
 }
 
+.avatar-img {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 32px;
+    height: 32px;
+    margin-right: 10px; /* Tạo khoảng cách giữa ảnh và tên */
+    border: 1.4px solid white; /* 👈 Thêm viền trắng */
+    // box-shadow: 0 0 2px rgba(0, 0, 0, 0.2); /* Tuỳ chọn: thêm bóng nhẹ để nổi hơn */
+}

@@ -39,3 +39,38 @@
     color: $shopapp-title-color;
 }
 
+.avatar-wrapper {
+    margin-bottom: 1rem;
+    // display: flex;
+    // align-items: center;
+}
+
+.avatar-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #ccc;
+}
+
+.camera-icon {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    background-color: #444;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid white;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.camera-icon:hover {
+    background-color: #666;
+}
