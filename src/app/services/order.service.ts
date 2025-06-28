@@ -15,6 +15,7 @@ export class OrderService {
 
   private apiUrl = `${environment.apiBaseUrl}/orders`;
   private apiGetAllOrders = `${environment.apiBaseUrl}/orders/get-orders-by-keyword`;
+  private apiGetUserOrders = `${environment.apiBaseUrl}/orders/user`;
 
   constructor(
     private http: HttpClient,
@@ -24,8 +25,7 @@ export class OrderService {
   }
 
   loadOrderCount() {
-    const userResponse = this.userService.getUserResponseFromLocalStorage()
-      || this.userService.getUserResponseFromSessionStorage();
+    const userResponse = this.userService.getUserResponseFromLocalStorage();
     if (userResponse?.role.name === 'admin') {
       const params = new HttpParams()
         .set('keyword', "")
@@ -35,6 +35,18 @@ export class OrderService {
         next: (response) => {
           if (response && response.totalOrder) {
             this.orderCountSubject.next(response.totalOrder);
+          }
+        },
+        error: (error) => {
+          console.error('Lỗi khi lấy số lượng đơn hàng:', error);
+        }
+      });
+    } else {
+      // For regular users, get their own orders count
+      this.http.get<any>(this.apiGetUserOrders).subscribe({
+        next: (response) => {
+          if (response && response.length) {
+            this.orderCountSubject.next(response.length);
           }
         },
         error: (error) => {
@@ -65,11 +77,17 @@ export class OrderService {
   }
 
   getAllOrders(keyword: string, page: number, limit: number): Observable<OrderResponse[]> {
-    const params = new HttpParams()
-      .set('keyword', keyword)
-      .set('page', page.toString())
-      .set('limit', limit.toString());
-    return this.http.get<any>(this.apiGetAllOrders, { params });
+    const userResponse = this.userService.getUserResponseFromLocalStorage();
+    if (userResponse?.role.name === 'admin') {
+      const params = new HttpParams()
+        .set('keyword', keyword)
+        .set('page', page.toString())
+        .set('limit', limit.toString());
+      return this.http.get<any>(this.apiGetAllOrders, { params });
+    } else {
+      // For regular users, get their own orders
+      return this.http.get<any>(this.apiGetUserOrders);
+    }
   }
 
   deleteOrder(orderId: number): Observable<any> {
