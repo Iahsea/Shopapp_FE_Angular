@@ -1,21 +1,23 @@
-@use '../styles/shared-styles.scss' as *;
-
+/* Phần giới thiệu trang */
 .intro-section {
     text-align: center;
     color: white;
-    padding: 20px;
+    padding: 40px;
     margin-top: 100px;
+    background: linear-gradient(135deg, #1f1f2e, #2e2e3e);
+    border-radius: 10px;
 }
 
 .search-box {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .product-category {
     width: 200px;
+    margin-left: 10px;
 }
 
 .search-input {
@@ -24,65 +26,67 @@
     margin-right: 10px;
     border-color: rgba(255, 255, 255, 0.5);
     color: white;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #4caf50; /* Màu xanh khi focus */
 }
 
 .form-control {
     background-color: transparent;
     color: white;
+    border-radius: 8px;
+    padding: 10px;
 }
 
 .form-control::placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: rgba(255, 255, 255, 0.5);
-    opacity: 1;
-    /* Firefox */
-}
-
-.form-control:-ms-input-placeholder {
-    /* Internet Explorer 10-11 */
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.form-control::-ms-input-placeholder {
-    /* Microsoft Edge */
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .product-item {
     background-color: rgb(19, 23, 42);
     border: 1px solid rgb(35, 39, 61);
-    border-radius: 20px;
-    padding: 20px;
-    margin-bottom: 20px;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
     cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+    transform: scale(1.05); /* Tăng kích thước nhẹ khi hover */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Hiệu ứng shadow khi hover */
 }
 
 .product-image {
-  width: 100% !important;
-  height: 200px !important;
-  object-fit: cover !important;
-  border-radius: 6px;
-  display: block;
-  cursor: pointer;
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+    cursor: pointer;
 }
-
 
 .product-name {
     color: white;
+    font-size: 1.3rem;
+    margin-top: 15px;
+    font-weight: 600;
 }
 
 .product-description {
     color: rgb(173, 178, 203);
-    min-height: 40px;
-    margin-bottom: auto;
-}
-
-.product-warranty {
-    color: rgb(242, 126, 212);
+    min-height: 50px;
+    margin-bottom: 15px;
 }
 
 .product-price {
-    color: white;
+    color: #ff5c5c;
+    font-size: 1.1rem;
+    font-weight: bold;
 }
 
 .product-rating {
@@ -93,138 +97,150 @@
 .product-actions {
     display: flex;
     justify-content: center;
+    gap: 10px;
     margin-top: 20px;
 }
 
-.space-x {
-    margin: 0 5px;
-    /*margin-top, margin-right, margin-bottom, margin-left*/
+.product-actions .btn {
+    padding: 10px 20px;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.product-actions .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.product-actions .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.product-actions .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.product-actions .btn-success:hover {
+    background-color: #218838;
+    border-color: #218838;
 }
 
 .page-number {
     cursor: pointer;
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    margin: 0 2px;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    margin: 0 5px;
     border-radius: 3px;
+    transition: background-color 0.3s ease;
 }
 
 .page-number.active {
     background-color: #007bff;
-    color: #fff;
+    color: white;
     border-color: #007bff;
 }
-  
-.btn-primary {
-  background-color: $shopapp-color;
-  border-color: $shopapp-color;
+
+.page-number:hover {
+    background-color: #0056b3;
+    color: white;
 }
 
-/* Tổng quan về phân trang */
 .pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-  font-family: 'Roboto', sans-serif;
-  list-style-type: none;
-  padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-family: 'Roboto', sans-serif;
+    list-style-type: none;
+    padding: 0;
 }
 
-/* Nút phân trang */
+/* Phân trang */
 .pagination .page-item {
-  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
-  margin: 0 5px;
-  border-radius: 50%; /* Bo tròn các nút */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    margin: 0 5px;
+    border-radius: 50%;
 }
 
-/* Nút khi hover hoặc active */
 .pagination .page-item:hover {
-  background-color: #5f6368;
-  color: #ffffff;
-  transform: scale(1.1);
+    background-color: #5f6368;
+    color: #ffffff;
+    transform: scale(1.1);
 }
 
 .pagination .page-item.active {
-  background-color: #4caf50; /* Màu xanh lá tươi mới */
-  color: #ffffff;
-  font-weight: bold;
-  transform: scale(1.1);
+    background-color: #4caf50;
+    color: #ffffff;
+    font-weight: bold;
+    transform: scale(1.1);
 }
 
-/* Các nút disabled */
 .pagination .page-item.disabled .page-link {
-  background-color: #f1f1f1;
-  color: #bdbdbd;
-  cursor: not-allowed;
+    background-color: #f1f1f1;
+    color: #bdbdbd;
+    cursor: not-allowed;
 }
 
-/* Nút phân trang (link) */
 .pagination .page-link {
-  display: block;
-  padding: 12px 18px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-  color: #5f6368;
-  background-color: #f5f5f5;
-  border: none; /* Loại bỏ đường viền */
-  border-radius: 50%; /* Bo tròn các nút */
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: none; /* Không có shadow */
+    display: block;
+    padding: 12px 18px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #5f6368;
+    background-color: #f5f5f5;
+    border: none;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-/* Nút link khi hover */
 .pagination .page-link:hover {
-  background-color: #4caf50; /* Màu xanh lá khi hover */
-  color: #ffffff;
-  cursor: pointer;
+    background-color: #4caf50;
+    color: #ffffff;
+    cursor: pointer;
 }
 
-/* Nút active khi click vào */
 .pagination .page-item:focus-within .page-link,
 .pagination .page-item.active .page-link {
-  background-color: #388e3c; /* Xanh lá đậm khi được chọn */
-  color: white;
-  border: 2px solid #2c6d28; /* Tạo đường viền nhẹ */
+    background-color: #388e3c;
+    color: white;
+    border: 2px solid #2c6d28;
 }
 
 /* Nút "First", "Previous", "Next", "Last" */
 .pagination .page-item:first-child .page-link,
 .pagination .page-item:last-child .page-link {
-  font-size: 16px;
-  font-weight: 700;
-  background-color: #388e3c; /* Màu xanh lá đậm */
-  color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: #388e3c;
+    color: #ffffff;
 }
 
-/* Nút "First", "Previous", "Next", "Last" khi hover */
 .pagination .page-item:first-child .page-link:hover,
 .pagination .page-item:last-child .page-link:hover {
-  background-color: #43a047;
-  color: #ffffff;
+    background-color: #43a047;
 }
 
 select.form-control {
-  background: linear-gradient(135deg, #1f1f2e, #2e2e3e); /* Nền chuyển màu tím-xám */
-  color: #e0e0ff;                  /* Chữ sáng dịu */
-  border: 1px solid #555;
-  border-radius: 8px;
-  padding: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Đổ bóng */
-  transition: all 0.3s ease;
+    background: linear-gradient(135deg, #1f1f2e, #2e2e3e);
+    color: #e0e0ff;
+    border: 1px solid #555;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
 }
 
 select.form-control:hover {
-  background: linear-gradient(135deg, #2a2a3d, #3d3d5a); /* Hover đậm hơn */
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(135deg, #2a2a3d, #3d3d5a);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
 }
 
 select.form-control option {
-  background-color: #1e1e2e;
-  color: #dcdcff;
+    background-color: #1e1e2e;
+    color: #dcdcff;
 }
-
-
-

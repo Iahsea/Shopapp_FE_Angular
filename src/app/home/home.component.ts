@@ -28,6 +28,8 @@ export class HomeComponent implements OnInit {
     totalPages: number = 0;
     visiblePages: number[] = [];
     keyword: string = '';
+    topSellingProducts: any[] = [];
+    total_sales: number = 0;
 
     constructor(
         private productService: ProductService,
@@ -40,6 +42,7 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         this.getProduct(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage);
         this.getCategory(1, 100);
+        this.getTopSellingProduct();
     }
 
     getCategory(page: number, limit: number) {
@@ -86,11 +89,58 @@ export class HomeComponent implements OnInit {
         });
     }
 
+    getTopSellingProduct() {
+        this.productService.getTopSellingProduct().subscribe({
+            next: (response: any) => {
+                debugger;
+                console.log('>>>>>> check top selling', response);
+                const productIds = response.map((item: any) => item.product_id);
+                this.productService.getProductsByIds(productIds).subscribe({
+                    next: (response: any) => {
+                        debugger;
+                        this.topSellingProducts = response.map((product: any, index: number) => {
+                            product.url = `${environment.apiBaseUrl}/products/images/${product.thumbnail}`;
+                            product.total_sales = response[index].total_sales; // Gán total_sales từ top-selling API
+                            return product;
+                        });
+                        console.log('Top Selling Products:', this.topSellingProducts);
+                    },
+                    complete: () => {
+                        debugger;
+                    },
+                    error: (error: any) => {
+                        debugger;
+                        console.log('Error fetching products:', error);
+                    },
+                });
+            },
+            complete: () => {
+                debugger;
+            },
+            error: (error: any) => {
+                debugger;
+                console.log('Error fetching top selling products:', error);
+            },
+        });
+    }
+
     onPageChange(page: number) {
         debugger;
         this.currentPage = page;
         this.getProduct(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage);
     }
+
+    // generateVisiblePageArray(currentPage: number, totalPages: number): number[] {
+    //   const maxVisiblePages = 5;
+    //   const halfVisiblePages = Math.floor(maxVisiblePages / 2);
+
+    //   let startPage = Math.max(currentPage - halfVisiblePages, 0);
+    //   let endPage = Math.min(startPage + maxVisiblePages - 1, totalPages - 1);
+
+    //   if (endPage - startPage + 1 < maxVisiblePages) {
+    //     startPage = Math.max(endPage - maxVisiblePages + 1, 0);
+    //   }
+    // }
 
     generateVisiblePageArray(currentPage: number, totalPages: number): number[] {
         const maxVisiblePages = 5;
@@ -105,6 +155,7 @@ export class HomeComponent implements OnInit {
 
         return new Array(endPage - startPage + 1).fill(0).map((_, index) => startPage + index);
     }
+
     // Hàm xử lý sự kiện khi sản phẩm được bấm vào
     onProductClick(productId: number) {
         debugger;

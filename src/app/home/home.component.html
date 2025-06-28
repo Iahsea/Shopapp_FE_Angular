@@ -7,27 +7,17 @@
     </div>
     <!--Đoạn này có 1 ô searchbox bên trái, 1 combobox bên phải  -->
     <div class="search-box">
-        <input type="text"
-               class="form-control search-input"
-               placeholder="Tìm sản phẩm"
-               [(ngModel)]="keyword">
-        <select class="form-control product-category"
-                [(ngModel)]="selectedCategoryId">
+        <input type="text" class="form-control search-input" placeholder="Tìm sản phẩm" [(ngModel)]="keyword" />
+        <select class="form-control product-category" [(ngModel)]="selectedCategoryId">
             <option [value]="0">Tất cả</option>
-            <option *ngFor="let category of categories"
-                    [value]="category.id">{{ category.name }}</option>
+            <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
         </select>
-        <button class="btn btn-primary ml-5"
-                (click)="searchProducts()">Tìm kiếm</button>
+        <button class="btn btn-primary ml-5" (click)="searchProducts()">Tìm kiếm</button>
     </div>
     <div class="row">
-        <div class="col-lg-4 col-md-6"
-             *ngFor="let product of products">
+        <div class="col-lg-4 col-md-6" *ngFor="let product of products">
             <div class="product-item">
-                <img [src]="product.url"
-                     alt="Product Image"
-                     class="product-image"
-                     (click)="onProductClick(product.id)">
+                <img [src]="product.url" alt="Product Image" class="product-image" (click)="onProductClick(product.id)" />
                 <h3 class="product-name">{{ product.name }}</h3>
                 <p class="product-description">{{ product.description }}</p>
                 <p class="product-price">Giá: ${{ product.price }}</p>
@@ -39,66 +29,73 @@
                     <i class="fas fa-star-half-alt"></i>
                 </div>
                 <div class="product-actions">
-                    <button class="btn btn-primary"
-                            (click)="addToCart( product.id )">Thêm vào giỏ hàng</button>
+                    <button class="btn btn-primary" (click)="addToCart(product.id)">Thêm vào giỏ hàng</button>
                     <span class="space-x"></span>
-                    <button class="btn btn-success"
-                            (click)="buyNow()">Mua ngay</button>
+                    <button class="btn btn-success" (click)="buyNow()">Mua ngay</button>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-
 
 <div class="d-flex justify-content-center mt-4">
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <!-- First Page Button -->
-            <li class="page-item"
-                [ngClass]="{'disabled': currentPage <= 0}">
-                <a class="page-link"
-                   href="#"
-                   (click)="onPageChange(0)">First</a>
+            <li class="page-item" [ngClass]="{ disabled: currentPage <= 0 }">
+                <a class="page-link" href="#" (click)="onPageChange(0)">First</a>
             </li>
 
             <!-- Previous Page Button -->
-            <li class="page-item"
-                [ngClass]="{'disabled': currentPage <= 0}">
-                <a class="page-link"
-                   href="#"
-                   (click)="onPageChange(currentPage - 1)">Previous</a>
+            <li class="page-item" [ngClass]="{ disabled: currentPage <= 0 }">
+                <a class="page-link" href="#" (click)="onPageChange(currentPage - 1)">Previous</a>
             </li>
 
             <!-- Dynamic Pages -->
             <ng-container *ngFor="let page of visiblePages">
-                <li class="page-item"
-                    [ngClass]="{'active': page === currentPage}">
-                    <a class="page-link"
-                       href="#"
-                       (click)="onPageChange(page)">{{ page + 1 }}</a>
+                <li class="page-item" [ngClass]="{ active: page === currentPage }">
+                    <a class="page-link" href="#" (click)="onPageChange(page)">{{ page + 1 }}</a>
                 </li>
             </ng-container>
 
             <!-- Next Page Button -->
-            <li class="page-item"
-                [ngClass]="{'disabled': currentPage >= totalPages - 1}">
-                <a class="page-link"
-                   href="#"
-                   (click)="onPageChange(currentPage + 1)">Next</a>
+            <li class="page-item" [ngClass]="{ disabled: currentPage >= totalPages - 1 }">
+                <a class="page-link" href="#" (click)="onPageChange(currentPage + 1)">Next</a>
             </li>
 
             <!-- Last Page Button -->
-            <li class="page-item"
-                [ngClass]="{'disabled': currentPage >= totalPages - 1}">
-                <a class="page-link"
-                   href="#"
-                   (click)="onPageChange(totalPages - 1)">Last</a>
+            <li class="page-item" [ngClass]="{ disabled: currentPage >= totalPages - 1 }">
+                <a class="page-link" href="#" (click)="onPageChange(totalPages - 1)">Last</a>
             </li>
         </ul>
     </nav>
 </div>
 
+<!-- Phần sản phẩm bán chạy nhất -->
+<div class="featured-products-section mt-5">
+    <h2 class="section-title">Sản phẩm bán chạy nhất</h2>
+    <div class="row">
+        <div class="col-lg-4 col-md-6" *ngFor="let product of topSellingProducts">
+            <div class="product-item">
+                <img [src]="product.url" alt="Product Image" class="product-image" />
+                <h3 class="product-name">{{ product.name }}</h3>
+                <p class="product-description">{{ product.description || 'Mô tả chưa có' }}</p>
+                <p class="product-price">Giá: ${{ product.price }}</p>
+                <p class="product-total-sales">Số lượng bán: {{ product.total_sales }}</p>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-primary" (click)="addToCart(product.id)">Thêm vào giỏ hàng</button>
+                    <button class="btn btn-success" (click)="buyNow()">Mua ngay</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <app-footer></app-footer>
