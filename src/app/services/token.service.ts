@@ -14,13 +14,17 @@ export class TokenService {
 
   getToken(): string | null {
     if (isPlatformBrowser(this.platformId)) {
-      return localStorage.getItem(this.TOKEN_KEY);
+      return localStorage.getItem(this.TOKEN_KEY) || sessionStorage.getItem(this.TOKEN_KEY);
     }
     return null;
   }
 
-  setToken(token: string): void {
-    return localStorage.setItem(this.TOKEN_KEY, token);
+  setToken(token: string, rememberMe: boolean = true): void {
+    if (rememberMe) {
+      return localStorage.setItem(this.TOKEN_KEY, token);
+    }
+
+    return sessionStorage.setItem(this.TOKEN_KEY, token);
   }
 
   getUserId(): number {
@@ -32,7 +36,8 @@ export class TokenService {
   }
 
   removeToken(): void {
-    return localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.TOKEN_KEY);
+    sessionStorage.removeItem(this.TOKEN_KEY);
   }
 
   isTokenExpired(): boolean {

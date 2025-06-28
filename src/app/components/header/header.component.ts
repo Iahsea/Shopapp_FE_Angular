@@ -39,8 +39,9 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     debugger
-    this.userResponse = this.userService.getUserResponseFromLocalStorage();
-    console.log(">>>>> check userRe sponse", this.userResponse);
+    this.userResponse = this.userService.getUserResponseFromLocalStorage()
+      || this.userService.getUserResponseFromSessionStorage();
+    console.log(">>>>> check userResponse", this.userResponse);
     this.cartService.getCartObservable().subscribe(() => {
       this.cartCount = this.cartService.getCartCount();
     })
@@ -72,6 +73,7 @@ export class HeaderComponent implements OnInit {
     }
     else if (index === 2) {
       this.userService.removeUserFromLocalStorage();
+      this.userService.removeUserFromSessionStorage();
       this.tokenService.removeToken();
       this.userResponse = this.userService.getUserResponseFromLocalStorage();
       this.cartService.resetCartOnLogout(); // Reset giỏ hàng trong bộ nhớ

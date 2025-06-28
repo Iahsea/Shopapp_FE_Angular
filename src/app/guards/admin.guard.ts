@@ -17,7 +17,7 @@ export const AdminGuardFn: CanActivateFn = (
 
   const isTokenExpired = tokenService.isTokenExpired();
   const isUserIdValid = tokenService.getUserId() > 0;
-  userResponse = userService.getUserResponseFromLocalStorage();
+  userResponse = userService.getUserResponseFromLocalStorage() || userService.getUserResponseFromSessionStorage();
   const isAdmin = userResponse?.role.name == 'admin';
   debugger;
   if (!isTokenExpired && isUserIdValid && isAdmin) {

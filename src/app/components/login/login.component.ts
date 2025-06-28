@@ -29,6 +29,13 @@ import { CartService } from '../../services/cart.service';
 })
 export class LoginComponent implements OnInit {
 
+
+  // /*
+  // // Login user 
+  // phoneNumber: string = '098890';
+  // password: string = '123';
+  // */
+
   // /*
   // // Login user 
   // phoneNumber: string = '6666666';
@@ -83,36 +90,41 @@ export class LoginComponent implements OnInit {
         next: (response: LoginResponse) => {
           debugger
           const { token } = response;
-          if (this.rememberMe) {
-            this.tokenService.setToken(token);
-            this.userService.getUserDetail(token).subscribe({
-              next: (response: any) => {
-                debugger
-                this.userResponse = {
-                  ...response,
-                  date_of_birth: new Date(response.date_of_birth),
-                };
+
+          this.tokenService.setToken(token, this.rememberMe);
+          this.userService.getUserDetail(token).subscribe({
+            next: (response: any) => {
+              debugger
+              this.userResponse = {
+                ...response,
+                date_of_birth: new Date(response.date_of_birth),
+              };
+
+              if (this.rememberMe) {
                 this.userService.saveUserResponseToLocalStorage(this.userResponse);
-                if (this.userResponse?.role.name == 'admin') {
-                  this.router.navigate(['/admin/dashboard']);
-                } else if (this.userResponse?.role.name == 'user') {
-                  this.router.navigate(['/']);
-                }
-
-                this.toastService.showSuccess('Login successfully');
-
-              },
-              complete: () => {
-                this.cartService.refreshCart();
-                debugger
-
-              },
-              error: (error: any) => {
-                debugger
-                this.toastService.showError('Erorr ' + error?.error?.message);
+              } else {
+                this.userService.saveUserResponseToSessionStorage(this.userResponse);
               }
-            })
-          }
+
+              if (this.userResponse?.role.name == 'admin') {
+                this.router.navigate(['/admin/dashboard']);
+              } else if (this.userResponse?.role.name == 'user') {
+                this.router.navigate(['/']);
+              }
+
+              this.toastService.showSuccess('Login successfully');
+
+            },
+            complete: () => {
+              this.cartService.refreshCart();
+              debugger
+
+            },
+            error: (error: any) => {
+              debugger
+              this.toastService.showError('Erorr ' + error?.error?.message);
+            }
+          })
         },
         complete: () => {
           debugger

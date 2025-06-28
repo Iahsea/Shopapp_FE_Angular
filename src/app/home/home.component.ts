@@ -34,6 +34,9 @@ export class HomeComponent implements OnInit {
   visiblePages: number[] = [];
   keyword: string = "";
 
+  topSellingProducts: any[] = [];
+  total_sales: number = 0;
+
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
@@ -44,7 +47,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.getProduct(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage);
-    this.getCategory(1, 100)
+    this.getCategory(1, 100);
+    this.getTopSellingProduct();
   }
 
   getCategory(page: number, limit: number) {
@@ -94,6 +98,44 @@ export class HomeComponent implements OnInit {
         }
       }
     )
+  }
+
+  getTopSellingProduct() {
+    this.productService.getTopSellingProduct().subscribe({
+      next: (response: any) => {
+        debugger
+        console.log(">>>>>> check top selling", response);
+        const productIds = response.map((item: any) => item.product_id);
+        this.productService.getProductsByIds(productIds).subscribe({
+          next: (response: any) => {
+            debugger
+            this.topSellingProducts = response.map((product: any, index: number) => {
+              product.url = `${environment.apiBaseUrl}/products/images/${product.thumbnail}`;
+              product.total_sales = response[index].total_sales; // Gán total_sales từ top-selling API
+              return product;
+            });
+            console.log("Top Selling Products:", this.topSellingProducts);
+
+          },
+          complete: () => {
+            debugger
+
+          },
+          error: (error: any) => {
+            debugger
+            console.log('Error fetching products:', error);
+          }
+        })
+      },
+      complete: () => {
+        debugger
+
+      },
+      error: (error: any) => {
+        debugger
+        console.log('Error fetching top selling products:', error);
+      }
+    })
   }
 
   onPageChange(page: number) {
