@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
 
 
   constructor(
-    private userService: UserService,
+    public userService: UserService,
     private popoverConfig: NgbPopoverConfig,
     private tokenService: TokenService,
     private router: Router,

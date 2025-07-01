@@ -178,7 +178,13 @@ export class UserProfileComponent implements OnInit {
                     // this.tokenService.removeToken();
                     this.router.navigate(['/user-profile']);
                     console.log('>>>>>', response);
-
+                    this.userResponse = {
+                        ...response,
+                        date_of_birth: new Date(response.date_of_birth),
+                        user_avatar: `${environment.apiBaseUrl}/avatars/${response.user_avatar}`,
+                    };
+                    this.userService.saveUserResponseToLocalStorage(this.userResponse!);
+                    this.userService.setUser(this.userResponse!); // ✅ cập nhật signal
                     this.toastService.showSuccess('User profile updated successfully');
                 },
                 error: (error: any) => {

@@ -1,4 +1,4 @@
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RegisterDTO } from '../dtos/user/register.dto';
@@ -19,6 +19,16 @@ export class UserService {
     private apiConfig = {
         headers: this.createHeaders(),
     };
+
+    private _userResponse = signal<UserResponse | null>(null);
+
+  // Getter cho signal
+  readonly userResponse = this._userResponse;
+
+  // Setter
+  setUser(user: UserResponse) {
+    this._userResponse.set(user);
+  }
 
     constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: Object) {}
 

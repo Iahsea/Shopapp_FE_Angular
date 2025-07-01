@@ -60,14 +60,29 @@
                         <ng-container *ngIf="userResponse">
                             <ng-container [ngbPopover]="popoverContent" triggers="click" [placement]="'bottom'">
                                 <a class="nav-link" [ngbPopover]="popoverContent" (click)="togglePopover($event)">
-                                    <img
-                                        [src]="userResponse?.user_avatar"
-                                        alt="avatar"
-                                        class="avatar-img"
-                                        width="32"
-                                        height="32"
-                                    />
-                                    <span>{{ userResponse.fullname }}</span>
+                                    @if (userService.userResponse()) {
+                                        <img
+                                          [src]="userService.userResponse()?.user_avatar"
+                                          alt="avatar"
+                                          class="avatar-img"
+                                          width="32"
+                                          height="32"
+                                        />
+                                      } @else {
+                                        <img
+                                          [src]="userResponse?.user_avatar"
+                                          alt="avatar"
+                                          class="avatar-img"
+                                          width="32"
+                                          height="32"
+                                        />
+                                      }
+                                      
+                                    @if (userService.userResponse()) {
+                                        <span>{{ userService.userResponse()?.fullname }}</span>
+                                    } @else {
+                                        <span>{{ userResponse?.fullname }}</span>
+                                    }
                                 </a>
                                 <ng-template #popoverContent>
                                     <div class="popover-list">
