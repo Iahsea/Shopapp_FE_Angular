@@ -60,7 +60,7 @@ export class UserProfileComponent implements OnInit {
             }
         );
 
-        this.checkPasswordChange();
+        // this.checkPasswordChange();
         // Thêm validator có điều kiện cho password và retype_password
     }
     ngOnInit(): void {

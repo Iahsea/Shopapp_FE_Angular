@@ -47,7 +47,7 @@ export class UserService {
         debugger;
         let userResponse = this.getUserResponseFromStorage();
 
-        return this.http.post(`${this.apiUserDetail}/${userResponse?.id}`, formData, {
+        return this.http.put(`${this.apiUserDetail}/${userResponse?.id}`, formData, {
             headers: new HttpHeaders({
                 Authorization: `Bearer ${token}`,
             }),

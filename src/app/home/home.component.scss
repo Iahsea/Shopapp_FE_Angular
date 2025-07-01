@@ -1,11 +1,16 @@
 /* Phần giới thiệu trang */
 .intro-section {
     text-align: center;
-    color: white;
+    color: #1976d2;
     padding: 40px;
     margin-top: 100px;
-    background: linear-gradient(135deg, #1f1f2e, #2e2e3e);
+    background: #fff;
     border-radius: 10px;
+    box-shadow: 0 4px 24px rgba(25, 118, 210, 0.08);
+}
+
+body, .main-content {
+    background: #fff !important;
 }
 
 .search-box {
@@ -13,31 +18,68 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 30px;
+    color: black;
 }
 
-.product-category {
-    width: 200px;
-    margin-left: 10px;
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .search-input {
     width: 300px;
-    background-color: rgb(19, 23, 42);
-    margin-right: 10px;
-    border-color: rgba(255, 255, 255, 0.5);
-    color: white;
-    border-radius: 8px;
-    padding: 10px;
+    background-color: #fff;
+    margin-right: 0;
+    border-color: #1976d2;
+    color: #222;
+    border-radius: 24px;
+    padding: 10px 44px 10px 18px;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.04);
 }
 
 .search-input:focus {
     outline: none;
-    border-color: #4caf50; /* Màu xanh khi focus */
+    border-color: #007bff;
+}
+
+.search-input::placeholder {
+    color: #888 !important;
+    opacity: 1;
+}
+
+.search-button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    box-shadow: none;
+    padding: 0;
+}
+
+.search-button:hover {
+    background: #8fbbe7;
+}
+
+.search-button i {
+    color: #007bff;
+    font-size: 1.2rem;
 }
 
 .form-control {
     background-color: transparent;
-    color: white;
+    color: black;
     border-radius: 8px;
     padding: 10px;
 }
@@ -46,14 +88,20 @@
     color: rgba(255, 255, 255, 0.7);
 }
 
+.product-category {
+    width: 200px;
+    margin-left: 10px;
+}
+
 .product-item {
-    background-color: rgb(19, 23, 42);
-    border: 1px solid rgb(35, 39, 61);
+    background-color: #fff;
+    border: 1px solid #e3e6ef;
     border-radius: 15px;
     padding: 25px;
     margin-bottom: 30px;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 12px rgba(25, 118, 210, 0.06);
 }
 
 .product-item:hover {
@@ -71,14 +119,14 @@
 }
 
 .product-name {
-    color: white;
+    color: #1976d2;
     font-size: 1.3rem;
     margin-top: 15px;
     font-weight: 600;
 }
 
 .product-description {
-    color: rgb(173, 178, 203);
+    color: #444;
     min-height: 50px;
     margin-bottom: 15px;
 }
@@ -226,21 +274,21 @@
 }
 
 select.form-control {
-    background: linear-gradient(135deg, #1f1f2e, #2e2e3e);
-    color: #e0e0ff;
-    border: 1px solid #555;
+    background: #fff;
+    color: #1976d2;
+    border: 1px solid #1976d2;
     border-radius: 8px;
     padding: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.04);
     transition: all 0.3s ease;
 }
 
 select.form-control:hover {
-    background: linear-gradient(135deg, #2a2a3d, #3d3d5a);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+    background: #f5faff;
+    box-shadow: 0 4px 16px rgba(25, 118, 210, 0.08);
 }
 
 select.form-control option {
-    background-color: #1e1e2e;
-    color: #dcdcff;
+    background-color: #fff;
+    color: #1976d2;
 }

@@ -1,8 +1,8 @@
 @use '../../styles/shared-styles.scss' as *;
 
 header {
-    background-color: rgb(192, 144, 144) !important;
-    color: rgb(173, 178, 203);
+    background-color: #1976d2 !important; /* Blue modern */
+    color: #fff;
     position: fixed;
     top: 0;
     left: 0;
@@ -13,7 +13,7 @@ header {
 }
 
 .navbar {
-    background-color: rgb(19, 23, 42) !important;
+    background-color: #1976d2 !important; /* Blue modern */
 }
 
 .navbar .container {
@@ -21,17 +21,17 @@ header {
 }
 
 .navbar .container .navbar-brand {
-    color: rgb(173, 178, 203);
+    color: #fff;
 }
 
 .navbar .container .navbar-nav .nav-link {
-    color: rgb(173, 178, 203);
+    color: #fff;
     border-radius: 18px;
     padding: 8px 16px;
 }
 
 .navbar .container .navbar-nav .nav-link.active {
-    background-color: $shopapp-color !important;
+    background-color: #1565c0 !important; /* darker blue */
     color: white !important;
 }
 

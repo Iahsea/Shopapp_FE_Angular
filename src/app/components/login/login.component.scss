@@ -1,38 +1,45 @@
 @use "../../styles/shared-styles.scss" as *;
 
 .container {
-  color: white;
+  color: #1976d2;
   height: 100vh;
   margin-top: 100px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(25, 118, 210, 0.08);
+  padding: 24px;
 }
 .login-form {
-  background-color: rgb(12, 12, 55);
-  border-radius: 10px;
-  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 24px;
   max-width: 500px;
-  border: 1px solid rgb(32, 34, 60);
+  border: 1px solid #e3e6ef;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 10px rgba(25, 118, 210, 0.05);
 }
 .login-header {
   text-align: center;
-  color: $shopapp-title-color;
+  color: #1976d2;
   margin-bottom: 20px;
 }
 .form-control {
-  background-color: transparent;
-  border: none;
-  color: white;
+  background-color: #fff;
+  border: 1px solid #1976d2;
+  color: #1976d2;
+  border-radius: 8px;
 }
 .form-control:focus {
-  color: white;
-  background-color: transparent;
+  color: #1976d2;
+  background-color: #f5faff;
   outline: none;
-  border-color: transparent;
+  border-color: #1565c0;
+  box-shadow: 0 0 0 2px #1976d2;
 }
 
 .divider-nospace {
-  border-top: 1px solid white;
+  border-top: 1px solid #1976d2;
 }
 
 .password-field {
@@ -40,14 +47,20 @@
 }
 .password-toggle {
   position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  color: $shopapp-title-color;
+  top: 20%;
+  right: 0;
+  height: 100%;
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1976d2;
+  font-size: 1rem;
   cursor: pointer;
+  transition: color 0.2s;
 }
 .checkbox-text {
-  color: rgb(243, 165, 42);
+  color: #1976d2;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -55,8 +68,8 @@
 }
 /* Màu checkbox khi được chọn */
 .checkbox-text input[type="checkbox"]:checked {
-  border-color: white;
-  background-color: $shopapp-tint-color;
+  border-color: #1976d2;
+  background-color: #1976d2;
 }
 
 .form-check-input {
@@ -64,73 +77,76 @@
 }
 
 .register-link {
-  color: $shopapp-title-color;
+  color: #1976d2;
   text-decoration: none;
 }
 .access-right {
   margin-top: 20px;
   width: 200px;
-  color: white;
-  border: 1px solid rgb(225, 64, 180);
+  color: #1976d2;
+  border: 1px solid #1976d2;
 }
 
 .access-right:focus {
-  border: 1px solid rgb(225, 64, 180);
+  border: 1px solid #1565c0;
 }
 
 .form-control::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: rgba(243, 165, 42, 0.4);
+  color: #888;
   opacity: 1;
   /* Firefox */
 }
 
 .form-control:-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: rgba(243, 165, 42, 0.4);
+  color: #888;
 }
 
 .form-control::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: rgba(243, 165, 42, 0.4);
+  color: #888;
 }
 
 .login-button {
-  background: linear-gradient(to right, rgb(225, 64, 180), rgb(126, 43, 237));
+  background: linear-gradient(90deg, #1976d2 0%, #63a4ff 100%);
   color: white;
-  border-radius: 30px;
+  border-radius: 24px;
   width: 100%;
   padding: 10px 0;
   margin-top: 20px;
   border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.10);
+  transition: background 0.2s;
+}
+.login-button:hover {
+  background: linear-gradient(90deg, #1565c0 0%, #1976d2 100%);
 }
 .divider {
   height: 1px;
-  background-color: rgb(243, 165, 42);
+  background-color: #1976d2;
   /* background-color: rgb(105, 244, 181) */
   margin: 20px;
 }
 
 select.form-control {
-  background: linear-gradient(
-    135deg,
-    #1f1f2e,
-    #2e2e3e
-  ); /* Nền chuyển màu tím-xám */
-  color: #e0e0ff; /* Chữ sáng dịu */
-  border: 1px solid #555;
+  background: #fff;
+  color: #1976d2;
+  border: 1px solid #1976d2;
   border-radius: 8px;
   padding: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Đổ bóng */
+  box-shadow: 0 2px 8px rgba(25, 118, 210, 0.04);
   transition: all 0.3s ease;
 }
 
 select.form-control:hover {
-  background: linear-gradient(135deg, #2a2a3d, #3d3d5a); /* Hover đậm hơn */
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+  background: #f5faff;
+  box-shadow: 0 4px 16px rgba(25, 118, 210, 0.08);
 }
 
 select.form-control option {
-  background-color: #1e1e2e;
-  color: #dcdcff;
+  background-color: #fff;
+  color: #1976d2;
 }

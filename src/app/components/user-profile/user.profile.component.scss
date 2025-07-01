@@ -1,7 +1,11 @@
 @use '../../styles/shared-styles.scss' as *;
 
 .container {
-    color: white;
+    color: #1976d2;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(25, 118, 210, 0.08);
+    padding: 24px;
 }
 
 .mx-auto {
@@ -11,29 +15,27 @@
 }
 
 .intro-section {
-    color: white;
+    color: #1976d2;
     padding: 20px;
     text-align: center;
-    margin-top: 500px;
+    margin-top: 40px;
 }
 .product-header {
-    color: $shopapp-tint-color;
+    color: #1976d2;
 }
 .form-control {
-    background-color: $shopapp-background-color;
-    border: 1px solid rgb(29, 33, 54);
-    color: white;
+    background-color: #fff;
+    border: 1px solid #1976d2;
+    color: #1976d2;
+    border-radius: 8px;
 }
 
 .form-control:focus {
-    border-color: white;
-    background-color: $shopapp-background-color;
+    border-color: #1565c0;
+    background-color: #f5faff;
 }
 .form-label {
-    color: white;
-}
-.product-header {
-    color: $shopapp-tint-color;
+    color: #1976d2;
 }
 .product-order {
     color: $shopapp-title-color;
@@ -41,8 +43,6 @@
 
 .avatar-wrapper {
     margin-bottom: 1rem;
-    // display: flex;
-    // align-items: center;
 }
 
 .avatar-img {
@@ -50,7 +50,8 @@
     height: 150px;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid #ccc;
+    border: 3px solid #1976d2;
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.10);
 }
 
 .camera-icon {
@@ -59,18 +60,18 @@
     right: 0;
     width: 36px;
     height: 36px;
-    background-color: #444;
+    background-color: #1976d2;
     color: white;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border: 2px solid white;
+    border: 2px solid #fff;
     font-size: 18px;
     transition: background-color 0.3s ease;
 }
 
 .camera-icon:hover {
-    background-color: #666;
+    background-color: #1565c0;
 }
