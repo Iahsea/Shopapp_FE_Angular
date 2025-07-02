@@ -1,7 +1,7 @@
 @use '../../styles/shared-styles.scss' as *;
 
 header {
-    background-color: #1976d2 !important; /* Blue modern */
+    background-color: #1e1e2f !important; /* Blue modern */
     color: #fff;
     position: fixed;
     top: 0;
@@ -13,7 +13,7 @@ header {
 }
 
 .navbar {
-    background-color: #1976d2 !important; /* Blue modern */
+    background-color: #1e1e2f !important; /* Blue modern */
 }
 
 .navbar .container {
@@ -31,7 +31,7 @@ header {
 }
 
 .navbar .container .navbar-nav .nav-link.active {
-    background-color: #1565c0 !important; /* darker blue */
+    background-color: #ffcc80 !important; /* darker blue */
     color: white !important;
 }
 

@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
         private router: Router,
         private cartService: CartService,
         private toastService: ToastService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.getProduct(this.keyword, this.selectedCategoryId, this.currentPage, this.itemsPerPage);

@@ -1,15 +1,50 @@
-<footer>
-    <!-- Footer content goes here -->
-    <div class="footer">
-        <div class="container">
-            <div class="row footer-description">
-                <div class="col-md-6">
-                    <p>&copy; 2025 Your Company. All rights reserved.</p>
-                </div>
-                <div class="col-md-6">
-                    <p class="text-end">Terms of Service | Privacy Policy</p>
-                </div>
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Cột 1: Logo + mô tả -->
+        <div class="footer-section brand">
+            <h2 class="logo">Shop<span> App</span></h2>
+            <p>Giải pháp mua sắm trực tuyến nhanh chóng, dễ dàng và đáng tin cậy.</p>
+        </div>
+
+        <!-- Cột 2: Liên kết nhanh -->
+        <div class="footer-section links">
+            <h3>Liên kết</h3>
+            <ul>
+                <li><a routerLink="/">Trang chủ</a></li>
+                <li><a routerLink="/products">Sản phẩm</a></li>
+                <li><a routerLink="/about">Giới thiệu</a></li>
+                <li><a routerLink="/contact">Liên hệ</a></li>
+            </ul>
+        </div>
+
+        <!-- Cột 3: Liên hệ -->
+        <div class="footer-section contact">
+            <h3>Liên hệ</h3>
+            <p><i class="fas fa-map-marker-alt"></i> 123 Đường ABC, TP.HCM</p>
+            <p><i class="fas fa-phone-alt"></i> 0901 234 567</p>
+            <p><i class="fas fa-envelope"></i> shopapp&#64;gmail.com</p>
+
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
+
+        <!-- Cột 4: Đăng ký email -->
+        <div class="footer-section newsletter">
+            <h3>Nhận bản tin</h3>
+            <p>Nhập email để nhận khuyến mãi và thông tin mới nhất.</p>
+            <form>
+                <input type="email"
+                       placeholder="Nhập email của bạn" />
+                <button type="submit"><i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 ShopApp. All rights reserved.
     </div>
 </footer>

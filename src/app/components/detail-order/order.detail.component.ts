@@ -60,6 +60,8 @@ export class OrderDetailComponent implements OnInit {
     this.orderService.getOrderById(this.orderId).subscribe({
       next: (response: any) => {
         debugger;
+        console.log(">>>>> check response", response);
+
         this.orderResponse.id = response.id;
         this.orderResponse.user_id = response.user_id;
         this.orderResponse.fullname = response.fullname;
@@ -88,7 +90,12 @@ export class OrderDetailComponent implements OnInit {
         this.orderResponse.shipping_method = response.shipping_method;
 
         this.orderResponse.status = response.status;
-        this.orderResponse.total_money = response.total_money;
+        this.orderResponse.total_money = this.orderResponse.order_details.reduce((total, detail) => {
+          console.log(">>>> check price", detail.price);
+          console.log(">>>> check number_of_products", detail.numberOfProducts);
+          console.log(">>>> check detail");
+          return total + (Number(detail.price) * Number(detail.numberOfProducts));
+        }, 0);
       },
       complete: () => {
         debugger;

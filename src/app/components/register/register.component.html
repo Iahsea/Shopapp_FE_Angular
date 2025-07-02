@@ -1,4 +1,4 @@
-<!-- <app-header></app-header> -->
+<app-header></app-header>
 <div class="container">
     <form #registerForm="ngForm">
         <div class="row">
@@ -7,37 +7,57 @@
                     <h2 class="register-header">Đăng ký</h2>
                     <div class="form-group">
                         <label for="phoneNumber">Phone</label>
-                        <input type="text" class="form-control" name="phoneNumber" [(ngModel)]="phoneNumber"
-                            (input)="onPhoneChange()" required #phoneNumberRef="ngModel" id="phoneNumber">
+                        <input type="text"
+                               class="form-control"
+                               name="phoneNumber"
+                               [(ngModel)]="phoneNumber"
+                               (input)="onPhoneChange()"
+                               required
+                               #phoneNumberRef="ngModel"
+                               id="phoneNumber">
                         <div class="divider-nospace"></div>
-                        <p class="text-danger" *ngIf="phoneNumberRef.touched && phoneNumber.length < 6">
+                        <p class="text-danger"
+                           *ngIf="phoneNumberRef.touched && phoneNumber.length < 6">
                             Phone phải có ít nhất 6 kí tự
                         </p>
                     </div>
                     <div class="mt-3"></div>
                     <div class="form-group password-field">
                         <label for="password">Mật khẩu</label>
-                        <input type="password" name="password" [(ngModel)]="password" placeholder="Ít nhất 3 ký tự"
-                            class="form-control" #passwordRef="ngModel" id="password">
+                        <input type="password"
+                               name="password"
+                               [(ngModel)]="password"
+                               placeholder="Ít nhất 3 ký tự"
+                               class="form-control"
+                               #passwordRef="ngModel"
+                               id="password">
                         <i class="password-toggle fas fa-eye-slash"></i>
                         <div class="divider-nospace"></div>
-                        <p class="text-danger" *ngIf="passwordRef.touched && password.length < 3">
+                        <p class="text-danger"
+                           *ngIf="passwordRef.touched && password.length < 3">
                             Mật khẩu phải có ít nhất 3 kí tự
                         </p>
                     </div>
                     <div class="mt-3"></div>
                     <div class="form-group password-field">
                         <label for="retype-password">Gõ lại mật khẩu</label>
-                        <input type="password" placeholder="Ít nhất 3 ký tự" class="form-control" name="retypePassword"
-                            [(ngModel)]="retypePassword"
-                            (input)="registerForm.form.markAsTouched(); checkPasswordsMatch()" required
-                            #retypePasswordRef="ngModel" id="retype-password">
+                        <input type="password"
+                               placeholder="Ít nhất 3 ký tự"
+                               class="form-control"
+                               name="retypePassword"
+                               [(ngModel)]="retypePassword"
+                               (input)="registerForm.form.markAsTouched(); checkPasswordsMatch()"
+                               required
+                               #retypePasswordRef="ngModel"
+                               id="retype-password">
                         <i class="password-toggle fas fa-eye-slash"></i>
                         <div class="divider-nospace"></div>
-                        <p class="text-danger" *ngIf="retypePasswordRef.touched && retypePassword.length < 3">
+                        <p class="text-danger"
+                           *ngIf="retypePasswordRef.touched && retypePassword.length < 3">
                             Mật khẩu phải có ít nhất 3 kí tự
                         </p>
-                        <p class="text-danger" *ngIf="registerForm.form.controls['retypePassword']?.hasError('passwordMismatch')
+                        <p class="text-danger"
+                           *ngIf="registerForm.form.controls['retypePassword']?.hasError('passwordMismatch')
                                                             && registerForm.form.touched">
                             Mật khẩu không khớp
                         </p>
@@ -45,17 +65,27 @@
                     <div class="mt-3"></div>
                     <div class="form-group">
                         <label for="full-name">Họ và tên</label>
-                        <input type="text" class="form-control" required name="fullName" [(ngModel)]="fullName"
-                            id="full-name">
+                        <input type="text"
+                               class="form-control"
+                               required
+                               name="fullName"
+                               [(ngModel)]="fullName"
+                               id="full-name">
                         <div class="divider-nospace"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="date-of-birth">Ngày tháng năm sinh</label>
-                        <input type="date" class="form-control" required [(ngModel)]="dateOfBirth" name="dateOfBirth"
-                            (input)="registerForm.form.markAsTouched(); checkAge()" id="date-of-birth">
+                        <input type="date"
+                               class="form-control"
+                               required
+                               [(ngModel)]="dateOfBirth"
+                               name="dateOfBirth"
+                               (input)="registerForm.form.markAsTouched(); checkAge()"
+                               id="date-of-birth">
                         <div class="divider-nospace"></div>
-                        <p class="text-danger" *ngIf="registerForm.form.controls['dateOfBirth']?.hasError('invalidAge')
+                        <p class="text-danger"
+                           *ngIf="registerForm.form.controls['dateOfBirth']?.hasError('invalidAge')
                                                             && registerForm.form.touched">
                             Bạn chưa đủ 18 tuổi
                         </p>
@@ -63,23 +93,35 @@
                     <div class="mt-3"></div>
                     <div class="form-group">
                         <label for="address">Địa chỉ</label>
-                        <input type="text" class="form-control" name="address" [(ngModel)]="address" id="address">
+                        <input type="text"
+                               class="form-control"
+                               name="address"
+                               [(ngModel)]="address"
+                               id="address">
                         <div class="divider-nospace"></div>
                     </div>
                     <div class="form-group">
                         <div class="form-check checkbox-text">
                             <span style="display: flex;">
-                                <input type="checkbox" name="isAccepted" [(ngModel)]="isAccepted"
-                                    class="form-check-input" id="agree">
-                                <label class="form-check-label text-start" for="agree">
+                                <input type="checkbox"
+                                       name="isAccepted"
+                                       [(ngModel)]="isAccepted"
+                                       class="form-check-input"
+                                       id="agree">
+                                <label class="form-check-label text-start"
+                                       for="agree">
                                     Tôi đồng ý với các điều khoản và điều kiện</label>
                             </span>
                         </div>
                     </div>
-                    <button type="button" (click)="register()" class="register-button">Đăng ký</button>
+                    <button type="button"
+                            (click)="register()"
+                            class="register-button">Đăng ký</button>
                     <div class="divider"></div>
                     <p class="text-center">Bạn đã có tài khoản? <span>
-                            <a href="#" class="register-link" routerLink="/login">Đăng nhập</a></span></p>
+                            <a href="#"
+                               class="register-link"
+                               routerLink="/login">Đăng nhập</a></span></p>
                 </div>
             </div>
         </div>

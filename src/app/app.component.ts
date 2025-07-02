@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { LoadingBarComponent } from './shared/loading-bar/loading-bar.component';
+import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'app-root',
@@ -11,7 +12,8 @@ import { LoadingBarComponent } from './shared/loading-bar/loading-bar.component'
         RouterOutlet,
         CommonModule,
         LoadingSpinnerComponent,
-        LoadingBarComponent
+        LoadingBarComponent,
+        NgbCarouselModule
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],

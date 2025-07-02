@@ -6,11 +6,13 @@ import { Router, RouterModule } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { RegisterDTO } from '../../dtos/user/register.dto';
 import { ToastService } from '../../services/toast.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
+    HeaderComponent,
     FooterComponent,
     FormsModule,
     NgIf,

@@ -4,21 +4,24 @@
   color: #1976d2;
   height: 100vh;
   margin-top: 100px;
-  background: #fff;
+  background: url('../../../assets/images/default-image.png');
   border-radius: 16px;
   box-shadow: 0 4px 24px rgba(25, 118, 210, 0.08);
   padding: 24px;
 }
 .login-form {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.582); // màu trắng mờ 20%
+  backdrop-filter: blur(10px);               // hiệu ứng mờ kính
+  -webkit-backdrop-filter: blur(10px);       // hỗ trợ cho Safari
   border-radius: 12px;
   padding: 24px;
   max-width: 500px;
-  border: 1px solid #e3e6ef;
+  border: 1px solid rgba(255, 255, 255, 0.641); // viền cũng mờ
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 10px rgba(25, 118, 210, 0.05);
 }
+
 .login-header {
   text-align: center;
   color: #1976d2;
