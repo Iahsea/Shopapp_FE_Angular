@@ -8,7 +8,7 @@ export interface Product {
     description: string;
     category_id: number;
     url: string;
-    productImages: ProductImage[];
+    product_images: ProductImage[];
     created_at: string;
     updated_at: string;
 }

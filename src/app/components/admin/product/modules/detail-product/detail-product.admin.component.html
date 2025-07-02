@@ -37,9 +37,9 @@
                 </mat-form-field>
             </div>
 
-            <div *ngIf="product && product.productImages && product.productImages.length > 0"
+            <div *ngIf="product && product.product_images && product.product_images.length > 0"
                  class="thumbnail-container">
-                <div *ngFor="let image of product.productImages"
+                <div *ngFor="let image of product.product_images"
                      class="image-container">
                     <img mat-card-image
                          [src]="image.image_url"

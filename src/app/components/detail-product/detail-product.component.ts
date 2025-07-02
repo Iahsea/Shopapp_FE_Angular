@@ -45,8 +45,8 @@ export class DetailProductComponent implements OnInit {
         {
           next: (response: any) => {
             debugger
-            if (response.productImages && response.productImages.length > 0) {
-              response.productImages = response.productImages.map((img: string) => {
+            if (response.product_images && response.product_images.length > 0) {
+              response.product_images = response.product_images.map((img: string) => {
                 return {
                   image_url: `${environment.apiBaseUrl}/products/images/${img}`
                 };
@@ -72,13 +72,13 @@ export class DetailProductComponent implements OnInit {
 
   showImage(index: number): void {
     debugger
-    if (this.product && this.product.productImages &&
-      this.product.productImages.length > 0) {
+    if (this.product && this.product.product_images &&
+      this.product.product_images.length > 0) {
       // Đảm bảo index nằm trong khoảng hợp lệ        
       if (index < 0) {
         index = 0;
-      } else if (index >= this.product.productImages.length) {
-        index = this.product.productImages.length - 1;
+      } else if (index >= this.product.product_images.length) {
+        index = this.product.product_images.length - 1;
       }
       // Gán index hiện tại và cập nhật ảnh hiển thị
       this.currentImageIndex = index;

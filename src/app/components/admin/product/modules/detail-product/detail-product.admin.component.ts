@@ -66,8 +66,8 @@ export class DetailProductAdminComponent implements OnInit {
         {
           next: (response: any) => {
             debugger
-            if (response.productImages && response.productImages.length > 0) {
-              response.productImages = response.productImages.map((img: string) => {
+            if (response.product_images && response.product_images.length > 0) {
+              response.product_images = response.product_images.map((img: string) => {
                 return {
                   image_url: `${environment.apiBaseUrl}/products/images/${img}`
                 };
@@ -79,7 +79,7 @@ export class DetailProductAdminComponent implements OnInit {
             this.productProfileForm.patchValue({
               name: this.product?.name || '',
               price: this.product?.price || '',
-              thumbnail: this.product?.productImages[0]?.image_url || '',
+              thumbnail: this.product?.product_images[0]?.image_url || '',
               description: this.product?.description || '',
               category_id: this.product?.category_id || ''
             });
@@ -156,12 +156,12 @@ export class DetailProductAdminComponent implements OnInit {
             response.forEach((image: any) => {
               const newImageUrl = `${environment.apiBaseUrl}/products/images/${image.imageUrl}`;
 
-              // Thêm ảnh mới vào mảng productImages (lưu ý, đây chỉ là cập nhật tạm thời trong client-side chứ chưa lưu vào database)
+              // Thêm ảnh mới vào mảng product_images (lưu ý, đây chỉ là cập nhật tạm thời trong client-side chứ chưa lưu vào database)
               // Có tác dụng thay đổi để Angular phát hiện và tự động cập nhật
 
               // Cập nhật lại thumbnail nếu cần
 
-              this.product?.productImages.push({
+              this.product?.product_images.push({
                 image_url: newImageUrl,
                 id: image.id
               });
