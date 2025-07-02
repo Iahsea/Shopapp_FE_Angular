@@ -1,27 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
-import {
-    AbstractControl,
-    FormBuilder,
-    FormGroup,
-    FormsModule,
-    ReactiveFormsModule,
-    ValidationErrors,
-    ValidatorFn,
-    Validators,
-} from '@angular/forms';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserResponse } from '../../responses/user/user.response';
 import { UserService } from '../../services/user.service';
 import { TokenService } from '../../services/token.service';
-import { minLength, ValidationError } from 'class-validator';
 import { CommonModule } from '@angular/common';
 import { response } from 'express';
 import { error } from 'console';
 import { UpdateUserDTO } from '../../dtos/user/update.user.dto';
 import { ToastService } from '../../services/toast.service';
 import { environment } from '../../environments/environment';
+import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-user-profile',
