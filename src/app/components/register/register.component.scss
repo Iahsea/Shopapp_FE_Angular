@@ -48,22 +48,31 @@
 }
 
 .password-field {
-    position: relative;
+    .input-wrapper {
+        position: relative;
+        width: 100%;
+    }
 }
 
-.password-toggle {
+.input-wrapper .form-control {
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+.input-wrapper .password-toggle {
     position: absolute;
-    top: 15%;
-    right: 0;
-    height: 100%;
-    width: 44px;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #1976d2;
+    font-size: 1rem;
+    z-index: 2;
+    pointer-events: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #1976d2;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: color 0.2s;
+    height: 100%;
 }
 
 .checkbox-text {
