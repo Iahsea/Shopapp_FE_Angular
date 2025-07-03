@@ -1,10 +1,15 @@
 <app-header></app-header>
 <div class="container">
     <div class="intro-section">
-        <h1>Đây là trang Home</h1>
-        <p>Trang này hiển thị danh sách các sản phẩm, kèm ảnh</p>
-        <p>Các bạn có thể chọn xem sản phẩm và mua hàng tại đây</p>
+        <h1><i class="fas fa-laptop-code"></i> Chào mừng đến với <span class="brand-name">DHQ Tech Store</span>
+        </h1>
+        <p class="tagline">Nơi hội tụ công nghệ - Mua sắm dễ dàng và nhanh chóng</p>
+
+        <button class="btn btn-primary intro-cta"
+                (click)="scrollToProducts()">Khám phá sản phẩm</button>
     </div>
+
+
     <!--Đoạn này có 1 ô searchbox bên trái, 1 combobox bên phải  -->
     <div class="search-box">
         <div class="search-input-wrapper">
@@ -101,6 +106,22 @@
         </nav>
     </div>
 
+    <div class="promotion-banner my-5 text-center">
+        <h4><i class="fas fa-gift"></i> Ưu đãi đặc biệt đang chờ bạn!</h4>
+        <p>Đăng ký tài khoản hội viên ngay để nhận mã giảm giá 10% cho đơn hàng đầu tiên</p>
+        <button class="btn btn-outline-primary mt-2"
+                (click)="onRegister()">Đăng ký ngay</button>
+    </div>
+
+    <div class="section-divider">
+        <hr />
+        <p class="divider-text"><i class="fas fa-fire"></i> Đừng bỏ lỡ các sản phẩm bán chạy nhất</p>
+        <hr />
+    </div>
+
+
+
+
     <!-- Phần sản phẩm bán chạy nhất -->
     <div class="featured-products-section mt-5">
         <h2 class="section-title">Sản phẩm bán chạy nhất</h2>
@@ -132,10 +153,22 @@
             </div>
         </div>
     </div>
+
+    <div class="post-featured-intro text-center mt-5 mb-5">
+        <div class="post-featured-box container py-4 px-3">
+            <p class="intro-highlight">
+                <i class="fas fa-microchip"></i>
+                <strong>Sản phẩm chính hãng:</strong> điện thoại, laptop, tai nghe, phụ kiện công nghệ
+            </p>
+            <p class="intro-highlight">
+                <i class="fas fa-shipping-fast"></i>
+                <strong>Dịch vụ hoàn hảo:</strong> Giao hàng toàn quốc - Bảo hành uy tín - Ưu đãi mỗi ngày
+            </p>
+        </div>
+    </div>
+
+
+
 </div>
-
-
-
-
 
 <app-footer></app-footer>

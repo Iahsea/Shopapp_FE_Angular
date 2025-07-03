@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Product } from '../../models/product';
 import { OrderDTO } from '../../dtos/order/order.dto';
 import { CommonModule } from '@angular/common';
@@ -15,6 +14,7 @@ import { UserService } from '../../services/user.service';
 import { ToastService } from '../../services/toast.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-order',
@@ -62,13 +62,13 @@ export class OrderComponent implements OnInit {
   ) {
     // Tạo FormGroup và các FormControl tương ứng
     this.orderForm = this.fb.group({
-      fullname: ['Hai', Validators.required],
-      email: ['hai@gmail.com', [Validators.required, Validators.email]], // Sử dụng Validators.email cho kiểm tra định dạng email
-      phone_number: ['11445547', [Validators.required, Validators.minLength(6)]], // phone_number bắt buộc và ít nhất 6 ký tự
-      address: ['nhà x ngõ y', [Validators.required, Validators.minLength(5)]], // address bắt buộc và ít nhất 5 ký tự
-      note: ['dễ vữ'],
-      shipping_method: ['express'],
-      payment_method: ['cod']
+      fullname: ['', Validators.required],
+      email: ['@gmail.com', [Validators.required, Validators.email]], // Sử dụng Validators.email cho kiểm tra định dạng email
+      phone_number: ['', [Validators.required, Validators.minLength(6)]], // phone_number bắt buộc và ít nhất 6 ký tự
+      address: ['', [Validators.required, Validators.minLength(5)]], // address bắt buộc và ít nhất 5 ký tự
+      note: [''],
+      shipping_method: [''],
+      payment_method: ['']
     })
   }
 

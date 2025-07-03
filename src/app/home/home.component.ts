@@ -172,4 +172,17 @@ export class HomeComponent implements OnInit {
     buyNow() {
         this.router.navigate(['/orders']);
     }
+
+    scrollToProducts() {
+        const element = document.querySelector('.row'); // hoặc class nào bao quanh danh sách sản phẩm của bạn
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
+    onRegister() {
+        debugger
+        this.router.navigate(['/register'])
+    }
+
 }

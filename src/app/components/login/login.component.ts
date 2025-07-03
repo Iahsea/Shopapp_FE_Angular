@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
     // */
 
     // Login admin
-    phoneNumber: string = '0909090909';
-    password: string = '123456';
+    phoneNumber: string = '';
+    password: string = '';
 
     roles: Role[] = []; // Mảng roles
     rememberMe: boolean = true;
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         private roleService: RoleService,
         private toastService: ToastService,
         private cartService: CartService
-    ) {}
+    ) { }
 
     ngOnInit() {
         // Gọi API lấy danh sách roles và lưu vào biến roles
