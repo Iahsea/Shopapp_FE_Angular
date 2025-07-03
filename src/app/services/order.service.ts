@@ -25,6 +25,7 @@ export class OrderService {
   }
 
   loadOrderCount() {
+    debugger
     const userResponse = this.userService.getUserResponseFromLocalStorage();
     if (userResponse?.role.name === 'admin') {
       const params = new HttpParams()
@@ -77,6 +78,7 @@ export class OrderService {
   }
 
   getAllOrders(keyword: string, page: number, limit: number): Observable<OrderResponse[]> {
+    debugger
     const userResponse = this.userService.getUserResponseFromLocalStorage();
     if (userResponse?.role.name === 'admin') {
       const params = new HttpParams()
